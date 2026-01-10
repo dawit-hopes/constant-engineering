@@ -1,50 +1,85 @@
 <template>
   <div class="min-h-screen">
     <!-- Hero Section -->
-    <section class="px-6 lg:px-12 py-24 lg:py-32 border-b border-gray-200">
+    <section class="px-4 sm:px-6 lg:px-8 py-16 lg:py-24" style="background: linear-gradient(to bottom, #ffffff 0%, #fef2f2 20%, #fee2e2 40%, #fef2f2 60%, #ffffff 100%);">
       <div
         v-motion
-        :initial="{ opacity: 0, y: 30 }"
+        :initial="{ opacity: 0, y: 10 }"
         :visible="{ opacity: 1, y: 0 }"
+        :delay="50"
         class="mx-auto max-w-4xl text-center"
       >
-        <h1 class="text-5xl lg:text-6xl font-black tracking-tight text-gray-900 mb-6">
+        <p class="text-sm font-semibold text-slate-600 mb-4 uppercase tracking-wider">
+          About
+        </p>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-tight tracking-tight">
           Our Story
         </h1>
-        <p class="text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto">
-          Founded in 2017, CONSTANT Engineering has been at the forefront of 
+        <p class="text-lg sm:text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto">
+          Founded in 2017, CONSTANT Engineering plc has been at the forefront of 
           electromechanical solutions in Ethiopia and beyond.
         </p>
       </div>
     </section>
 
-    <!-- Origin Story -->
-    <section class="px-6 lg:px-12 py-24">
-      <div class="mx-auto max-w-4xl">
+    <!-- Our Story Section - Redesigned -->
+    <section class="px-4 sm:px-6 lg:px-8 py-16 lg:py-24 bg-white">
+      <div class="mx-auto max-w-7xl">
+        <!-- Header -->
         <div
           v-motion
-          :initial="{ opacity: 0, x: -30 }"
-          :visible="{ opacity: 1, x: 0 }"
-          :delay="200"
-          class="prose prose-lg max-w-none"
+          :initial="{ opacity: 0, y: 10 }"
+          :visible="{ opacity: 1, y: 0 }"
+          :delay="100"
+          class="text-center mb-12 lg:mb-16"
         >
-          <h2 class="text-4xl font-bold text-gray-900 mb-8">The Beginning</h2>
-          <div class="space-y-6 text-lg text-gray-600 leading-relaxed">
-            <p>
-              In 2017, CONSTANT Engineering was established with a clear vision: to deliver 
-              world-class electromechanical engineering solutions that power industries and 
-              transform communities across Ethiopia.
+          <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-tight tracking-tight">
+            Founded in
+            <span class="relative inline-block text-primary">
+              2017
+              <!-- Technical-style underline -->
+              <svg
+                class="absolute -bottom-2 left-0 w-full h-2 text-primary/50"
+                viewBox="0 0 200 8"
+                preserveAspectRatio="none"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M2 4 L198 4"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-dasharray="4,2"
+                />
+              </svg>
+            </span>
+            , leading electromechanical solutions.
+          </h2>
+        </div>
+
+        <!-- Story Content -->
+        <div class="max-w-4xl mx-auto">
+          <div
+            v-motion
+            :initial="{ opacity: 0, y: 20 }"
+            :visible="{ opacity: 1, y: 0 }"
+            :delay="150"
+            class="space-y-6 lg:space-y-8"
+          >
+            <p class="text-lg sm:text-xl lg:text-2xl text-slate-600 leading-relaxed font-medium">
+              CONSTANT Engineering plc has been at the forefront of electromechanical solutions in Ethiopia and beyond. 
+              Our journey began with a simple yet powerful mission: to deliver excellence in every project we undertake.
             </p>
-            <p>
-              What started as a small team of passionate engineers has grown into a trusted 
-              partner for businesses seeking reliable power generation, automation systems, 
-              and HVAC solutions. Our commitment to integrity, excellence, and lasting 
-              partnerships has been the foundation of our success.
+            
+            <p class="text-base sm:text-lg text-slate-600 leading-relaxed">
+              Established with a clear vision to deliver world-class engineering solutions that power industries and transform communities. 
+              What started as a small team of passionate engineers has grown into a trusted partner for businesses across Ethiopia and the region.
             </p>
-            <p>
-              Today, we continue to push the boundaries of industrial engineering, 
-              combining cutting-edge technology with proven expertise to solve complex 
-              challenges for our clients.
+            
+            <p class="text-base sm:text-lg text-slate-600 leading-relaxed">
+              Today, we continue to push boundaries, innovate, and set new standards in the electromechanical engineering industry. 
+              Our commitment to quality, integrity, and customer satisfaction remains unwavering.
             </p>
           </div>
         </div>

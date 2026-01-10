@@ -8,7 +8,7 @@
         <!-- Logo - Left -->
         <NuxtLink to="/" class="flex items-center space-x-2 sm:space-x-3 flex-shrink-0 min-w-0">
           <img src="/Constant-logo.png" alt="CONSTANT Engineering" class="h-7 w-7 sm:h-8 sm:w-8 flex-shrink-0" />
-          <span class="text-base sm:text-lg font-bold text-slate-900 truncate">CONSTANT</span>
+          <span class="hidden lg:inline text-base sm:text-lg font-bold text-slate-900 truncate tracking-tighter" style="font-family: 'Inter', 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; letter-spacing: -0.025em; font-weight: 700;">CONSTANT Engineering</span>
         </NuxtLink>
 
         <!-- Menu - Right -->
@@ -226,52 +226,52 @@ const closeMegaMenu = () => {
 
 const products = [
   {
-    id: 'diesel-generators',
-    name: 'Diesel Generators',
+    id: 'diesel-generator-systems',
+    name: 'Diesel Generator Systems',
     image: 'https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=800&h=600&fit=crop',
-    description: 'Reliable power generation solutions for industrial applications'
+    description: 'Capacity: 10 KVA – 2000 KVA. Open & Silent Type (Canopy). Prime & Standby Power for Industrial, Commercial & Utility Applications.'
   },
   {
-    id: 'solar-energy',
-    name: 'Solar Energy',
+    id: 'solar-hybrid-energy',
+    name: 'Solar & Hybrid Energy Solutions',
     image: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&h=600&fit=crop',
-    description: 'Sustainable solar power systems and installations'
+    description: 'On-grid & Off-grid Solar Systems, Hybrid Systems (Solar + Generator), Inverters & Charge Controllers, Battery Banks.'
   },
   {
-    id: 'hvac-systems',
-    name: 'HVAC Systems',
-    image: 'https://images.unsplash.com/photo-1621905252507-b35424cc871b?w=800&h=600&fit=crop',
-    description: 'Heating, ventilation, and air conditioning solutions'
+    id: 'power-quality-protection',
+    name: 'Power Quality & Protection Systems',
+    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop',
+    description: 'UPS Systems, Voltage Stabilizers, Active Harmonic Filters, Capacitor Banks, Surge Protection Devices.'
+  },
+  {
+    id: 'electrical-distribution',
+    name: 'Electrical Distribution & Switchgear',
+    image: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&h=600&fit=crop',
+    description: 'LV Power Cables, Circuit Breakers, Contactors, Panels, Enclosures & Accessories.'
+  },
+  {
+    id: 'hvac-cooling-systems',
+    name: 'HVAC & Cooling Systems',
+    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop',
+    description: 'Split, Cassette, Ducted & Central AC, VRF/VRV Systems, Chillers, Cold Rooms & Refrigeration.'
+  },
+  {
+    id: 'pumping-solutions',
+    name: 'Pumping Solutions',
+    image: 'https://images.unsplash.com/photo-1615873968403-89e068629265?w=800&h=600&fit=crop',
+    description: 'Submersible Pumps, Surface & Booster Pumps, Solar Powered Pumps, Pump Control Panels.'
   },
   {
     id: 'industrial-automation',
-    name: 'Industrial Automation',
+    name: 'Industrial Automation & Control',
     image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=600&fit=crop',
-    description: 'Advanced automation and control systems'
+    description: 'PLC & Automation Systems, Control Panel Design, Motor Control Centers, Instrumentation & Measurement.'
   },
   {
     id: 'metal-engineering',
-    name: 'Metal Engineering',
+    name: 'Metal Engineering & Fabrication',
     image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=600&fit=crop',
-    description: 'Precision metal fabrication and engineering services'
-  },
-  {
-    id: 'electrical-systems',
-    name: 'Electrical Systems',
-    image: 'https://images.unsplash.com/photo-1621905252472-5af521f6a4e7?w=800&h=600&fit=crop',
-    description: 'Complete electrical design and installation services'
-  },
-  {
-    id: 'maintenance-services',
-    name: 'Maintenance Services',
-    image: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&h=600&fit=crop',
-    description: 'Comprehensive maintenance and support programs'
-  },
-  {
-    id: 'consulting',
-    name: 'Engineering Consulting',
-    image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=600&fit=crop',
-    description: 'Expert consulting for complex engineering challenges'
+    description: 'Steel Structures, Fuel & Industrial Storage Tanks, Lighting Poles, Stainless Steel Fabrication, Welding.'
   }
 ]
 </script>
