@@ -1,188 +1,275 @@
 <template>
   <div class="min-h-screen">
-    <!-- Hero Section -->
-    <section class="relative overflow-hidden px-6 lg:px-12 py-24 lg:py-32">
-      <div class="mx-auto max-w-7xl">
-        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          <!-- Left: Main Headline -->
-          <div
-            v-motion
-            :initial="{ opacity: 0, x: -50 }"
-            :visible="{ opacity: 1, x: 0 }"
-            :delay="100"
-            class="space-y-8"
-          >
-            <h1 class="text-5xl lg:text-7xl font-black tracking-tight text-gray-900 leading-none">
-              Electromechanical
-              <span class="text-primary">Experts</span>
-            </h1>
-          </div>
+    <!-- Hero Section - TaxPal Style Centered Layout -->
+    <section class="pt-20 lg:pt-32 pb-16" style="background: linear-gradient(to bottom, #ffffff 0%, #f8fafc 30%, #f1f5f9 50%, #f8fafc 70%, #ffffff 100%);">
+      <div class="mx-auto max-w-4xl px-6 lg:px-8 text-center">
+        <!-- Main Headline -->
+        <h1
+          v-motion
+          :initial="{ opacity: 0, y: 20 }"
+          :visible="{ opacity: 1, y: 0 }"
+          :delay="100"
+          class="text-5xl md:text-6xl lg:text-7xl font-bold text-slate-900 mb-6 leading-tight tracking-tight"
+        >
+          Electromechanical solutions
+          <span class="relative inline-block text-primary">
+            made simple
+            <!-- SVG Scribble Underline -->
+            <svg
+              class="absolute -bottom-1 left-0 w-full h-3 text-primary/40"
+              viewBox="0 0 180 12"
+              preserveAspectRatio="none"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M2 8C22 6, 42 10, 62 7C82 4, 102 9, 122 6C142 3, 162 8, 178 5"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                fill="none"
+              />
+            </svg>
+          </span>
+          for industry.
+        </h1>
 
-          <!-- Right: Sub-headline & CTA -->
-          <div
-            v-motion
-            :initial="{ opacity: 0, x: 50 }"
-            :visible="{ opacity: 1, x: 0 }"
-            :delay="200"
-            class="space-y-6"
+        <!-- Subheadline -->
+        <p
+          v-motion
+          :initial="{ opacity: 0, y: 20 }"
+          :visible="{ opacity: 1, y: 0 }"
+          :delay="200"
+          class="text-lg md:text-xl text-slate-600 mb-10 max-w-[700px] mx-auto leading-relaxed"
+        >
+          CONSTANT Engineering specializes in high-quality, tailored solutions for medium to large-scale projects. We deliver innovative, reliable, and efficient results that exceed expectations.
+        </p>
+
+        <!-- CTAs -->
+        <div
+          v-motion
+          :initial="{ opacity: 0, y: 20 }"
+          :visible="{ opacity: 1, y: 0 }"
+          :delay="300"
+          class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
+        >
+          <!-- Primary CTA - WhatsApp -->
+          <a
+            href="https://wa.me/251924909098?text=Hello,%20I%20would%20like%20to%20request%20a%20quote"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center rounded-full bg-slate-900 px-8 py-4 text-base font-semibold text-white hover:bg-slate-800 transition-colors"
           >
-            <p class="text-xl lg:text-2xl text-gray-600 leading-relaxed font-light tracking-wide">
-              Power, Automation, HVAC Solutions
-            </p>
-            <p class="text-lg text-gray-500 leading-relaxed">
-              Delivering world-class engineering solutions across Ethiopia and beyond. 
-              From diesel generators to solar energy systems, we power industries.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 pt-4">
-              <NuxtLink
-                to="/contact"
-                class="inline-flex items-center justify-center rounded-full bg-primary px-8 py-4 text-base font-semibold text-white hover:bg-primary/90 transition-all hover:scale-105"
+            Request a Quote
+          </a>
+
+          <!-- Secondary CTA -->
+          <button
+            class="inline-flex items-center justify-center gap-2 rounded-full border-2 border-slate-300 px-8 py-4 text-base font-semibold text-slate-900 hover:border-slate-400 transition-colors"
+          >
+            <Icon name="heroicons:play" class="h-5 w-5 text-primary" />
+            View Projects
+          </button>
+        </div>
+
+        <!-- Trust Section -->
+        <div
+          v-motion
+          :initial="{ opacity: 0, y: 20 }"
+          :visible="{ opacity: 1, y: 0 }"
+          :delay="400"
+          class="mt-16"
+        >
+          <p class="text-sm text-slate-600 mb-8">
+            Trusted by industry leaders
+          </p>
+          <div class="flex flex-wrap items-center justify-center gap-8 lg:gap-12">
+            <!-- Partner Logos -->
+            <div 
+              v-for="partner in partners" 
+              :key="partner.name"
+              class="grayscale opacity-60 hover:opacity-100 transition-opacity h-10 flex items-center justify-center min-w-[100px]"
+            >
+              <img 
+                :src="partner.image" 
+                :alt="partner.name" 
+                class="h-full w-auto object-contain max-w-[120px]"
+                @error="handleImageError($event, partner.name)"
+                @load="handleImageLoad($event)"
+                style="display: block;"
+                loading="lazy"
+              />
+              <span 
+                v-if="!partner.imageLoaded"
+                class="text-sm font-semibold text-slate-700"
               >
-                Get Started
-                <Icon name="heroicons:arrow-right" class="ml-2 h-5 w-5" />
-              </NuxtLink>
-              <NuxtLink
-                to="/products"
-                class="inline-flex items-center justify-center rounded-full border-2 border-gray-300 px-8 py-4 text-base font-semibold text-gray-700 hover:border-primary hover:text-primary transition-all"
-              >
-                View Products
-              </NuxtLink>
+                {{ partner.name }}
+              </span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Service Grid (Studio-style List Layout) -->
-    <section class="px-6 lg:px-12 py-24 border-t border-gray-200">
-      <div class="mx-auto max-w-7xl">
+    <!-- Features Grid - 3 Columns -->
+    <section class="py-24 bg-white">
+      <div class="mx-auto max-w-7xl px-6 lg:px-8">
         <div
           v-motion
           :initial="{ opacity: 0, y: 30 }"
           :visible="{ opacity: 1, y: 0 }"
-          :delay="300"
-          class="mb-16"
+          :delay="200"
+          class="mb-16 text-center"
         >
-          <h2 class="text-4xl lg:text-5xl font-bold tracking-tight text-gray-900 text-center">
+          <h2 class="text-4xl lg:text-5xl font-bold text-slate-900 mb-4">
             Our Foundation
           </h2>
+          <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+            Built on principles that drive excellence in every project
+          </p>
         </div>
 
-        <div class="space-y-0">
+        <div class="grid md:grid-cols-3 gap-8">
           <!-- Integrity -->
           <div
             v-motion
-            :initial="{ opacity: 0, x: -30 }"
-            :visible="{ opacity: 1, x: 0 }"
-            :delay="400"
-            class="grid md:grid-cols-2 gap-8 py-12 border-b border-gray-200 first:border-t"
+            :initial="{ opacity: 0, y: 50 }"
+            :visible="{ opacity: 1, y: 0 }"
+            :delay="300"
+            class="bg-white rounded-lg shadow-sm p-8 border border-gray-100"
           >
-            <div class="flex items-start">
-              <h3 class="text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight">
-                Integrity
-              </h3>
+            <div class="mb-6">
+              <Icon
+                name="heroicons:shield-check"
+                class="h-12 w-12 text-primary"
+              />
             </div>
-            <div class="flex items-start">
-              <p class="text-lg text-gray-600 leading-relaxed">
-                Built on unwavering ethical standards and transparent business practices. 
-                Every project is delivered with complete honesty and accountability.
-              </p>
-            </div>
+            <h3 class="text-2xl font-bold text-slate-900 mb-4">
+              Integrity
+            </h3>
+            <p class="text-gray-600 leading-relaxed">
+              Built on unwavering ethical standards and transparent business practices. 
+              Every project is delivered with complete honesty and accountability.
+            </p>
           </div>
 
           <!-- Partnerships -->
           <div
             v-motion
-            :initial="{ opacity: 0, x: -30 }"
-            :visible="{ opacity: 1, x: 0 }"
-            :delay="500"
-            class="grid md:grid-cols-2 gap-8 py-12 border-b border-gray-200"
+            :initial="{ opacity: 0, y: 50 }"
+            :visible="{ opacity: 1, y: 0 }"
+            :delay="400"
+            class="bg-white rounded-lg shadow-sm p-8 border border-gray-100"
           >
-            <div class="flex items-start">
-              <h3 class="text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight">
-                Partnerships
-              </h3>
+            <div class="mb-6">
+              <Icon
+                name="heroicons:user-group"
+                class="h-12 w-12 text-primary"
+              />
             </div>
-            <div class="flex items-start">
-              <p class="text-lg text-gray-600 leading-relaxed">
-                Long-term relationships with clients, suppliers, and communities. 
-                We grow together through mutual trust and shared success.
-              </p>
-            </div>
+            <h3 class="text-2xl font-bold text-slate-900 mb-4">
+              Partnerships
+            </h3>
+            <p class="text-gray-600 leading-relaxed">
+              Long-term relationships with clients, suppliers, and communities. 
+              We grow together through mutual trust and shared success.
+            </p>
           </div>
 
           <!-- Excellence -->
           <div
             v-motion
-            :initial="{ opacity: 0, x: -30 }"
-            :visible="{ opacity: 1, x: 0 }"
-            :delay="600"
-            class="grid md:grid-cols-2 gap-8 py-12 border-b border-gray-200"
+            :initial="{ opacity: 0, y: 50 }"
+            :visible="{ opacity: 1, y: 0 }"
+            :delay="500"
+            class="bg-white rounded-lg shadow-sm p-8 border border-gray-100"
           >
-            <div class="flex items-start">
-              <h3 class="text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight">
-                Excellence
-              </h3>
+            <div class="mb-6">
+              <Icon
+                name="heroicons:star"
+                class="h-12 w-12 text-primary"
+              />
             </div>
-            <div class="flex items-start">
-              <p class="text-lg text-gray-600 leading-relaxed">
-                Uncompromising quality in every detail. From design to delivery, 
-                we set the standard for industrial engineering excellence.
-              </p>
-            </div>
+            <h3 class="text-2xl font-bold text-slate-900 mb-4">
+              Excellence
+            </h3>
+            <p class="text-gray-600 leading-relaxed">
+              Uncompromising quality in every detail. From design to delivery, 
+              we set the standard for industrial engineering excellence.
+            </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Featured Products -->
-    <section class="px-6 lg:px-12 py-24 bg-gray-50 border-t border-gray-200">
-      <div class="mx-auto max-w-7xl">
-        <div
-          v-motion
-          :initial="{ opacity: 0, y: 30 }"
-          :visible="{ opacity: 1, y: 0 }"
-          :delay="700"
-          class="mb-16 text-center"
-        >
-          <h2 class="text-4xl lg:text-5xl font-bold tracking-tight text-gray-900 mb-4">
-            Featured Solutions
-          </h2>
-          <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-            Comprehensive engineering solutions for modern industries
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <!-- Product Highlight - Split Section -->
+    <section class="py-24 bg-slate-50">
+      <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <!-- Image Side -->
           <div
-            v-for="(product, index) in featuredProducts"
-            :key="product.id"
             v-motion
-            :initial="{ opacity: 0, y: 50 }"
-            :visible="{ opacity: 1, y: 0 }"
-            :delay="800 + index * 100"
-            class="group"
+            :initial="{ opacity: 0, x: -50 }"
+            :visible="{ opacity: 1, x: 0 }"
+            :delay="600"
+            class="order-2 lg:order-1"
           >
-            <NuxtLink
-              :to="`/products/${product.id}`"
-              class="block bg-white rounded-2xl border border-gray-200 p-8 hover:border-primary hover:shadow-xl transition-all duration-300"
-            >
-              <div class="mb-6">
-                <Icon
-                  :name="product.icon"
-                  class="h-12 w-12 text-primary group-hover:scale-110 transition-transform"
-                />
+            <div class="rounded-lg overflow-hidden shadow-lg">
+              <img
+                src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=1200&h=800&fit=crop"
+                alt="Diesel Generator"
+                class="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+
+          <!-- Text/Specs Side -->
+          <div
+            v-motion
+            :initial="{ opacity: 0, x: 50 }"
+            :visible="{ opacity: 1, x: 0 }"
+            :delay="700"
+            class="order-1 lg:order-2"
+          >
+            <h2 class="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
+              Diesel Generators
+            </h2>
+            <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+              Industrial-grade power generation systems designed for reliability and performance. 
+              Our generators deliver consistent power when you need it most.
+            </p>
+
+            <!-- Specifications -->
+            <div class="space-y-4 mb-8">
+              <div class="flex items-start space-x-4">
+                <Icon name="heroicons:check-circle" class="h-6 w-6 text-primary flex-shrink-0 mt-0.5" />
+                <div>
+                  <h4 class="font-semibold text-slate-900 mb-1">Power Range</h4>
+                  <p class="text-gray-600">50kVA - 2000kVA capacity options</p>
+                </div>
               </div>
-              <h3 class="text-2xl font-bold text-gray-900 mb-3 group-hover:text-primary transition-colors">
-                {{ product.name }}
-              </h3>
-              <p class="text-gray-600 leading-relaxed mb-4">
-                {{ product.description }}
-              </p>
-              <span class="inline-flex items-center text-primary font-semibold text-sm group-hover:gap-2 transition-all">
-                Learn more
-                <Icon name="heroicons:arrow-right" class="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </span>
+              <div class="flex items-start space-x-4">
+                <Icon name="heroicons:check-circle" class="h-6 w-6 text-primary flex-shrink-0 mt-0.5" />
+                <div>
+                  <h4 class="font-semibold text-slate-900 mb-1">24/7 Reliability</h4>
+                  <p class="text-gray-600">Engineered for continuous operation</p>
+                </div>
+              </div>
+              <div class="flex items-start space-x-4">
+                <Icon name="heroicons:check-circle" class="h-6 w-6 text-primary flex-shrink-0 mt-0.5" />
+                <div>
+                  <h4 class="font-semibold text-slate-900 mb-1">Comprehensive Support</h4>
+                  <p class="text-gray-600">Full maintenance programs and technical support</p>
+                </div>
+              </div>
+            </div>
+
+            <NuxtLink
+              to="/products/diesel-generators"
+              class="inline-flex items-center text-primary font-semibold hover:gap-2 transition-all"
+            >
+              Learn More
+              <Icon name="heroicons:arrow-right" class="ml-2 h-5 w-5" />
             </NuxtLink>
           </div>
         </div>
@@ -190,15 +277,15 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="px-6 lg:px-12 py-24 border-t border-gray-200">
+    <section class="py-24 bg-white">
       <div
         v-motion
         :initial="{ opacity: 0, scale: 0.95 }"
         :visible="{ opacity: 1, scale: 1 }"
-        :delay="1200"
-        class="mx-auto max-w-4xl text-center"
+        :delay="800"
+        class="mx-auto max-w-4xl px-6 lg:px-8 text-center"
       >
-        <h2 class="text-4xl lg:text-5xl font-bold tracking-tight text-gray-900 mb-6">
+        <h2 class="text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
           Ready to Power Your Industry?
         </h2>
         <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
@@ -206,7 +293,7 @@
         </p>
         <NuxtLink
           to="/contact"
-          class="inline-flex items-center justify-center rounded-full bg-primary px-10 py-5 text-lg font-semibold text-white hover:bg-primary/90 transition-all hover:scale-105"
+          class="inline-flex items-center justify-center rounded-md bg-primary px-10 py-5 text-lg font-semibold text-white hover:bg-primary/90 transition-all hover:scale-105"
         >
           Contact Us Today
           <Icon name="heroicons:arrow-right" class="ml-2 h-5 w-5" />
@@ -217,42 +304,55 @@
 </template>
 
 <script setup>
-const featuredProducts = [
-  {
-    id: 'diesel-generators',
-    name: 'Diesel Generators',
-    icon: 'heroicons:bolt',
-    description: 'Industrial-grade power generation with 24/7 reliability and comprehensive support.'
-  },
-  {
-    id: 'solar-energy',
-    name: 'Solar Energy Systems',
-    icon: 'heroicons:sun',
-    description: 'Sustainable solar solutions designed for maximum efficiency and long-term savings.'
-  },
-  {
-    id: 'hvac-systems',
-    name: 'HVAC Systems',
-    icon: 'heroicons:wind',
-    description: 'Climate control solutions for optimal comfort and energy efficiency.'
-  },
-  {
-    id: 'industrial-automation',
-    name: 'Industrial Automation',
-    icon: 'heroicons:cpu-chip',
-    description: 'Smart automation systems that streamline operations and boost productivity.'
-  },
-  {
-    id: 'metal-engineering',
-    name: 'Metal Engineering',
-    icon: 'heroicons:wrench-screwdriver',
-    description: 'Precision fabrication and custom metalwork for complex industrial needs.'
-  },
-  {
-    id: 'electrical-systems',
-    name: 'Electrical Systems',
-    icon: 'heroicons:light-bulb',
-    description: 'Complete electrical design, installation, and maintenance services.'
+import { onMounted, nextTick, watch, ref } from 'vue'
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
+
+// Partner logos configuration
+const partners = ref([
+  { name: 'Perkins', image: '/partners/perkins.png', imageLoaded: false },
+  { name: 'Cummins', image: '/partners/cummins.png', imageLoaded: false },
+  { name: 'Schneider Electric', image: '/partners/schneider-electric.png', imageLoaded: false },
+  { name: 'Mitsubishi', image: '/partners/mitsubishi.png', imageLoaded: false },
+  { name: 'GREE', image: '/partners/gree.png', imageLoaded: false }
+])
+
+// Handle image loading success
+const handleImageLoad = (event) => {
+  const img = event.target
+  const partnerName = img.alt
+  const partner = partners.value.find(p => p.name === partnerName)
+  if (partner) {
+    partner.imageLoaded = true
   }
-]
+}
+
+// Handle image loading errors gracefully
+const handleImageError = (event, partnerName) => {
+  const img = event.target
+  img.style.display = 'none'
+  const partner = partners.value.find(p => p.name === partnerName)
+  if (partner) {
+    partner.imageLoaded = false
+  }
+}
+
+// Ensure animations initialize on navigation
+onMounted(async () => {
+  await nextTick()
+  // Force a small delay to ensure DOM is ready
+  setTimeout(() => {
+    // Trigger scroll event to initialize intersection observers
+    window.dispatchEvent(new Event('scroll'))
+  }, 100)
+})
+
+// Watch for route changes and reinitialize
+watch(() => route.path, async () => {
+  await nextTick()
+  setTimeout(() => {
+    window.dispatchEvent(new Event('scroll'))
+  }, 100)
+}, { immediate: false })
 </script>

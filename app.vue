@@ -1,16 +1,19 @@
 <template>
-  <div class="min-h-screen bg-gray-100">
-    <!-- Studio-style Main Wrapper -->
-    <div class="mx-auto max-w-[1920px] px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
-      <div class="bg-white rounded-[40px] border border-gray-200 shadow-sm min-h-[calc(100vh-2rem)]">
-        <Navbar />
-        <main>
-          <NuxtPage />
-        </main>
-      </div>
-    </div>
+  <div class="min-h-screen bg-white flex flex-col">
+    <Navbar />
+    <main 
+      class="flex-1 transition-all duration-300"
+      :class="{ 'blur-sm': megaMenuOpen }"
+    >
+      <NuxtPage :key="$route.fullPath" />
+    </main>
+    <Footer />
   </div>
 </template>
 
 <script setup>
+import { inject, ref } from 'vue'
+
+// Inject mega menu state from Navbar
+const megaMenuOpen = inject('megaMenuOpen', ref(false))
 </script>

@@ -7,6 +7,11 @@ export default defineNuxtConfig({
     '@vueuse/motion/nuxt'
   ],
   css: ['~/assets/css/main.css'],
+  router: {
+    options: {
+      strict: false
+    }
+  },
   app: {
     head: {
       title: 'CONSTANT Engineering plc',
