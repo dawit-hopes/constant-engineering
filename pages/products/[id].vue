@@ -189,7 +189,7 @@ const products = {
   'diesel-generator-systems': {
     name: 'Diesel Generator Systems',
     icon: 'heroicons:bolt',
-    image: 'https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=1200&h=800&fit=crop',
+    image: '/products/diesel-generator-systems.jpg',
     description: 'Reliable power generation solutions with capacity range from 10 KVA to 2000 KVA. Available in Open & Silent Type (Canopy) for Prime & Standby Power applications.',
     quickSpecs: ['10 KVA – 2000 KVA', 'Open & Silent Type', 'Prime & Standby Power'],
     features: [
@@ -223,7 +223,7 @@ const products = {
   'solar-hybrid-energy': {
     name: 'Solar & Hybrid Energy Solutions',
     icon: 'heroicons:sun',
-    image: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1200&h=800&fit=crop',
+    image: '/products/solar-hybrid-energy.png',
     description: 'Complete solar and hybrid energy solutions including on-grid & off-grid systems, inverters, charge controllers, and battery banks for sustainable power generation.',
     quickSpecs: ['On-grid & Off-grid', 'Hybrid Systems', 'Battery Banks'],
     features: [
@@ -260,7 +260,7 @@ const products = {
   'power-quality-protection': {
     name: 'Power Quality & Protection Systems',
     icon: 'heroicons:shield-check',
-    image: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=1200&h=800&fit=crop',
+    image: '/products/power-quality-protection.png',
     description: 'Comprehensive power quality and protection solutions including UPS systems, voltage stabilizers, harmonic filters, and surge protection devices.',
     quickSpecs: ['UPS Systems', 'Voltage Stabilizers', 'Surge Protection'],
     features: [
@@ -296,7 +296,7 @@ const products = {
   'electrical-distribution': {
     name: 'Electrical Distribution & Switchgear',
     icon: 'heroicons:light-bulb',
-    image: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=1200&h=800&fit=crop',
+    image: '/products/electrical-distribution.png',
     description: 'Complete electrical distribution solutions including LV power cables, circuit breakers, contactors, panels, and switchgear components.',
     quickSpecs: ['LV Power Cables', 'Circuit Breakers', 'Panels & Enclosures'],
     features: [
@@ -328,7 +328,7 @@ const products = {
   'hvac-cooling-systems': {
     name: 'HVAC & Cooling Systems',
     icon: 'heroicons:adjustments-horizontal',
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=800&fit=crop',
+    image: '/products/hvac-cooling-systems.png',
     description: 'Complete HVAC and cooling solutions including split, cassette, ducted & central AC, VRF/VRV systems, chillers, and cold rooms.',
     quickSpecs: ['Split & Central AC', 'VRF/VRV Systems', 'Chillers & Cold Rooms'],
     features: [
@@ -368,7 +368,7 @@ const products = {
   'pumping-solutions': {
     name: 'Pumping Solutions',
     icon: 'heroicons:arrow-path',
-    image: 'https://images.unsplash.com/photo-1615873968403-89e068629265?w=1200&h=800&fit=crop',
+    image: '/products/pumping-solutions.png',
     description: 'Comprehensive pumping solutions including submersible, surface, booster, and solar-powered pumps with control panels and maintenance services.',
     quickSpecs: ['Submersible Pumps', 'Solar Powered', 'Pump Control Panels'],
     features: [
@@ -404,7 +404,7 @@ const products = {
   'industrial-automation': {
     name: 'Industrial Automation & Control',
     icon: 'heroicons:cpu-chip',
-    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&h=800&fit=crop',
+    image: '/products/electrical-distribution.png',
     description: 'Advanced industrial automation solutions including PLC systems, control panels, motor control centers, instrumentation, and sensors.',
     quickSpecs: ['PLC Systems', 'Control Panels', 'MCC & Instrumentation'],
     features: [
@@ -445,7 +445,7 @@ const products = {
   'metal-engineering': {
     name: 'Metal Engineering & Fabrication',
     icon: 'heroicons:wrench-screwdriver',
-    image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1200&h=800&fit=crop',
+    image: '/products/metal-engineering.png',
     description: 'Precision metal engineering and fabrication services including steel structures, storage tanks, lighting poles, and stainless steel fabrication.',
     quickSpecs: ['Steel Structures', 'Storage Tanks', 'Stainless Steel'],
     features: [

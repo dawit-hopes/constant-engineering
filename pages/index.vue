@@ -14,7 +14,6 @@
           Electromechanical solutions
           <span class="relative inline-block text-primary">
             made simple
-            <!-- SVG Scribble Underline -->
             <svg
               class="absolute -bottom-1 left-0 w-full h-2 sm:h-3 text-primary/40"
               viewBox="0 0 180 12"

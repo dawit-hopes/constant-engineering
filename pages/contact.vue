@@ -232,7 +232,7 @@
                       <p>Addis Ababa, Ethiopia</p>
                     </div>
                     <a
-                      href="https://www.google.com/maps/search/?api=1&query=KKare+Building+Mozambique+Street+Mexico+Area+Addis+Ababa"
+                      href="https://maps.app.goo.gl/FFS3Wvaz4BxTKAje8"
                       target="_blank"
                       rel="noopener noreferrer"
                       class="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors mt-3 text-sm font-semibold"

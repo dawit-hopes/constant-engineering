@@ -8,7 +8,7 @@
         <!-- Logo - Left -->
         <NuxtLink to="/" class="flex items-center space-x-2 sm:space-x-3 flex-shrink-0 min-w-0">
           <img src="/Constant-logo.png" alt="CONSTANT Engineering" class="h-7 w-7 sm:h-8 sm:w-8 flex-shrink-0" />
-          <span class="hidden lg:inline text-base sm:text-lg font-bold text-slate-900 truncate tracking-tighter" style="font-family: 'Inter', 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; letter-spacing: -0.025em; font-weight: 700;">CONSTANT Engineering</span>
+          <span class="hidden lg:inline text-base sm:text-lg font-bold text-primary truncate tracking-tighter" style="font-family: 'Inter', 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; letter-spacing: -0.025em; font-weight: 700;">CONSTANT Engineering</span>
         </NuxtLink>
 
         <!-- Menu - Right -->
@@ -116,62 +116,202 @@
 
         <!-- Mobile Menu Button -->
         <button
-          class="lg:hidden p-2 text-slate-900"
+          class="lg:hidden p-2 text-slate-900 relative z-50"
           @click="mobileMenuOpen = !mobileMenuOpen"
         >
-          <Icon :name="mobileMenuOpen ? 'heroicons:x-mark' : 'heroicons:bars-3'" class="h-6 w-6" />
+          <Icon :name="mobileMenuOpen ? 'heroicons:x-mark' : 'heroicons:bars-3'" class="h-6 w-6 transition-transform" />
         </button>
       </div>
+    </div>
 
-      <!-- Mobile Menu -->
+    <!-- Full Screen Mobile Menu -->
+    <Teleport to="body">
       <Transition
-        enter-active-class="transition-all duration-300"
-        enter-from-class="opacity-0 max-h-0"
-        enter-to-class="opacity-100 max-h-96"
-        leave-active-class="transition-all duration-300"
-        leave-from-class="opacity-100 max-h-96"
-        leave-to-class="opacity-0 max-h-0"
+        enter-active-class="transition-all duration-500 ease-out"
+        enter-from-class="opacity-0"
+        enter-to-class="opacity-100"
+        leave-active-class="transition-all duration-300 ease-in"
+        leave-from-class="opacity-100"
+        leave-to-class="opacity-0"
       >
-        <div v-if="mobileMenuOpen" class="lg:hidden border-t border-gray-200 py-4 space-y-4 w-full overflow-x-hidden">
-          <NuxtLink
-            to="/"
-            class="block px-4 text-base font-medium text-slate-900 hover:text-primary w-full"
-            @click="mobileMenuOpen = false"
+        <div
+          v-if="mobileMenuOpen"
+          class="fixed inset-0 z-[100] lg:hidden overflow-hidden"
+        >
+          <!-- Elegant White Gradient Background -->
+          <div class="absolute inset-0 bg-gradient-to-br from-white via-slate-50 to-white"></div>
+          
+          <!-- Subtle Pattern Overlay -->
+          <div class="absolute inset-0 opacity-[0.02]">
+            <div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, #000 1px, transparent 0); background-size: 40px 40px;"></div>
+          </div>
+
+          <!-- Full Screen Menu Content -->
+          <Transition
+            enter-active-class="transition-all duration-500 ease-out"
+            enter-from-class="opacity-0 scale-95 translate-y-8"
+            enter-to-class="opacity-100 scale-100 translate-y-0"
+            leave-active-class="transition-all duration-300 ease-in"
+            leave-from-class="opacity-100 scale-100 translate-y-0"
+            leave-to-class="opacity-0 scale-95 translate-y-8"
           >
-            Home
-          </NuxtLink>
-          <NuxtLink
-            to="/products"
-            class="block px-4 text-base font-medium text-slate-900 hover:text-primary w-full"
-            @click="mobileMenuOpen = false"
-          >
-            Products
-          </NuxtLink>
-          <NuxtLink
-            to="/about"
-            class="block px-4 text-base font-medium text-slate-900 hover:text-primary w-full"
-            @click="mobileMenuOpen = false"
-          >
-            About
-          </NuxtLink>
-          <NuxtLink
-            to="/contact"
-            class="block px-4 text-base font-medium text-slate-900 hover:text-primary w-full"
-            @click="mobileMenuOpen = false"
-          >
-            Contact
-          </NuxtLink>
+            <div
+              v-if="mobileMenuOpen"
+              class="relative h-full w-full flex flex-col overflow-y-auto"
+            >
+              <!-- Header -->
+              <div class="flex items-center justify-between px-6 pt-6 pb-4 border-b border-slate-200/50">
+                <NuxtLink
+                  to="/"
+                  class="flex items-center space-x-3"
+                  @click="mobileMenuOpen = false"
+                >
+                  <img src="/Constant-logo.png" alt="CONSTANT Engineering" class="h-10 w-10" />
+                  <span class="text-xl font-bold text-slate-900">CONSTANT Engineering</span>
+                </NuxtLink>
+                <button
+                  @click="mobileMenuOpen = false"
+                  class="p-2.5 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-xl transition-all"
+                >
+                  <Icon name="heroicons:x-mark" class="h-6 w-6" />
+                </button>
+              </div>
+
+              <!-- Main Navigation -->
+              <div class="flex-1 px-6 py-8 space-y-3">
+                <!-- Home -->
+                <NuxtLink
+                  to="/"
+                  class="group flex items-center space-x-4 px-6 py-4 rounded-2xl bg-white border border-slate-200 hover:border-primary/30 hover:bg-slate-50 hover:shadow-md transition-all"
+                  @click="mobileMenuOpen = false"
+                >
+                  <div class="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                    <Icon name="heroicons:home" class="h-6 w-6 text-primary" />
+                  </div>
+                  <div class="flex-1">
+                    <div class="text-lg font-semibold text-slate-900 group-hover:text-primary transition-colors">Home</div>
+                    <div class="text-sm text-slate-500">Back to homepage</div>
+                  </div>
+                  <Icon name="heroicons:arrow-right" class="h-5 w-5 text-slate-400 group-hover:text-primary group-hover:translate-x-1 transition-all" />
+                </NuxtLink>
+
+                <!-- Products with Expandable Section -->
+                <div>
+                  <button
+                    @click="mobileProductsOpen = !mobileProductsOpen"
+                    class="group w-full flex items-center justify-between px-6 py-4 rounded-2xl bg-white border border-slate-200 hover:border-primary/30 hover:bg-slate-50 hover:shadow-md transition-all"
+                  >
+                    <div class="flex items-center space-x-4">
+                      <div class="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                        <Icon name="heroicons:squares-2x2" class="h-6 w-6 text-primary" />
+                      </div>
+                      <div class="text-left">
+                        <div class="text-lg font-semibold text-slate-900 group-hover:text-primary transition-colors">Products</div>
+                        <div class="text-sm text-slate-500">Explore our solutions</div>
+                      </div>
+                    </div>
+                    <Icon
+                      name="heroicons:chevron-down"
+                      class="h-5 w-5 text-slate-400 transition-all duration-300"
+                      :class="{ 'rotate-180 text-primary': mobileProductsOpen }"
+                    />
+                  </button>
+                  
+                  <!-- Products Grid -->
+                  <Transition
+                    enter-active-class="transition-all duration-300 ease-out"
+                    enter-from-class="opacity-0 max-h-0"
+                    enter-to-class="opacity-100 max-h-[2000px]"
+                    leave-active-class="transition-all duration-300 ease-in"
+                    leave-from-class="opacity-100 max-h-[2000px]"
+                    leave-to-class="opacity-0 max-h-0"
+                  >
+                    <div v-if="mobileProductsOpen" class="mt-3 grid grid-cols-2 gap-3 overflow-hidden">
+                      <NuxtLink
+                        v-for="product in products"
+                        :key="product.id"
+                        :to="`/products/${product.id}`"
+                        class="group relative overflow-hidden rounded-xl bg-white border border-slate-200 hover:border-primary/30 hover:shadow-md transition-all"
+                        @click="mobileMenuOpen = false"
+                      >
+                        <div class="aspect-square overflow-hidden bg-slate-100">
+                          <img
+                            :src="product.image"
+                            :alt="product.name"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                          />
+                        </div>
+                        <div class="p-3">
+                          <div class="text-sm font-semibold text-slate-900 group-hover:text-primary transition-colors line-clamp-2 mb-1">
+                            {{ product.name }}
+                          </div>
+                          <div class="text-xs text-slate-500 line-clamp-2">
+                            {{ product.description }}
+                          </div>
+                        </div>
+                      </NuxtLink>
+                    </div>
+                  </Transition>
+                </div>
+
+                <!-- About -->
+                <NuxtLink
+                  to="/about"
+                  class="group flex items-center space-x-4 px-6 py-4 rounded-2xl bg-white border border-slate-200 hover:border-primary/30 hover:bg-slate-50 hover:shadow-md transition-all"
+                  @click="mobileMenuOpen = false"
+                >
+                  <div class="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                    <Icon name="heroicons:information-circle" class="h-6 w-6 text-primary" />
+                  </div>
+                  <div class="flex-1">
+                    <div class="text-lg font-semibold text-slate-900 group-hover:text-primary transition-colors">About</div>
+                    <div class="text-sm text-slate-500">Learn about us</div>
+                  </div>
+                  <Icon name="heroicons:arrow-right" class="h-5 w-5 text-slate-400 group-hover:text-primary group-hover:translate-x-1 transition-all" />
+                </NuxtLink>
+
+                <!-- Contact -->
+                <NuxtLink
+                  to="/contact"
+                  class="group flex items-center space-x-4 px-6 py-4 rounded-2xl bg-white border border-slate-200 hover:border-primary/30 hover:bg-slate-50 hover:shadow-md transition-all"
+                  @click="mobileMenuOpen = false"
+                >
+                  <div class="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                    <Icon name="heroicons:envelope" class="h-6 w-6 text-primary" />
+                  </div>
+                  <div class="flex-1">
+                    <div class="text-lg font-semibold text-slate-900 group-hover:text-primary transition-colors">Contact</div>
+                    <div class="text-sm text-slate-500">Get in touch</div>
+                  </div>
+                  <Icon name="heroicons:arrow-right" class="h-5 w-5 text-slate-400 group-hover:text-primary group-hover:translate-x-1 transition-all" />
+                </NuxtLink>
+              </div>
+
+              <!-- Footer CTA -->
+              <div class="px-6 pb-8 pt-4 border-t border-slate-200/50">
+                <NuxtLink
+                  to="/contact"
+                  class="block w-full rounded-2xl bg-primary px-8 py-4 text-center text-lg font-semibold text-white hover:bg-primary/90 transition-all shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30"
+                  @click="mobileMenuOpen = false"
+                >
+                  Get Started
+                  <Icon name="heroicons:arrow-right" class="inline-block ml-2 h-5 w-5" />
+                </NuxtLink>
+              </div>
+            </div>
+          </Transition>
         </div>
       </Transition>
-    </div>
+    </Teleport>
   </nav>
 </template>
 
 <script setup>
-import { ref, provide, onMounted, onUnmounted } from 'vue'
+import { ref, provide, onMounted, onUnmounted, watch } from 'vue'
 
 const showMegaMenu = ref(false)
 const mobileMenuOpen = ref(false)
+const mobileProductsOpen = ref(false)
 const isScrolled = ref(false)
 const navbarHeight = ref(64) // Default desktop height
 
@@ -208,6 +348,16 @@ const updateNavbarHeight = () => {
   navbarHeight.value = window.innerWidth >= 640 ? 64 : 56 // sm:h-16 = 64px, h-14 = 56px
 }
 
+// Prevent body scroll when mobile menu is open
+watch(mobileMenuOpen, (isOpen) => {
+  if (isOpen) {
+    document.body.style.overflow = 'hidden'
+  } else {
+    document.body.style.overflow = ''
+    mobileProductsOpen.value = false
+  }
+})
+
 onMounted(() => {
   window.addEventListener('scroll', handleScroll)
   window.addEventListener('resize', updateNavbarHeight)
@@ -228,49 +378,49 @@ const products = [
   {
     id: 'diesel-generator-systems',
     name: 'Diesel Generator Systems',
-    image: 'https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=800&h=600&fit=crop',
+    image: '/products/diesel-generator-systems.jpg',
     description: 'Capacity: 10 KVA – 2000 KVA. Open & Silent Type (Canopy). Prime & Standby Power for Industrial, Commercial & Utility Applications.'
   },
   {
     id: 'solar-hybrid-energy',
     name: 'Solar & Hybrid Energy Solutions',
-    image: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&h=600&fit=crop',
+    image: '/products/solar-hybrid-energy.png',
     description: 'On-grid & Off-grid Solar Systems, Hybrid Systems (Solar + Generator), Inverters & Charge Controllers, Battery Banks.'
   },
   {
     id: 'power-quality-protection',
     name: 'Power Quality & Protection Systems',
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop',
+    image: '/products/power-quality-protection.png',
     description: 'UPS Systems, Voltage Stabilizers, Active Harmonic Filters, Capacitor Banks, Surge Protection Devices.'
   },
   {
     id: 'electrical-distribution',
     name: 'Electrical Distribution & Switchgear',
-    image: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&h=600&fit=crop',
+    image: '/products/electrical-distribution.jpg',
     description: 'LV Power Cables, Circuit Breakers, Contactors, Panels, Enclosures & Accessories.'
   },
   {
     id: 'hvac-cooling-systems',
     name: 'HVAC & Cooling Systems',
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop',
+    image: '/products/hvac-cooling-systems.png',
     description: 'Split, Cassette, Ducted & Central AC, VRF/VRV Systems, Chillers, Cold Rooms & Refrigeration.'
   },
   {
     id: 'pumping-solutions',
     name: 'Pumping Solutions',
-    image: 'https://images.unsplash.com/photo-1615873968403-89e068629265?w=800&h=600&fit=crop',
+    image: '/products/pumping-solutions.png',
     description: 'Submersible Pumps, Surface & Booster Pumps, Solar Powered Pumps, Pump Control Panels.'
   },
   {
     id: 'industrial-automation',
     name: 'Industrial Automation & Control',
-    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=600&fit=crop',
+    image: '/products/electrical-distribution.png',
     description: 'PLC & Automation Systems, Control Panel Design, Motor Control Centers, Instrumentation & Measurement.'
   },
   {
     id: 'metal-engineering',
     name: 'Metal Engineering & Fabrication',
-    image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=600&fit=crop',
+    image: '/products/metal-engineering.png',
     description: 'Steel Structures, Fuel & Industrial Storage Tanks, Lighting Poles, Stainless Steel Fabrication, Welding.'
   }
 ]

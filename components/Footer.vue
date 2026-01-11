@@ -38,7 +38,7 @@
             <p>Mozambique Street, Mexico Area</p>
             <p>Addis Ababa, Ethiopia</p>
             <a
-              href="https://www.google.com/maps/search/?api=1&query=KKare+Building+Mozambique+Street+Mexico+Area+Addis+Ababa"
+              href="https://maps.app.goo.gl/FFS3Wvaz4BxTKAje8"
               target="_blank"
               rel="noopener noreferrer"
               class="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors mt-3 sm:mt-4 text-sm sm:text-base"
@@ -95,7 +95,7 @@
         <h3 class="text-base sm:text-lg font-semibold mb-4 sm:mb-6">Location</h3>
         <div class="rounded-lg overflow-hidden shadow-xl">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.8!2d38.7618!3d9.0054!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b85cef5ab402d%3A0x8467b6b037a24d49!2sAddis%20Ababa%2C%20Ethiopia!5e0!3m2!1sen!2set!4v1704900000000!5m2!1sen!2set"
+            src="https://www.google.com/maps?q=KKare+Building,+Mozambique+Street,+Mexico+Area,+Addis+Ababa,+Ethiopia&output=embed"
             width="100%"
             height="250"
             style="border:0;"
@@ -103,7 +103,7 @@
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
             class="w-full sm:h-[300px]"
-            title="CONSTANT Engineering plc Office Location"
+            title="CONSTANT Engineering plc Office Location - KKare Building"
           ></iframe>
         </div>
       </div>

@@ -139,7 +139,7 @@ const products = [
     id: 'diesel-generator-systems',
     name: 'Diesel Generator Systems',
     icon: 'heroicons:bolt',
-    image: 'https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=800&h=600&fit=crop',
+    image: '/products/diesel-generator-systems.jpg',
     description: 'Capacity: 10 KVA – 2000 KVA. Open & Silent Type (Canopy). Prime & Standby Power for Industrial, Commercial & Utility Applications.',
     tags: ['10-2000 KVA', 'Perkins & Cummins', 'Industrial']
   },
@@ -147,7 +147,7 @@ const products = [
     id: 'solar-hybrid-energy',
     name: 'Solar & Hybrid Energy Solutions',
     icon: 'heroicons:sun',
-    image: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&h=600&fit=crop',
+    image: '/products/solar-hybrid-energy.png',
     description: 'On-grid & Off-grid Solar Systems, Hybrid Systems (Solar + Generator), Inverters & Charge Controllers, Battery Banks.',
     tags: ['On-grid & Off-grid', 'SUNGROW', 'ANERN']
   },
@@ -155,7 +155,7 @@ const products = [
     id: 'power-quality-protection',
     name: 'Power Quality & Protection Systems',
     icon: 'heroicons:shield-check',
-    image: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&h=600&fit=crop',
+    image: '/products/power-quality-protection.png',
     description: 'UPS Systems, Voltage Stabilizers, Active Harmonic Filters, Capacitor Banks, Surge Protection Devices.',
     tags: ['UPS Systems', 'APC', 'Schneider']
   },
@@ -163,7 +163,7 @@ const products = [
     id: 'electrical-distribution',
     name: 'Electrical Distribution & Switchgear',
     icon: 'heroicons:light-bulb',
-    image: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800&h=600&fit=crop',
+    image: '/products/electrical-distribution.jpg',
     description: 'LV Power Cables (1×1.5 mm² – 3×300+150 mm²), Circuit Breakers, Contactors, Panels, Enclosures & Accessories.',
     tags: ['LV Cables', 'El Sewedy', 'Schneider']
   },
@@ -171,7 +171,7 @@ const products = [
     id: 'hvac-cooling-systems',
     name: 'HVAC & Cooling Systems',
     icon: 'heroicons:adjustments-horizontal',
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop',
+    image: '/products/hvac-cooling-systems.png',
     description: 'Split, Cassette, Ducted & Central AC, VRF/VRV Systems, Data Center & Commercial AC, Chillers & Cooling Towers.',
     tags: ['GREE', 'MIDEA', 'TCL']
   },
@@ -179,7 +179,7 @@ const products = [
     id: 'pumping-solutions',
     name: 'Pumping Solutions',
     icon: 'heroicons:arrow-path',
-    image: 'https://images.unsplash.com/photo-1615873968403-89e068629265?w=800&h=600&fit=crop',
+    image: '/products/pumping-solutions.png',
     description: 'Submersible Pumps, Surface & Booster Pumps, Solar Powered Pumps, Pump Control Panels, Motor Winding & Maintenance.',
     tags: ['Submersible', 'Pedrollo', 'Caprari']
   },
@@ -187,7 +187,7 @@ const products = [
     id: 'industrial-automation',
     name: 'Industrial Automation & Control',
     icon: 'heroicons:cpu-chip',
-    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=600&fit=crop',
+    image: '/products/electrical-distribution.jpg',
     description: 'PLC & Automation Systems, Control Panel Design & Manufacturing, Motor Control Centers (MCC), Instrumentation & Measurement.',
     tags: ['PLC', 'Schneider', 'Mitsubishi', 'ABB']
   },
@@ -195,7 +195,7 @@ const products = [
     id: 'metal-engineering',
     name: 'Metal Engineering & Fabrication',
     icon: 'heroicons:wrench-screwdriver',
-    image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=600&fit=crop',
+    image: '/products/metal-engineering.png',
     description: 'Steel Structures (Warehouses, Trusses), Fuel & Industrial Storage Tanks, Lighting Poles & Supports, Stainless Steel Fabrication.',
     tags: ['Steel Structures', 'Storage Tanks', 'Welding']
   }
