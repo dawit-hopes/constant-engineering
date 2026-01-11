@@ -184,14 +184,14 @@
             class="text-center"
           >
             <!-- Square Icon - Gray (Inactive) -->
-            <div class="h-16 w-16 bg-gray-300 rounded-lg flex items-center justify-center mx-auto mb-4">
+            <div class="h-16 w-16 bg-primary rounded-lg flex items-center justify-center mx-auto mb-4">
               <Icon
                 name="heroicons:user-group"
                 class="h-8 w-8 text-white"
               />
             </div>
             <!-- Title -->
-            <h3 class="text-lg font-semibold text-gray-600 mb-3">
+            <h3 class="text-lg font-semibold text-primary mb-3">
               Partnerships
             </h3>
             <!-- Main Description (Bold) -->
@@ -213,14 +213,14 @@
             class="text-center"
           >
             <!-- Square Icon - Gray (Inactive) -->
-            <div class="h-16 w-16 bg-gray-300 rounded-lg flex items-center justify-center mx-auto mb-4">
+            <div class="h-16 w-16 bg-primary rounded-lg flex items-center justify-center mx-auto mb-4">
               <Icon
                 name="heroicons:star"
                 class="h-8 w-8 text-white"
               />
             </div>
             <!-- Title -->
-            <h3 class="text-lg font-semibold text-gray-600 mb-3">
+            <h3 class="text-lg font-semibold text-primary mb-3">
               Excellence
             </h3>
             <!-- Main Description (Bold) -->

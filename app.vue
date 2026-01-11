@@ -1,5 +1,6 @@
 <template>
   <div class="min-h-screen bg-white flex flex-col overflow-x-hidden">
+    <Loading />
     <Navbar />
     <main 
       class="flex-1 transition-all duration-300 pt-14 sm:pt-16 w-full overflow-x-hidden"
@@ -18,6 +19,5 @@
 <script setup>
 import { inject, ref, computed } from 'vue'
 
-// Inject mega menu state from Navbar
 const megaMenuOpen = inject('megaMenuOpen', ref(false))
 </script>

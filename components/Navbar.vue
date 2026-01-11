@@ -167,7 +167,7 @@
                   @click="mobileMenuOpen = false"
                 >
                   <img src="/Constant-logo.png" alt="CONSTANT Engineering" class="h-10 w-10" />
-                  <span class="text-xl font-bold text-slate-900">CONSTANT Engineering</span>
+                  <span class="text-base font-bold text-primary">CONSTANT Engineering</span>
                 </NuxtLink>
                 <button
                   @click="mobileMenuOpen = false"
