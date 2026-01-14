@@ -310,11 +310,22 @@ const handleSubmit = async () => {
   submitMessage.value = ''
   
   try {
-    console.log('Submitting form:', form.value)
+    console.log('Submitting form to Formspree:', form.value)
     
-    const response = await $fetch('/api/contact', {
+    // Submit to Formspree
+    const response = await $fetch('https://formspree.io/f/xdaakkok', {
       method: 'POST',
-      body: form.value,
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: {
+        name: form.value.name,
+        email: form.value.email,
+        phone: form.value.phone || '',
+        subject: form.value.subject,
+        message: form.value.message
+      },
       timeout: 30000 // 30 second timeout
     })
     
@@ -347,10 +358,10 @@ const handleSubmit = async () => {
     
     try {
       if (error && typeof error === 'object') {
-        // Handle Nuxt $fetch error structure
+        // Handle Formspree error structure
         if ('data' in error && error.data) {
           const data = error.data
-          errorMessage = data.message || data.statusMessage || errorMessage
+          errorMessage = data.error || data.message || data.statusMessage || errorMessage
         } else if ('message' in error && error.message) {
           errorMessage = String(error.message)
         } else if ('statusMessage' in error && error.statusMessage) {
