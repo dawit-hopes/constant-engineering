@@ -271,14 +271,93 @@
     <!-- Why Choose Us Section -->
     <section class="px-6 lg:px-12 py-24 bg-white">
       <div class="mx-auto max-w-7xl">
-        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          <!-- Left Section: Tag, Heading, Description -->
+        <div class="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start lg:items-center">
+          <!-- Left Column Wrapper (Desktop only) -->
+          <div class="hidden lg:flex lg:flex-col lg:flex-1 lg:self-start">
+            <!-- Header Section -->
+            <div
+              v-motion
+              :initial="{ opacity: 0, y: 20 }"
+              :visible="{ opacity: 1, y: 0 }"
+              :transition="{ duration: 0.5, ease: 'easeOut' }"
+              :delay="200"
+            >
+              <!-- Tag -->
+              <div class="inline-block px-4 py-2 rounded-lg border border-gray-300/40 bg-gray-50 mb-6">
+                <span class="text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                  Why Choose Us
+                </span>
+              </div>
+              
+              <!-- Heading -->
+              <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight tracking-tight">
+                Why Choose
+                <span class="relative inline-block text-primary">
+                  Us
+                  <!-- Technical-style underline -->
+                  <svg
+                    class="absolute -bottom-2 left-0 w-full h-2 text-primary/50"
+                    viewBox="0 0 200 8"
+                    preserveAspectRatio="none"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M2 4 L198 4"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-dasharray="4,2"
+                    />
+                  </svg>
+                </span>
+              </h2>
+              
+              <!-- Description -->
+              <p class="text-lg sm:text-xl text-gray-600 leading-relaxed mb-8">
+                We deliver exceptional engineering solutions with a commitment to quality, expertise, and customer satisfaction.
+              </p>
+            </div>
+
+            <!-- Feature Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3 lg:gap-4">
+              <div
+                v-for="(item, index) in whyChooseUs"
+                :key="item.title"
+                v-motion
+                :initial="{ opacity: 0, y: 20 }"
+                :visible="{ opacity: 1, y: 0 }"
+                :transition="{ duration: 0.4, ease: 'easeOut' }"
+                :delay="300 + index * 50"
+                class="bg-gray-50 rounded-xl p-4 border border-gray-200/30 hover:border-gray-300/40 hover:shadow-md transition-all"
+              >
+                <!-- Icon -->
+                <div class="mb-3">
+                  <Icon
+                    :name="item.icon"
+                    class="h-6 w-6 text-gray-900"
+                  />
+                </div>
+                
+                <!-- Title -->
+                <h3 class="text-base font-bold text-gray-900 mb-1.5">{{ item.title }}</h3>
+                
+                <!-- Description -->
+                <p class="text-xs text-gray-600 leading-relaxed">
+                  {{ item.description }}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile: Header Section (order 1) -->
           <div
             v-motion
             :initial="{ opacity: 0, y: 20 }"
             :visible="{ opacity: 1, y: 0 }"
             :transition="{ duration: 0.5, ease: 'easeOut' }"
             :delay="200"
+            class="order-1 lg:hidden"
           >
             <!-- Tag -->
             <div class="inline-block px-4 py-2 rounded-lg border border-gray-300/40 bg-gray-50 mb-6">
@@ -312,13 +391,32 @@
             </h2>
             
             <!-- Description -->
-            <p class="text-lg sm:text-xl text-gray-600 leading-relaxed">
+            <p class="text-lg sm:text-xl text-gray-600 leading-relaxed mb-8">
               We deliver exceptional engineering solutions with a commitment to quality, expertise, and customer satisfaction.
             </p>
           </div>
 
-          <!-- Right Section: Feature Cards Grid -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
+          <!-- Image Section (Mobile: order 2, Desktop: right column) -->
+          <div
+            v-motion
+            :initial="{ opacity: 0, x: 20 }"
+            :visible="{ opacity: 1, x: 0 }"
+            :transition="{ duration: 0.5, ease: 'easeOut' }"
+            :delay="400"
+            class="relative flex items-center justify-center order-2 lg:order-2 lg:flex-1"
+          >
+            <div class="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/3] w-full">
+              <img
+                src="https://constanteng.com/assets/img/choose%20us.png"
+                alt="Why Choose Us - CONSTANT Engineering"
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+          </div>
+
+          <!-- Mobile: Feature Cards Grid (order 3) -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 lg:gap-4 order-3 lg:hidden">
             <div
               v-for="(item, index) in whyChooseUs"
               :key="item.title"
@@ -327,21 +425,21 @@
               :visible="{ opacity: 1, y: 0 }"
               :transition="{ duration: 0.4, ease: 'easeOut' }"
               :delay="300 + index * 50"
-              class="bg-gray-50 rounded-xl p-6 border border-gray-200/30 hover:border-gray-300/40 hover:shadow-md transition-all"
+              class="bg-gray-50 rounded-xl p-4 border border-gray-200/30 hover:border-gray-300/40 hover:shadow-md transition-all"
             >
               <!-- Icon -->
-              <div class="mb-4">
+              <div class="mb-3">
                 <Icon
                   :name="item.icon"
-                  class="h-8 w-8 text-gray-900"
+                  class="h-6 w-6 text-gray-900"
                 />
               </div>
               
               <!-- Title -->
-              <h3 class="text-lg font-bold text-gray-900 mb-2">{{ item.title }}</h3>
+              <h3 class="text-base font-bold text-gray-900 mb-1.5">{{ item.title }}</h3>
               
               <!-- Description -->
-              <p class="text-sm text-gray-600 leading-relaxed">
+              <p class="text-xs text-gray-600 leading-relaxed">
                 {{ item.description }}
               </p>
             </div>
