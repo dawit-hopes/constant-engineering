@@ -34,7 +34,7 @@
           :delay="100"
           class="text-center mb-12 lg:mb-16"
         >
-          <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-tight tracking-tight">
+          <h2 class="text-3xl base:text-4xl lg:text-5xl font-bold text-slate-900 mb-6 leading-tight tracking-tight">
             Founded in
             <span class="relative inline-block text-primary">
               2017
