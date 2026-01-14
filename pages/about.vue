@@ -403,7 +403,7 @@
             :visible="{ opacity: 1, x: 0 }"
             :transition="{ duration: 0.5, ease: 'easeOut' }"
             :delay="400"
-            class="relative flex items-center justify-center order-2 lg:order-2 lg:flex-1"
+            class="relative flex items-end justify-end order-2 lg:order-2 lg:flex-1 lg:mt-24"
           >
             <div class="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/3] w-full">
               <img
