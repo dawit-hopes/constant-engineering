@@ -129,7 +129,7 @@
       </section>
 
       <!-- CTA Section - Small Gradient -->
-      <section class="px-4 sm:px-6 lg:px-8 py-16 lg:py-24" style="background: linear-gradient(to bottom, #ffffff 0%, #fef2f2 30%, #ffffff 100%);">
+      <section class="px-4 sm:px-6 lg:px-8 py-16 lg:py-24" style="background: linear-gradient(to bottom, #ffffff 0%, #fef2f2 20%, #fee2e2 40%, #fef2f2 60%, #ffffff 100%);">
         <div
           v-motion
           :initial="{ opacity: 0, y: 20 }"

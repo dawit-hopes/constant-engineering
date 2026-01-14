@@ -134,6 +134,26 @@
                   ></textarea>
                 </div>
 
+                <!-- Status Message -->
+                <div
+                  v-if="submitStatus !== 'idle'"
+                  :class="[
+                    'rounded-lg p-4 flex items-start gap-3',
+                    submitStatus === 'success' 
+                      ? 'bg-green-50 border border-green-200 text-green-800' 
+                      : 'bg-red-50 border border-red-200 text-red-800'
+                  ]"
+                >
+                  <Icon
+                    :name="submitStatus === 'success' ? 'heroicons:check-circle' : 'heroicons:exclamation-circle'"
+                    :class="[
+                      'h-5 w-5 flex-shrink-0 mt-0.5',
+                      submitStatus === 'success' ? 'text-green-600' : 'text-red-600'
+                    ]"
+                  />
+                  <p class="text-sm font-medium flex-1">{{ submitMessage }}</p>
+                </div>
+
                 <button
                   type="submit"
                   :disabled="isSubmitting"
@@ -281,28 +301,79 @@ const form = ref({
 })
 
 const isSubmitting = ref(false)
+const submitStatus = ref('idle')
+const submitMessage = ref('')
 
 const handleSubmit = async () => {
   isSubmitting.value = true
+  submitStatus.value = 'idle'
+  submitMessage.value = ''
   
-  // Simulate form submission
-  await new Promise(resolve => setTimeout(resolve, 1500))
-  
-  // In a real application, you would send this to your backend
-  console.log('Form submitted:', form.value)
-  
-  // Reset form
-  form.value = {
-    name: '',
-    email: '',
-    phone: '',
-    subject: '',
-    message: ''
+  try {
+    console.log('Submitting form:', form.value)
+    
+    const response = await $fetch('/api/contact', {
+      method: 'POST',
+      body: form.value,
+      timeout: 30000 // 30 second timeout
+    })
+    
+    console.log('Form submission successful:', response)
+    
+    // Success
+    submitStatus.value = 'success'
+    submitMessage.value = 'Thank you for your message! We will get back to you soon.'
+    
+    // Reset form
+    form.value = {
+      name: '',
+      email: '',
+      phone: '',
+      subject: '',
+      message: ''
+    }
+    
+    // Clear success message after 5 seconds
+    setTimeout(() => {
+      submitStatus.value = 'idle'
+      submitMessage.value = ''
+    }, 5000)
+  } catch (error) {
+    // Error
+    console.error('Form submission error:', error)
+    
+    submitStatus.value = 'error'
+    let errorMessage = 'Failed to send message. Please try again later.'
+    
+    try {
+      if (error && typeof error === 'object') {
+        // Handle Nuxt $fetch error structure
+        if ('data' in error && error.data) {
+          const data = error.data
+          errorMessage = data.message || data.statusMessage || errorMessage
+        } else if ('message' in error && error.message) {
+          errorMessage = String(error.message)
+        } else if ('statusMessage' in error && error.statusMessage) {
+          errorMessage = String(error.statusMessage)
+        } else if ('statusText' in error && error.statusText) {
+          errorMessage = String(error.statusText)
+        }
+      } else if (typeof error === 'string') {
+        errorMessage = error
+      }
+    } catch (e) {
+      console.error('Error parsing error message:', e)
+    }
+    
+    submitMessage.value = errorMessage
+    
+    // Clear error message after 5 seconds
+    setTimeout(() => {
+      submitStatus.value = 'idle'
+      submitMessage.value = ''
+    }, 5000)
+  } finally {
+    isSubmitting.value = false
   }
-  
-  isSubmitting.value = false
-  
-  // Show success message (you can implement a toast notification here)
-  alert('Thank you for your message! We will get back to you soon.')
 }
 </script>

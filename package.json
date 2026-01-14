@@ -15,6 +15,7 @@
     "nuxt-icon": "^0.6.10"
   },
   "dependencies": {
-    "@vueuse/motion": "^2.0.0"
+    "@vueuse/motion": "^2.0.0",
+    "postmark": "^4.0.5"
   }
 }

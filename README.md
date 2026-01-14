@@ -80,6 +80,29 @@ Update product information in:
 ### Contact Information
 Update contact details in `pages/contact.vue`.
 
+## Email Configuration (Postmark)
+
+The contact form uses Postmark to send emails. To set up:
+
+1. **Create a Postmark account** at [https://postmarkapp.com](https://postmarkapp.com)
+
+2. **Get your Server API Token** from your Postmark dashboard
+
+3. **Create a `.env` file** in the project root with the following variables:
+```env
+POSTMARK_TOKEN=your-postmark-server-api-token-here
+CONTACT_EMAIL=info@constanteng.com
+POSTMARK_FROM_EMAIL=noreply@constanteng.com
+```
+
+4. **Verify your sender signature** in Postmark:
+   - The `POSTMARK_FROM_EMAIL` must be a verified sender signature in your Postmark account
+   - Go to Postmark dashboard → Signatures → Add a new signature
+
+5. **Test the contact form** by submitting a message on the contact page
+
+**Note**: The `.env` file is already in `.gitignore` and will not be committed to version control.
+
 ## License
 
 Proprietary - CONSTANT Engineering plc
