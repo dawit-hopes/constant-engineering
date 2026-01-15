@@ -3,7 +3,7 @@
     class="relative flex items-center overflow-hidden h-screen -mt-14 sm:-mt-16"
     style="height: 110vh; min-height: 100vh;"
   >
-    <!-- Carousel Background -->
+        <!-- Carousel Background -->
     <div class="absolute inset-0 w-full h-full">
       <!-- Carousel Container -->
       <div class="relative w-full h-full">
@@ -24,120 +24,136 @@
           />
         </div>
         
-        <!-- Gradient Overlay at Bottom -->
-        <div class="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-primary/70 via-primary/30 to-transparent z-20 pointer-events-none"></div>
+        <!-- Gradient Overlay at Bottom (neutral, for readability) -->
+        <div class="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-black/70 via-black/40 to-transparent z-20 pointer-events-none"></div>
         
         <!-- Dark overlay for better text readability -->
-        <div class="absolute inset-0 bg-black/20 z-20 pointer-events-none"></div>
+        <div class="absolute inset-0 bg-black/35 z-20 pointer-events-none"></div>
       </div>
     </div>
 
     <!-- Content Overlay -->
     <div class="relative z-30 w-full mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
       <div class="grid gap-16 lg:grid-cols-2 lg:items-center">
-        <!-- Text Column -->
-        <div class="order-2 lg:order-1">
-          <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6 leading-tight drop-shadow-lg">
-            {{ activeSlide.headingPrimary }}
-            <span class="relative inline-block text-primary">
-              {{ activeSlide.headingHighlight }}
-              <svg
-                class="absolute -bottom-2 left-0 w-full h-2 text-primary/40"
-                viewBox="0 0 180 12"
-                preserveAspectRatio="none"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M2 8C22 6, 42 10, 62 7C82 4, 102 9, 122 6C142 3, 162 8, 178 5"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  fill="none"
-                />
-              </svg>
-            </span>
-            {{ activeSlide.headingSuffix }}
-          </h2>
-          <p class="text-lg sm:text-xl text-white/95 leading-relaxed max-w-xl mb-8 drop-shadow-md">
-            {{ activeSlide.description }}
-          </p>
+        <!-- Text Column with Smooth Animations -->
+        <div class="order-2 lg:order-1 relative min-h-[400px] sm:min-h-[500px]">
+          <!-- Animated Text Container -->
+          <Transition
+            mode="out-in"
+            enter-active-class="transition-all duration-700 ease-out"
+            enter-from-class="opacity-0 translate-y-8"
+            enter-to-class="opacity-100 translate-y-0"
+            leave-active-class="transition-all duration-500 ease-in"
+            leave-from-class="opacity-100 translate-y-0"
+            leave-to-class="opacity-0 -translate-y-4"
+          >
+            <div :key="currentSlide" class="absolute inset-0">
+              <!-- Minimal, modern text layout (no cards) -->
+              <!-- Slide meta -->
+              <div class="flex items-center gap-3 mb-4 text-[11px] sm:text-xs font-medium tracking-[0.25em] uppercase text-white/70">
+                <span class="flex items-center gap-1">
+                  <span class="h-px w-6 bg-white/70"></span>
+                  <span>0{{ currentSlide + 1 }}</span>
+                </span>
+                <span class="text-white/40">•</span>
+                <span>{{ activeSlide.label }}</span>
+              </div>
 
-          <!-- CTAs -->
-          <div class="flex flex-col sm:flex-row sm:items-center gap-4 mb-6">
-            <a
-              href="https://wa.me/251924909098?text=Hello,%20I%20would%20like%20to%20request%20a%20quote"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center justify-center rounded-full bg-primary px-8 py-4 text-base font-semibold text-white hover:bg-primary/90 transition-all hover:scale-105 shadow-lg shadow-primary/20"
-            >
-              Request a Quote
-            </a>
-            <a
-              href="#services"
-              class="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/80 bg-white/10 backdrop-blur-sm px-8 py-4 text-base font-semibold text-white hover:bg-white/20 transition-all hover:scale-105"
-            >
-              <Icon name="heroicons:play" class="h-5 w-5 text-white" />
-              View Products
-            </a>
-          </div>
+              <!-- Main Heading -->
+              <h1 class="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-white leading-[1.05] mb-5">
+                <span class="block">{{ activeSlide.headingPrimary }}</span>
+                <span class="block relative mt-1">
+                  <span class="relative z-10">{{ activeSlide.headingHighlight }}</span>
+                  <span class="absolute -bottom-1 left-0 h-[2px] w-16 bg-primary/70 rounded-full"></span>
+                </span>
+                <span v-if="activeSlide.headingSuffix" class="block mt-1 text-white/90">
+                  {{ activeSlide.headingSuffix }}
+                </span>
+              </h1>
 
-          <!-- Trusted Partners (from homepage hero) -->
-          <div class="pt-6 border-t border-white/20 mt-4">
-            <p class="text-xs sm:text-sm font-medium text-white/90 mb-4 text-center lg:text-left">
-              Trusted by industry leaders
-            </p>
-            <div class="grid grid-cols-2 lg:flex lg:flex-nowrap items-center justify-center gap-5 sm:gap-6 md:gap-8">
-              <div class="h-7 sm:h-10 flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity">
-                <img
-                  src="/partners/perkins.png"
-                  alt="Perkins"
-                  class="h-full w-auto object-contain brightness-0 invert"
-                  loading="lazy"
-                />
+              <!-- Description -->
+              <p class="text-base sm:text-lg text-white/85 leading-relaxed mb-6 max-w-xl">
+                {{ activeSlide.description }}
+              </p>
+
+              <!-- CTAs -->
+              <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-6">
+                <a
+                  href="https://wa.me/251924909098?text=Hello,%20I%20would%20like%20to%20request%20a%20quote"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="group inline-flex items-center justify-center rounded-full bg-primary px-7 py-3 text-sm sm:text-base font-semibold text-white hover:bg-primary/90 transition-all duration-300 hover:translate-y-0.5"
+                >
+                  Request a Quote
+                  <Icon name="heroicons:arrow-right" class="ml-2 h-4 w-4 text-white group-hover:translate-x-1 transition-transform" />
+                </a>
+                <a
+                  href="#products"
+                  class="group inline-flex items-center justify-center gap-2 rounded-full border border-white/40 px-7 py-3 text-sm sm:text-base font-medium text-white/90 hover:border-white hover:bg-white/5 transition-all duration-300"
+                >
+                  <Icon name="heroicons:play" class="h-4 w-4 text-white" />
+                  View Products
+                </a>
               </div>
-              <div class="h-7 sm:h-10 flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity">
-                <img
-                  src="/partners/cummins.png"
-                  alt="Cummins"
-                  class="h-full w-auto object-contain brightness-0 invert"
-                  loading="lazy"
-                />
-              </div>
-              <div class="h-7 sm:h-10 flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity">
-                <img
-                  src="/partners/schneider-electric.png"
-                  alt="Schneider Electric"
-                  class="h-full w-auto object-contain brightness-0 invert"
-                  loading="lazy"
-                />
-              </div>
-              <div class="h-7 sm:h-10 flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity">
-                <img
-                  src="/partners/mitsubishi.png"
-                  alt="Mitsubishi"
-                  class="h-full w-auto object-contain brightness-0 invert"
-                  loading="lazy"
-                />
-              </div>
-              <div class="h-7 sm:h-10 flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity">
-                <img
-                  src="/partners/gree.png"
-                  alt="GREE"
-                  class="h-full w-auto object-contain brightness-0 invert"
-                  loading="lazy"
-                />
-              </div>
-              <div class="h-7 sm:h-10 flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity">
-                <img
-                  src="/partners/meanwell.png"
-                  alt="Meanwell"
-                  class="h-full w-auto object-contain brightness-0 invert"
-                  loading="lazy"
-                />
+
+              <!-- Trusted Partners -->
+              <div class="pt-4 border-t border-white/10">
+                <p class="text-xs sm:text-sm font-medium text-white/60 mb-5 uppercase tracking-wider">
+                  Trusted by industry leaders
+                </p>
+                <div class="grid grid-cols-3 lg:flex lg:flex-nowrap items-center justify-start gap-4 sm:gap-6">
+                  <div class="h-8 sm:h-10 flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity duration-300">
+                    <img
+                      src="/partners/perkins.png"
+                      alt="Perkins"
+                      class="h-full w-auto object-contain brightness-0 invert"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="h-8 sm:h-10 flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity duration-300">
+                    <img
+                      src="/partners/cummins.png"
+                      alt="Cummins"
+                      class="h-full w-auto object-contain brightness-0 invert"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="h-8 sm:h-10 flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity duration-300">
+                    <img
+                      src="/partners/schneider-electric.png"
+                      alt="Schneider Electric"
+                      class="h-full w-auto object-contain brightness-0 invert"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="h-8 sm:h-10 flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity duration-300">
+                    <img
+                      src="/partners/mitsubishi.png"
+                      alt="Mitsubishi"
+                      class="h-full w-auto object-contain brightness-0 invert"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="h-8 sm:h-10 flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity duration-300">
+                    <img
+                      src="/partners/gree.png"
+                      alt="GREE"
+                      class="h-full w-auto object-contain brightness-0 invert"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div class="h-8 sm:h-10 flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity duration-300">
+                    <img
+                      src="/partners/meanwell.png"
+                      alt="Meanwell"
+                      class="h-full w-auto object-contain brightness-0 invert"
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
+          </Transition>
         </div>
 
         <!-- Minimal Carousel Indicator -->

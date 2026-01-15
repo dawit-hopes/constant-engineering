@@ -1,5 +1,5 @@
 <template>
-  <section id="services" class="py-24 lg:py-32 bg-white scroll-mt-20">
+  <section id="products" class="py-24 lg:py-16 bg-white scroll-mt-20">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <!-- Section Header - TaxPal Style -->
       <div
