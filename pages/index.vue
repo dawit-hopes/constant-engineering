@@ -193,7 +193,7 @@
           :delay="120"
           class="max-w-5xl mx-auto"
         >
-          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-12">
+          <div class="grid grid-cols-3 md:grid-cols-5 gap-4 sm:gap-6 lg:gap-8 items-center justify-items-center">
             <div
               v-for="(client, index) in clients"
               :key="client.name"
@@ -201,20 +201,16 @@
               :initial="{ opacity: 0, y: 20 }"
               :visible="{ opacity: 1, y: 0 }"
               :delay="150 + index * 50"
-              class="group flex items-center justify-center"
+              class="group relative h-12 sm:h-16 lg:h-20 flex items-center justify-center"
             >
-              <div class="relative w-full aspect-square flex items-center justify-center">
-                <img
-                  :src="client.logo"
-                  :alt="client.name"
-                  class="max-h-16 sm:max-h-20 lg:max-h-24 w-auto object-contain
-                         grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100
-                         transition-all duration-500 ease-out"
-                  loading="lazy"
-                />
-                <!-- Subtle underline on hover -->
-                <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-500"></div>
-              </div>
+              <img
+                :src="client.logo"
+                :alt="client.name"
+                class="h-full w-auto object-contain grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 ease-out"
+                loading="lazy"
+              />
+              <!-- Subtle underline on hover -->
+              <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-500"></div>
             </div>
           </div>
         </div>
