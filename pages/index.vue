@@ -4,7 +4,7 @@
     <HeroVariantC />
 
     <!-- Our Foundation Section - Redesigned -->
-    <section class="py-24 lg:py-32 bg-gradient-to-b from-white via-slate-50/30 to-white">
+    <section class="py-24 lg:py-32 bg-gradient-to-b from-primary/25 via-primary/10 to-white">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <!-- Header - TaxPal Style -->
         <div
@@ -137,6 +137,83 @@
     <!-- Featured Products Section -->
     <FeaturedProducts />
 
+    <!-- Clients / Partners Section -->
+    <section class="py-20 lg:py-28 bg-gradient-to-b from-white via-slate-50 to-white">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <!-- Header -->
+        <div
+          v-motion
+          :initial="{ opacity: 0, y: 10 }"
+          :visible="{ opacity: 1, y: 0 }"
+          :delay="50"
+          class="text-center mb-12 lg:mb-16"
+        >
+          <p class="text-xs sm:text-sm font-semibold text-slate-600 mb-3 uppercase tracking-[0.2em]">
+            Our Clients
+          </p>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4 leading-tight tracking-tight">
+            Trusted by leading
+            <span class="relative inline-block text-primary">
+              industry partners
+              <!-- Technical-style underline -->
+              <svg
+                class="absolute -bottom-2 left-0 w-full h-2 text-primary/50"
+                viewBox="0 0 200 8"
+                preserveAspectRatio="none"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M2 4 L198 4"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-dasharray="4,2"
+                />
+              </svg>
+            </span>
+          </h2>
+          <p class="mt-4 text-sm sm:text-base lg:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+            CONSTANT Engineering is proud to collaborate with globally respected brands and local leaders
+            who trust us to power and protect their operations.
+          </p>
+        </div>
+
+        <!-- Simple Elegant Logo Grid -->
+        <div
+          v-motion
+          :initial="{ opacity: 0, y: 20 }"
+          :visible="{ opacity: 1, y: 0 }"
+          :delay="120"
+          class="max-w-5xl mx-auto"
+        >
+          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-12">
+            <div
+              v-for="(client, index) in clients"
+              :key="client.name"
+              v-motion
+              :initial="{ opacity: 0, y: 20 }"
+              :visible="{ opacity: 1, y: 0 }"
+              :delay="150 + index * 50"
+              class="group flex items-center justify-center"
+            >
+              <div class="relative w-full aspect-square flex items-center justify-center">
+                <img
+                  :src="client.logo"
+                  :alt="client.name"
+                  class="max-h-16 sm:max-h-20 lg:max-h-24 w-auto object-contain
+                         grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100
+                         transition-all duration-500 ease-out"
+                  loading="lazy"
+                />
+                <!-- Subtle underline on hover -->
+                <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-500"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- CTA Section - With Gradient -->
     <section class="py-24 lg:py-32 relative overflow-hidden" style="background: linear-gradient(to bottom, #ffffff 0%, #fef2f2 20%, #fee2e2 40%, #fef2f2 60%, #ffffff 100%);">
@@ -200,6 +277,29 @@ import { onMounted, nextTick, watch } from 'vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
+
+const clients = [
+  {
+    name: 'Cummins',
+    logo: '/clients/client-a.png'
+  },
+  {
+    name: 'Gree',
+    logo: '/clients/client-b.jpg'
+  },
+  {
+    name: 'Mitsubishi Electric',
+    logo: '/clients/client-c.jpg'
+  },
+  {
+    name: 'Perkins',
+    logo: '/clients/client-d.jpg'
+  },
+  {
+    name: 'Schneider Electric',
+    logo: '/clients/client-e.webp'
+  }
+]
 
 // Ensure animations initialize on navigation
 onMounted(async () => {

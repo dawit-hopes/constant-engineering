@@ -1,13 +1,46 @@
 <template>
-  <section style="background: linear-gradient(to bottom, #ffffff 0%, #fef2f2 20%, #fee2e2 40%, #fef2f2 60%, #ffffff 100%);">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
+  <section 
+    class="relative flex items-center overflow-hidden h-screen -mt-14 sm:-mt-16"
+    style="height: 110vh; min-height: 100vh;"
+  >
+    <!-- Carousel Background -->
+    <div class="absolute inset-0 w-full h-full">
+      <!-- Carousel Container -->
+      <div class="relative w-full h-full">
+        <!-- Carousel Slides -->
+        <div
+          v-for="(slide, index) in carouselSlides"
+          :key="index"
+          :class="[
+            'absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out',
+            currentSlide === index ? 'opacity-100 z-10' : 'opacity-0 z-0'
+          ]"
+        >
+          <img
+            :src="slide.image"
+            :alt="slide.alt"
+            class="w-full h-full object-cover object-top"
+            loading="eager"
+          />
+        </div>
+        
+        <!-- Gradient Overlay at Bottom -->
+        <div class="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-primary/70 via-primary/30 to-transparent z-20 pointer-events-none"></div>
+        
+        <!-- Dark overlay for better text readability -->
+        <div class="absolute inset-0 bg-black/20 z-20 pointer-events-none"></div>
+      </div>
+    </div>
+
+    <!-- Content Overlay -->
+    <div class="relative z-30 w-full mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
       <div class="grid gap-16 lg:grid-cols-2 lg:items-center">
         <!-- Text Column -->
         <div class="order-2 lg:order-1">
-          <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 mb-6 leading-tight">
-            Electromechanical solutions
+          <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6 leading-tight drop-shadow-lg">
+            {{ activeSlide.headingPrimary }}
             <span class="relative inline-block text-primary">
-              made simple
+              {{ activeSlide.headingHighlight }}
               <svg
                 class="absolute -bottom-2 left-0 w-full h-2 text-primary/40"
                 viewBox="0 0 180 12"
@@ -24,10 +57,10 @@
                 />
               </svg>
             </span>
-            for industry.
+            {{ activeSlide.headingSuffix }}
           </h2>
-          <p class="text-lg sm:text-xl text-slate-600 leading-relaxed max-w-xl mb-8">
-            CONSTANT Engineering plc specializes in high-quality, tailored solutions for medium to large-scale projects. We deliver innovative, reliable, and efficient results that exceed expectations.
+          <p class="text-lg sm:text-xl text-white/95 leading-relaxed max-w-xl mb-8 drop-shadow-md">
+            {{ activeSlide.description }}
           </p>
 
           <!-- CTAs -->
@@ -42,64 +75,64 @@
             </a>
             <a
               href="#services"
-              class="inline-flex items-center justify-center gap-2 rounded-full border-2 border-slate-300 px-8 py-4 text-base font-semibold text-slate-900 hover:border-slate-400 hover:bg-slate-50 transition-all hover:scale-105"
+              class="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/80 bg-white/10 backdrop-blur-sm px-8 py-4 text-base font-semibold text-white hover:bg-white/20 transition-all hover:scale-105"
             >
-              <Icon name="heroicons:play" class="h-5 w-5 text-primary" />
+              <Icon name="heroicons:play" class="h-5 w-5 text-white" />
               View Products
             </a>
           </div>
 
           <!-- Trusted Partners (from homepage hero) -->
-          <div class="pt-6 border-t border-slate-200 mt-4">
-            <p class="text-xs sm:text-sm font-medium text-slate-500 mb-4 text-center lg:text-left">
+          <div class="pt-6 border-t border-white/20 mt-4">
+            <p class="text-xs sm:text-sm font-medium text-white/90 mb-4 text-center lg:text-left">
               Trusted by industry leaders
             </p>
             <div class="grid grid-cols-2 lg:flex lg:flex-nowrap items-center justify-center gap-5 sm:gap-6 md:gap-8">
-              <div class="h-7 sm:h-8 flex items-center justify-center opacity-70 hover:opacity-100 transition-opacity">
+              <div class="h-7 sm:h-10 flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity">
                 <img
                   src="/partners/perkins.png"
                   alt="Perkins"
-                  class="h-full w-auto object-contain"
+                  class="h-full w-auto object-contain brightness-0 invert"
                   loading="lazy"
                 />
               </div>
-              <div class="h-7 sm:h-8 flex items-center justify-center opacity-70 hover:opacity-100 transition-opacity">
+              <div class="h-7 sm:h-10 flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity">
                 <img
                   src="/partners/cummins.png"
                   alt="Cummins"
-                  class="h-full w-auto object-contain"
+                  class="h-full w-auto object-contain brightness-0 invert"
                   loading="lazy"
                 />
               </div>
-              <div class="h-7 sm:h-8 flex items-center justify-center opacity-70 hover:opacity-100 transition-opacity">
+              <div class="h-7 sm:h-10 flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity">
                 <img
                   src="/partners/schneider-electric.png"
                   alt="Schneider Electric"
-                  class="h-full w-auto object-contain"
+                  class="h-full w-auto object-contain brightness-0 invert"
                   loading="lazy"
                 />
               </div>
-              <div class="h-7 sm:h-8 flex items-center justify-center opacity-70 hover:opacity-100 transition-opacity">
+              <div class="h-7 sm:h-10 flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity">
                 <img
                   src="/partners/mitsubishi.png"
                   alt="Mitsubishi"
-                  class="h-full w-auto object-contain"
+                  class="h-full w-auto object-contain brightness-0 invert"
                   loading="lazy"
                 />
               </div>
-              <div class="h-7 sm:h-8 flex items-center justify-center opacity-70 hover:opacity-100 transition-opacity">
+              <div class="h-7 sm:h-10 flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity">
                 <img
                   src="/partners/gree.png"
                   alt="GREE"
-                  class="h-full w-auto object-contain"
+                  class="h-full w-auto object-contain brightness-0 invert"
                   loading="lazy"
                 />
               </div>
-              <div class="h-7 sm:h-8 flex items-center justify-center opacity-70 hover:opacity-100 transition-opacity">
+              <div class="h-7 sm:h-10 flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity">
                 <img
-                  src="/partners/meanwell.jpeg"
+                  src="/partners/meanwell.png"
                   alt="Meanwell"
-                  class="h-full w-auto object-contain"
+                  class="h-full w-auto object-contain brightness-0 invert"
                   loading="lazy"
                 />
               </div>
@@ -107,113 +140,26 @@
           </div>
         </div>
 
-        <!-- Image / Card Column -->
-        <div class="order-1 lg:order-2">
-          <!-- Mobile/Tablet (when grid is column): single image, same style as Variant A -->
-          <div class="lg:hidden">
-            <div
-              class="relative h-[260px] sm:h-[320px] rounded-3xl overflow-hidden bg-slate-100 shadow-[0_18px_45px_rgba(15,23,42,0.20)]"
-            >
-              <img
-                src="/hero-bg.avif"
-                alt="CONSTANT Engineering workspace and industrial solutions"
-                class="absolute inset-0 h-full w-full object-cover"
-                loading="lazy"
+        <!-- Minimal Carousel Indicator -->
+        <div class="order-1 lg:order-2 flex items-center justify-center lg:justify-end">
+          <div class="flex items-center gap-3">
+            <!-- Slide Numbers -->
+            <div class="flex items-center gap-2">
+              <span class="text-sm font-medium text-white/90">
+                {{ (currentSlide + 1).toString().padStart(2, '0') }}
+              </span>
+              <span class="text-white/40">/</span>
+              <span class="text-sm font-medium text-white/50">
+                {{ carouselSlides.length.toString().padStart(2, '0') }}
+              </span>
+            </div>
+            
+            <!-- Minimal Progress Bar -->
+            <div class="h-px w-16 bg-white/20 overflow-hidden">
+              <div 
+                class="h-full bg-white/80 transition-all duration-500 ease-out"
+                :style="{ width: `${((currentSlide + 1) / carouselSlides.length) * 100}%` }"
               />
-              <div class="pointer-events-none absolute inset-0 bg-gradient-to-tr from-slate-900/20 via-slate-900/0 to-slate-900/0"></div>
-            </div>
-          </div>
-
-          <!-- Desktop (when grid is 2-column): card cluster -->
-          <div class="relative hidden lg:block">
-            <div class="relative max-w-xl mx-auto h-[360px] md:h-[520px]">
-            <!-- Main Center Card - Large Editorial Image -->
-            <div
-              class="absolute inset-x-6 top-6 rounded-3xl overflow-hidden shadow-2xl border border-slate-100 bg-slate-100"
-            >
-              <div class="aspect-[4/3] overflow-hidden">
-                <img
-                  src="/hero-bg.avif"
-                  alt="CONSTANT Engineering workspace and industrial solutions"
-                  class="w-full h-full object-cover"
-                  loading="lazy"
-                />
-              </div>
-            </div>
-
-            <!-- Vertical Service Card (Left) - desktop only -->
-            <div
-              class="absolute bottom-10 -left-2 sm:-left-4 w-40 sm:w-44 rounded-3xl bg-white shadow-xl border border-slate-100 p-4 flex flex-col gap-3"
-            >
-              <p class="text-xs font-semibold text-slate-500 uppercase tracking-wide">
-                Solutions at a glance
-              </p>
-              <div class="space-y-2 text-xs text-slate-600">
-                <div class="flex items-center gap-2">
-                  <span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
-                  <span>Power & backup systems</span>
-                </div>
-                <div class="flex items-center gap-2">
-                  <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
-                  <span>Solar & hybrid energy</span>
-                </div>
-                <div class="flex items-center gap-2">
-                  <span class="h-1.5 w-1.5 rounded-full bg-blue-500"></span>
-                  <span>HVAC & cooling</span>
-                </div>
-                <div class="flex items-center gap-2">
-                  <span class="h-1.5 w-1.5 rounded-full bg-slate-500"></span>
-                  <span>Industrial automation</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Diesel Generator Image Card (Top Right, higher so it doesn't cover the main image) - desktop only -->
-            <div
-              class="absolute -top-20 -right-6 sm:-top-20 sm:-right-10 w-40 sm:w-48 rounded-3xl bg-white shadow-xl border border-slate-100 overflow-hidden"
-            >
-              <div class="aspect-[4/3] overflow-hidden bg-slate-100">
-                <img
-                  src="/products/diesel-generator-systems.jpg"
-                  alt="Diesel generator systems by CONSTANT Engineering"
-                  class="w-full h-full object-cover"
-                  loading="lazy"
-                />
-              </div>
-              <div class="p-3">
-                <p class="text-[11px] font-semibold text-slate-900">
-                  Diesel Generator Systems
-                </p>
-                <p class="text-[10px] text-slate-600">
-                  10 KVA – 2000 KVA · Prime & standby power
-                </p>
-              </div>
-            </div>
-
-            <!-- Trust Badge Card (Bottom Right) - desktop only -->
-            <div
-              class="absolute bottom-0 right-2 w-52 sm:w-60 rounded-2xl bg-primary text-white shadow-2xl p-5 backdrop-blur-sm"
-            >
-              <div class="flex items-center gap-3 mb-3">
-                <div class="h-10 w-10 rounded-xl bg-white/20 flex items-center justify-center">
-                  <Icon name="heroicons:star" class="h-5 w-5 text-white" />
-                </div>
-                <div>
-                  <p class="text-sm font-semibold text-white">Trusted partner</p>
-                  <p class="text-[11px] text-white/90">Medium to large-scale projects</p>
-                </div>
-              </div>
-              <div class="space-y-1.5 text-[11px] text-white/90">
-                <p>End-to-end electromechanical solutions.</p>
-                <p>Reliable power, cooling, and automation in one place.</p>
-              </div>
-            </div>
-
-            <!-- Decorative Background Elements -->
-            <div class="absolute inset-0 -z-10">
-              <div class="absolute top-1/4 right-1/4 h-32 w-32 rounded-full bg-primary/5 blur-3xl"></div>
-              <div class="absolute bottom-1/4 left-1/4 h-40 w-40 rounded-full bg-emerald-100/30 blur-3xl"></div>
-            </div>
             </div>
           </div>
         </div>
@@ -223,4 +169,66 @@
 </template>
 
 <script setup>
+import { ref, onMounted, onUnmounted, computed } from 'vue'
+
+const carouselSlides = [
+  {
+    image: '/hero-bg.avif',
+    alt: 'Diesel generator systems powering an industrial facility',
+    label: 'Reliable backup power',
+    headingPrimary: 'Power that keeps',
+    headingHighlight: 'your operations running',
+    headingSuffix: '',
+    description:
+      'From hospitals to factories, our diesel generator systems provide dependable backup and prime power so your critical operations never stop.'
+  },
+  {
+    image: '/Hero3.avif',
+    alt: 'Modern solar and HVAC installation on a commercial building',
+    label: 'Integrated energy solutions',
+    headingPrimary: 'Smarter energy',
+    headingHighlight: 'for a modern Ethiopia',
+    headingSuffix: '',
+    description:
+      'We design and deliver integrated solar, HVAC, and electrical solutions that reduce costs, improve efficiency, and support sustainable growth.'
+  }
+]
+
+const currentSlide = ref(0)
+let autoSlideInterval = null
+
+const nextSlide = () => {
+  currentSlide.value = (currentSlide.value + 1) % carouselSlides.length
+}
+
+const previousSlide = () => {
+  currentSlide.value = (currentSlide.value - 1 + carouselSlides.length) % carouselSlides.length
+}
+
+const goToSlide = (index) => {
+  currentSlide.value = index
+}
+
+const startAutoSlide = () => {
+  autoSlideInterval = setInterval(() => {
+    nextSlide()
+  }, 5000) // Change slide every 5 seconds
+}
+
+const stopAutoSlide = () => {
+  if (autoSlideInterval) {
+    clearInterval(autoSlideInterval)
+    autoSlideInterval = null
+  }
+}
+
+const activeSlide = computed(() => carouselSlides[currentSlide.value])
+
+onMounted(() => {
+  startAutoSlide()
+})
+
+onUnmounted(() => {
+  stopAutoSlide()
+})
 </script>

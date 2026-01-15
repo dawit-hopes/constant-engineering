@@ -1,25 +1,32 @@
 <template>
   <div class="min-h-screen">
-    <!-- Hero Section -->
-    <section class="px-4 sm:px-6 lg:px-8 py-16 lg:py-24" style="background: linear-gradient(to bottom, #ffffff 0%, #fef2f2 20%, #fee2e2 40%, #fef2f2 60%, #ffffff 100%);">
-      <div
-        v-motion
-        :initial="{ opacity: 0, y: 10 }"
-        :visible="{ opacity: 1, y: 0 }"
-        :delay="50"
-        class="mx-auto max-w-4xl text-center"
-      >
-        <p class="text-sm font-semibold text-primary mb-4 uppercase tracking-wider">
-          About
-        </p>
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-tight tracking-tight">
-          Our
-          <span class="text-primary">Story</span>
-        </h1>
-        <p class="text-lg sm:text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto">
-          Founded in 2017, CONSTANT Engineering plc has been at the forefront of 
-          electromechanical solutions in Ethiopia and beyond.
-        </p>
+    <!-- Hero Section - Full Background Office Image with Centered Text -->
+    <section class="relative h-[60vh] sm:h-[70vh] lg:h-[90vh] min-h-[420px] overflow-hidden">
+      <!-- Background image -->
+      <div class="absolute inset-0">
+        <img
+          src="/office.jpg"
+          alt="CONSTANT Engineering office"
+          class="w-full h-full object-cover"
+          loading="lazy"
+        />
+        <!-- Dark overlay for text readability -->
+        <div class="absolute inset-0 bg-black/40"></div>
+      </div>
+
+      <!-- Centered text -->
+      <div class="relative z-10 flex items-center justify-center h-full px-4 sm:px-6 lg:px-8">
+        <div
+          v-motion
+          :initial="{ opacity: 0, y: 10 }"
+          :visible="{ opacity: 1, y: 0 }"
+          :delay="80"
+          class="text-center"
+        >
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight">
+            We are CONSTANT Engineering
+          </h1>
+        </div>
       </div>
     </section>
 

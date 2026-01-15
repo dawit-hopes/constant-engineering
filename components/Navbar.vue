@@ -1,21 +1,41 @@
 <template>
   <nav 
-    class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md transition-all duration-300 w-full overflow-x-hidden"
-    :class="{ 'border-b border-slate-200': isScrolled }"
+    class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 w-full overflow-x-hidden"
+    :class="[
+      isOnTransparentPage && !isScrolled 
+        ? '' 
+        : 'bg-white/80 backdrop-blur-md',
+      { 'border-b border-slate-200': isScrolled }
+    ]"
+    :style="isOnTransparentPage && !isScrolled ? { background: 'transparent', backdropFilter: 'none' } : {}"
   >
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
       <div class="flex h-14 sm:h-16 items-center justify-between w-full">
         <!-- Logo - Left -->
-        <NuxtLink to="/" class="flex items-center space-x-2 sm:space-x-3 flex-shrink-0 min-w-0">
-          <img src="/Constant-logo.png" alt="CONSTANT Engineering" class="h-7 w-7 sm:h-8 sm:w-8 flex-shrink-0" />
-          <span class="hidden lg:inline text-base sm:text-lg font-bold text-primary truncate tracking-tighter" style="font-family: 'Inter', 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; letter-spacing: -0.025em; font-weight: 700;">CONSTANT Engineering</span>
+        <NuxtLink to="/" class="flex items-center space-x-2 sm:space-x-2 flex-shrink-0 min-w-0">
+          <img 
+            src="/Constant-logo.png" 
+            alt="CONSTANT Engineering" 
+            :class="[
+              'h-7 w-7 sm:h-10 sm:w-10 flex-shrink-0 transition-all ',
+            ]"
+          />
+          <span 
+            class="hidden lg:inline text-base sm:text-base font-bold text-primary truncate tracking-tighter"
+            style="font-family: 'Inter', 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; letter-spacing: -0.025em; font-weight: 700; line-height: 1.1;"
+          >
+            CONSTANT<br style="line-height:1.1;"/><span style="line-height:1.1;">Engineering</span>
+          </span>
         </NuxtLink>
 
         <!-- Menu - Right -->
         <div class="hidden lg:flex lg:items-center lg:space-x-8">
           <NuxtLink
             to="/"
-            class="text-sm font-medium text-slate-900 hover:text-primary transition-colors"
+            :class="[
+              'text-sm font-medium transition-colors',
+              isOnTransparentPage && !isScrolled ? 'text-white hover:text-white/80' : 'text-slate-900 hover:text-primary'
+            ]"
           >
             Home
           </NuxtLink>
@@ -27,7 +47,10 @@
             @mouseleave="handleMegaMenuLeave"
           >
             <button
-              class="text-sm font-medium text-slate-900 hover:text-primary transition-colors flex items-center space-x-1"
+              :class="[
+                'text-sm font-medium transition-colors flex items-center space-x-1',
+                isOnTransparentPage && !isScrolled ? 'text-white hover:text-white/80' : 'text-slate-900 hover:text-primary'
+              ]"
               @mouseenter="clearMegaMenuTimeout"
             >
               <span>Products</span>
@@ -96,19 +119,30 @@
 
           <NuxtLink
             to="/about"
-            class="text-sm font-medium text-slate-900 hover:text-primary transition-colors"
+            :class="[
+              'text-sm font-medium transition-colors',
+              isOnTransparentPage && !isScrolled ? 'text-white hover:text-white/80' : 'text-slate-900 hover:text-primary'
+            ]"
           >
             About
           </NuxtLink>
           <NuxtLink
             to="/contact"
-            class="text-sm font-medium text-slate-900 hover:text-primary transition-colors"
+            :class="[
+              'text-sm font-medium transition-colors',
+              isOnTransparentPage && !isScrolled ? 'text-white hover:text-white/80' : 'text-slate-900 hover:text-primary'
+            ]"
           >
             Contact
           </NuxtLink>
           <NuxtLink
             to="/contact"
-            class="rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-white hover:bg-primary/90 transition-colors"
+            :class="[
+              'rounded-full px-6 py-2.5 text-sm font-semibold text-white transition-colors',
+              isOnTransparentPage && !isScrolled 
+                ? 'bg-white/20 backdrop-blur-sm hover:bg-white/30 border border-white/30' 
+                : 'bg-primary hover:bg-primary/90'
+            ]"
           >
             Get Started
           </NuxtLink>
@@ -116,7 +150,10 @@
 
         <!-- Mobile Menu Button -->
         <button
-          class="lg:hidden p-2 text-slate-900 relative z-50"
+          :class="[
+            'lg:hidden p-2 relative z-50 transition-colors',
+            isOnTransparentPage && !isScrolled ? 'text-white' : 'text-slate-900'
+          ]"
           @click="mobileMenuOpen = !mobileMenuOpen"
         >
           <Icon :name="mobileMenuOpen ? 'heroicons:x-mark' : 'heroicons:bars-3'" class="h-6 w-6 transition-transform" />
@@ -307,13 +344,18 @@
 </template>
 
 <script setup>
-import { ref, provide, onMounted, onUnmounted, watch } from 'vue'
+import { ref, provide, onMounted, onUnmounted, watch, computed } from 'vue'
+import { useRoute } from 'vue-router'
 
+const route = useRoute()
 const showMegaMenu = ref(false)
 const mobileMenuOpen = ref(false)
 const mobileProductsOpen = ref(false)
 const isScrolled = ref(false)
 const navbarHeight = ref(64) // Default desktop height
+
+// Pages where navbar should start transparent over hero imagery
+const isOnTransparentPage = computed(() => ['/','/about'].includes(route.path))
 
 // Provide mega menu state for app-level blur effect
 provide('megaMenuOpen', showMegaMenu)

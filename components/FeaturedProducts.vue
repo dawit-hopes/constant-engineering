@@ -10,7 +10,7 @@
         class="text-center mb-16 lg:mb-24"
       >
         <p class="text-sm font-semibold text-slate-600 mb-4 uppercase tracking-wider">
-          Services
+          Products
         </p>
         <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-tight tracking-tight">
           Precision
@@ -157,28 +157,28 @@ const products = [
     id: 'diesel-generator-systems',
     name: 'Diesel Generator Systems',
     description: 'Capacity: 10 KVA – 2000 KVA. Open & Silent Type (Canopy). Prime & Standby Power for Industrial, Commercial & Utility Applications.',
-    image: 'https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=1200&h=800&fit=crop',
+    image: '/products/diesel-generator.png',
     specs: '10 KVA – 2000 KVA | GUCBIR, TMG, GRUPEL | Perkins & Cummins Engines'
   },
   {
     id: 'solar-hybrid-energy',
     name: 'Solar & Hybrid Energy Solutions',
-    description: 'On-grid & Off-grid Solar Systems, Hybrid Systems (Solar + Generator), Inverters & Charge Controllers, Battery Banks (Lead Acid & Lithium-Ion).',
-    image: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1200&h=800&fit=crop',
-    specs: 'On-grid & Off-grid | SUNGROW, ANERN | Energy Analysis & System Design'
+      description: 'On-grid & Off-grid Solar Systems, Hybrid Systems (Solar + Generator), Inverters & Charge Controllers, Battery Banks (Lead Acid & Lithium-Ion).',
+        image: '/products/solar.png',
+      specs: 'On-grid & Off-grid | SUNGROW, ANERN | Energy Analysis & System Design'
   },
   {
     id: 'hvac-cooling-systems',
     name: 'HVAC & Cooling Systems',
     description: 'Split, Cassette, Ducted & Central AC, VRF/VRV Systems, Data Center & Commercial AC, Chillers & Cooling Towers, Cold Rooms & Refrigeration.',
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=800&fit=crop',
+    image: '/products/havc.png',
     specs: 'GREE, MIDEA, TCL | Data Center & Commercial | Ducting & Ventilation'
   },
   {
     id: 'industrial-automation',
     name: 'Industrial Automation & Control',
     description: 'PLC & Automation Systems, Control Panel Design & Manufacturing, Motor Control Centers (MCC), Instrumentation & Measurement, Sensors.',
-    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&h=800&fit=crop',
+    image: '/products/automation.png',
     specs: 'Schneider, Mitsubishi, ABB, Siemens | PLC & MCC | Sensors & Instrumentation'
   }
 ]
