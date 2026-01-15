@@ -18,7 +18,7 @@
             alt="CONSTANT Engineering" 
             :class="[
               'h-7 w-7 sm:h-10 sm:w-10 flex-shrink-0 transition-all ',
-              (isOnTransparentPage && !isScrolled && !showMegaMenu) ? 'brightness-0 invert drop-shadow-lg' : ''
+              (isOnTransparentPage && !isScrolled && !showMegaMenu) ? '' : ''
             ]"
           />
           <span 
