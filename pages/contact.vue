@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-screen">
     <!-- Hero Section - Full Background Office Image with Centered Text -->
-    <section class="relative h-[60vh] sm:h-[70vh] lg:h-[90vh] min-h-[420px] overflow-hidden">
+    <section class="relative h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[90vh] min-h-[300px] sm:min-h-[420px] overflow-hidden">
       <!-- Background image -->
       <div class="absolute inset-0">
         <img

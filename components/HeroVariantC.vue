@@ -1,6 +1,6 @@
 <template>
   <section 
-    class="relative flex items-center overflow-hidden h-screen -mt-14 sm:-mt-16"
+    class="relative flex items-center overflow-hidden -mt-14 sm:-mt-16"
     style="height: 110vh; min-height: 100vh;"
   >
         <!-- Carousel Background -->
@@ -35,10 +35,10 @@
     </div>
 
     <!-- Content Overlay -->
-    <div class="relative z-30 w-full mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
-      <div class="grid gap-16 lg:grid-cols-2 lg:items-center">
+    <div class="relative z-30 w-full mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 xl:py-20 h-full flex items-center">
+      <div class="grid gap-6 sm:gap-8 lg:gap-12 lg:grid-cols-2 lg:items-center w-full">
         <!-- Text Column with Smooth Animations -->
-        <div class="order-2 lg:order-1 relative min-h-[400px] sm:min-h-[500px]">
+        <div class="order-2 lg:order-1 relative">
           <!-- Animated Text Container -->
           <Transition
             mode="out-in"
@@ -49,10 +49,10 @@
             leave-from-class="opacity-100 translate-y-0"
             leave-to-class="opacity-0 -translate-y-4"
           >
-            <div :key="currentSlide" class="absolute inset-0">
+            <div :key="currentSlide" class="relative">
               <!-- Minimal, modern text layout (no cards) -->
               <!-- Slide meta -->
-              <div class="flex items-center gap-3 mb-4 text-[11px] sm:text-xs font-medium tracking-[0.25em] uppercase text-white/70">
+              <div class="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4 text-[10px] sm:text-[11px] lg:text-xs font-medium tracking-[0.25em] uppercase text-white/70">
                 <span class="flex items-center gap-1">
                   <span class="h-px w-6 bg-white/70"></span>
                   <span>0{{ currentSlide + 1 }}</span>
@@ -62,11 +62,11 @@
               </div>
 
               <!-- Main Heading -->
-              <h1 class="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-white leading-[1.05] mb-5">
+              <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-white leading-[1.05] mb-3 sm:mb-4 lg:mb-5">
                 <span class="block">{{ activeSlide.headingPrimary }}</span>
                 <span class="block relative mt-1">
                   <span class="relative z-10">{{ activeSlide.headingHighlight }}</span>
-                  <span class="absolute -bottom-1 left-0 h-[2px] w-16 bg-primary/70 rounded-full"></span>
+                  <span class="absolute -bottom-1 left-0 h-[2px] w-12 sm:w-16 bg-primary/70 rounded-full"></span>
                 </span>
                 <span v-if="activeSlide.headingSuffix" class="block mt-1 text-white/90">
                   {{ activeSlide.headingSuffix }}
@@ -74,25 +74,25 @@
               </h1>
 
               <!-- Description -->
-              <p class="text-base sm:text-lg text-white/85 leading-relaxed mb-6 max-w-xl">
+              <p class="text-sm sm:text-base lg:text-lg text-white/85 leading-relaxed mb-4 sm:mb-5 lg:mb-6 max-w-xl">
                 {{ activeSlide.description }}
               </p>
 
               <!-- CTAs -->
-              <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-6">
+              <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-4 sm:mb-5 lg:mb-6">
                 <a
                   href="https://wa.me/251924909098?text=Hello,%20I%20would%20like%20to%20request%20a%20quote"
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="group inline-flex items-center justify-center rounded-full bg-primary px-7 py-3 text-sm sm:text-base font-semibold text-white hover:bg-primary/90 transition-all duration-300 hover:translate-y-0.5"
+                  class="group inline-flex items-center justify-center rounded-full bg-primary px-5 sm:px-6 lg:px-7 py-2.5 sm:py-3 text-xs sm:text-sm lg:text-base font-semibold text-white hover:bg-primary/90 transition-all duration-300 hover:translate-y-0.5"
                 >
                   Request a Quote
-                  <Icon name="heroicons:arrow-right" class="ml-2 h-4 w-4 text-white group-hover:translate-x-1 transition-transform" />
+                  <Icon name="heroicons:arrow-right" class="ml-1.5 sm:ml-2 h-3.5 w-3.5 sm:h-4 sm:w-4 text-white group-hover:translate-x-1 transition-transform" />
                 </a>
                 <a
                   href="#products"
                   @click.prevent="scrollToProducts"
-                  class="group inline-flex items-center justify-center gap-2 rounded-full border border-white/40 px-7 py-3 text-sm sm:text-base font-medium text-white/90 hover:border-white hover:bg-white/5 transition-all duration-300"
+                  class="group inline-flex items-center justify-center gap-1.5 sm:gap-2 rounded-full border border-white/40 px-5 sm:px-6 lg:px-7 py-2.5 sm:py-3 text-xs sm:text-sm lg:text-base font-medium text-white/90 hover:border-white hover:bg-white/5 transition-all duration-300"
                 >
                   <Icon name="heroicons:play" class="h-4 w-4 text-white" />
                   View Products
@@ -100,12 +100,12 @@
               </div>
 
               <!-- Trusted Partners -->
-              <div class="pt-4 border-t border-white/10">
-                <p class="text-xs sm:text-sm font-medium text-white/60 mb-5 uppercase tracking-wider">
+              <div class="pt-3 sm:pt-4 border-t border-white/10">
+                <p class="text-[10px] sm:text-xs lg:text-sm font-medium text-white/60 mb-3 sm:mb-4 lg:mb-5 uppercase tracking-wider">
                   Trusted by industry leaders
                 </p>
-                <div class="grid grid-cols-3 lg:flex lg:flex-nowrap items-center justify-start gap-4 sm:gap-6">
-                  <div class="h-8 sm:h-10 flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity duration-300">
+                <div class="grid grid-cols-3 lg:flex lg:flex-nowrap items-center justify-start gap-2 sm:gap-4 lg:gap-6">
+                  <div class="h-6 sm:h-8 lg:h-10 flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity duration-300">
                     <img
                       src="/partners/perkins.png"
                       alt="Perkins"
@@ -113,7 +113,7 @@
                       loading="lazy"
                     />
                   </div>
-                  <div class="h-8 sm:h-10 flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity duration-300">
+                  <div class="h-6 sm:h-8 lg:h-10 flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity duration-300">
                     <img
                       src="/partners/cummins.png"
                       alt="Cummins"
@@ -121,7 +121,7 @@
                       loading="lazy"
                     />
                   </div>
-                  <div class="h-8 sm:h-10 flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity duration-300">
+                  <div class="h-6 sm:h-8 lg:h-10 flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity duration-300">
                     <img
                       src="/partners/schneider-electric.png"
                       alt="Schneider Electric"
@@ -129,7 +129,7 @@
                       loading="lazy"
                     />
                   </div>
-                  <div class="h-8 sm:h-10 flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity duration-300">
+                  <div class="h-6 sm:h-8 lg:h-10 flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity duration-300">
                     <img
                       src="/partners/mitsubishi.png"
                       alt="Mitsubishi"
@@ -137,7 +137,7 @@
                       loading="lazy"
                     />
                   </div>
-                  <div class="h-8 sm:h-10 flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity duration-300">
+                  <div class="h-6 sm:h-8 lg:h-10 flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity duration-300">
                     <img
                       src="/partners/gree.png"
                       alt="GREE"
@@ -145,7 +145,7 @@
                       loading="lazy"
                     />
                   </div>
-                  <div class="h-8 sm:h-10 flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity duration-300">
+                  <div class="h-6 sm:h-8 lg:h-10 flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity duration-300">
                     <img
                       src="/partners/meanwell.png"
                       alt="Meanwell"
