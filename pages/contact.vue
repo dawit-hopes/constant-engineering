@@ -1,42 +1,32 @@
 <template>
-  <div class="min-h-screen bg-white">
-    <!-- Hero Section -->
-    <section class="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24" style="background: linear-gradient(to bottom, #ffffff 0%, #fef2f2 20%, #fee2e2 40%, #fef2f2 60%, #ffffff 100%);">
-      <div
-        v-motion
-        :initial="{ opacity: 0, y: 10 }"
-        :visible="{ opacity: 1, y: 0 }"
-        :delay="50"
-        class="mx-auto max-w-4xl text-center"
-      >
-        <p class="text-sm font-semibold text-slate-600 mb-4 uppercase tracking-wider">
-          Contact
-        </p>
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-4 sm:mb-6 leading-tight tracking-tight">
-          Get in
-          <span class="relative inline-block text-primary">
-            Touch
-            <!-- Technical-style underline -->
-            <svg
-              class="absolute -bottom-2 left-0 w-full h-2 text-primary/50"
-              viewBox="0 0 200 8"
-              preserveAspectRatio="none"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M2 4 L198 4"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-dasharray="4,2"
-              />
-            </svg>
-          </span>
-        </h1>
-        <p class="text-lg sm:text-xl text-slate-600 leading-relaxed max-w-2xl mx-auto px-4">
-          Let's discuss how CONSTANT Engineering plc can help power your industry
-        </p>
+  <div class="min-h-screen">
+    <!-- Hero Section - Full Background Office Image with Centered Text -->
+    <section class="relative h-[60vh] sm:h-[70vh] lg:h-[90vh] min-h-[420px] overflow-hidden">
+      <!-- Background image -->
+      <div class="absolute inset-0">
+        <img
+          src="/contact.jpg"
+          alt="CONSTANT Engineering office"
+          class="w-full h-full object-cover"
+          loading="lazy"
+        />
+        <!-- Dark overlay for text readability -->
+        <div class="absolute inset-0 bg-black/40"></div>
+      </div>
+
+      <!-- Centered text -->
+      <div class="relative z-10 flex items-center justify-center h-full px-4 sm:px-6 lg:px-8">
+        <div
+          v-motion
+          :initial="{ opacity: 0, y: 10 }"
+          :visible="{ opacity: 1, y: 0 }"
+          :delay="80"
+          class="text-center"
+        >
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight">
+            Get in Touch
+          </h1>
+        </div>
       </div>
     </section>
 

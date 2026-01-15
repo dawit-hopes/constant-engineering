@@ -46,7 +46,8 @@
             @mouseenter="clearMegaMenuTimeout"
             @mouseleave="handleMegaMenuLeave"
           >
-            <button
+            <NuxtLink
+              to="/products"
               :class="[
                 'text-sm font-medium transition-colors flex items-center space-x-1',
                 isOnTransparentPage && !isScrolled ? 'text-white hover:text-white/80' : 'text-slate-900 hover:text-primary'
@@ -59,7 +60,7 @@
                 class="h-4 w-4 transition-transform duration-200"
                 :class="{ 'rotate-180': showMegaMenu }"
               />
-            </button>
+            </NuxtLink>
           </div>
           
           <!-- Mega Menu - Apple Style with Blur (Teleported to body for proper z-index) -->
@@ -350,7 +351,10 @@ const isScrolled = ref(false)
 const navbarHeight = ref(64) // Default desktop height
 
 // Pages where navbar should start transparent over hero imagery
-const isOnTransparentPage = computed(() => ['/','/about'].includes(route.path))
+const isOnTransparentPage = computed(() => {
+  const path = route.path
+  return path === '/' || path === '/about' || path === '/contact' || path === '/products' || path.startsWith('/products/')
+})
 
 // Provide mega menu state for app-level blur effect
 provide('megaMenuOpen', showMegaMenu)

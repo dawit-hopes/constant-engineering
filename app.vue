@@ -27,5 +27,8 @@ import { useRoute } from 'vue-router'
 const route = useRoute()
 const megaMenuOpen = inject('megaMenuOpen', ref(false))
 
-const isOnTransparentPage = computed(() => ['/','/about'].includes(route.path))
+const isOnTransparentPage = computed(() => {
+  const path = route.path
+  return path === '/' || path === '/about' || path === '/contact' || path === '/products' || path.startsWith('/products/')
+})
 </script>
