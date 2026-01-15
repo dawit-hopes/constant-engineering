@@ -7,13 +7,15 @@
     <div class="absolute inset-0 w-full h-full">
       <!-- Carousel Container -->
       <div class="relative w-full h-full">
-        <!-- Carousel Slides -->
+        <!-- Carousel Slides with Fade + Scale Transition -->
         <div
           v-for="(slide, index) in carouselSlides"
           :key="index"
           :class="[
-            'absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out',
-            currentSlide === index ? 'opacity-100 z-10' : 'opacity-0 z-0'
+            'absolute inset-0 w-full h-full transition-all duration-1000 ease-in-out',
+            currentSlide === index 
+              ? 'opacity-100 z-10 scale-100' 
+              : 'opacity-0 z-0 scale-105'
           ]"
         >
           <img
@@ -89,6 +91,7 @@
                 </a>
                 <a
                   href="#products"
+                  @click.prevent="scrollToProducts"
                   class="group inline-flex items-center justify-center gap-2 rounded-full border border-white/40 px-7 py-3 text-sm sm:text-base font-medium text-white/90 hover:border-white hover:bg-white/5 transition-all duration-300"
                 >
                   <Icon name="heroicons:play" class="h-4 w-4 text-white" />
@@ -239,6 +242,38 @@ const stopAutoSlide = () => {
 }
 
 const activeSlide = computed(() => carouselSlides[currentSlide.value])
+
+const scrollToProducts = () => {
+  const productsSection = document.getElementById('products')
+  if (productsSection) {
+    const elementPosition = productsSection.getBoundingClientRect().top + window.pageYOffset
+    const offsetPosition = elementPosition - 80 // Account for navbar height
+    
+    // Custom smooth scroll with easing
+    const startPosition = window.pageYOffset
+    const distance = offsetPosition - startPosition
+    const duration = 1000 // 1 second
+    let start = null
+    
+    const easeInOutCubic = (t) => {
+      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2
+    }
+    
+    const animation = (currentTime) => {
+      if (start === null) start = currentTime
+      const timeElapsed = currentTime - start
+      const progress = Math.min(timeElapsed / duration, 1)
+      
+      window.scrollTo(0, startPosition + distance * easeInOutCubic(progress))
+      
+      if (timeElapsed < duration) {
+        requestAnimationFrame(animation)
+      }
+    }
+    
+    requestAnimationFrame(animation)
+  }
+}
 
 onMounted(() => {
   startAutoSlide()
