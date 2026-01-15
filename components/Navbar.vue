@@ -18,6 +18,7 @@
             alt="CONSTANT Engineering" 
             :class="[
               'h-7 w-7 sm:h-10 sm:w-10 flex-shrink-0 transition-all ',
+              (isOnTransparentPage && !isScrolled && !showMegaMenu) ? 'brightness-0 invert drop-shadow-lg' : ''
             ]"
           />
           <span 
@@ -34,7 +35,7 @@
             to="/"
             :class="[
               'text-sm font-medium transition-colors',
-              isOnTransparentPage && !isScrolled ? 'text-white hover:text-white/80' : 'text-slate-900 hover:text-primary'
+              (isOnTransparentPage && !isScrolled && !showMegaMenu) ? 'text-white hover:text-white/80' : 'text-slate-900 hover:text-primary'
             ]"
           >
             Home
@@ -50,9 +51,10 @@
               to="/products"
               :class="[
                 'text-sm font-medium transition-colors flex items-center space-x-1',
-                isOnTransparentPage && !isScrolled ? 'text-white hover:text-white/80' : 'text-slate-900 hover:text-primary'
+                (isOnTransparentPage && !isScrolled && !showMegaMenu) ? 'text-white hover:text-white/80' : 'text-slate-900 hover:text-primary'
               ]"
               @mouseenter="clearMegaMenuTimeout"
+              @click="closeMegaMenu"
             >
               <span>Products</span>
               <Icon
@@ -122,7 +124,7 @@
             to="/about"
             :class="[
               'text-sm font-medium transition-colors',
-              isOnTransparentPage && !isScrolled ? 'text-white hover:text-white/80' : 'text-slate-900 hover:text-primary'
+              (isOnTransparentPage && !isScrolled && !showMegaMenu) ? 'text-white hover:text-white/80' : 'text-slate-900 hover:text-primary'
             ]"
           >
             About
@@ -131,7 +133,7 @@
             to="/contact"
             :class="[
               'text-sm font-medium transition-colors',
-              isOnTransparentPage && !isScrolled ? 'text-white hover:text-white/80' : 'text-slate-900 hover:text-primary'
+              (isOnTransparentPage && !isScrolled && !showMegaMenu) ? 'text-white hover:text-white/80' : 'text-slate-900 hover:text-primary'
             ]"
           >
             Contact
@@ -148,7 +150,7 @@
         <button
           :class="[
             'lg:hidden p-2 relative z-50 transition-colors',
-            isOnTransparentPage && !isScrolled ? 'text-white' : 'text-slate-900'
+            (isOnTransparentPage && !isScrolled && !showMegaMenu) ? 'text-white' : 'text-slate-900'
           ]"
           @click="mobileMenuOpen = !mobileMenuOpen"
         >
