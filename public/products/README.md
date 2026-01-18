@@ -8,7 +8,7 @@ Place the following product images in this directory with the exact filenames li
 4. **electrical-distribution.jpg** - Industrial electrical components (MEANWELL power supply, circuit breakers, etc.)
 5. **hvac-cooling-systems.jpg** - HVAC system (indoor and outdoor AC units)
 6. **pumping-solutions.jpg** - Submersible pumps (ESP and SSP)
-7. **metal-engineering.jpg** - Construction/engineering work scene (welding, steel structures)
+7. **metal-ENGINEERING.jpg** - Construction/ENGINEERING work scene (welding, steel structures)
 
 ## Image Requirements
 

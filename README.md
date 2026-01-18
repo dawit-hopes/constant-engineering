@@ -1,4 +1,4 @@
-# CONSTANT Engineering plc - Website
+# CONSTANT ENGINEERING plc - Website
 
 A high-end industrial website built with Nuxt 3, Tailwind CSS, and Framer Motion, following the Tailwind Studio design aesthetic.
 
@@ -105,4 +105,4 @@ POSTMARK_FROM_EMAIL=noreply@constanteng.com
 
 ## License
 
-Proprietary - CONSTANT Engineering plc
+Proprietary - CONSTANT ENGINEERING plc

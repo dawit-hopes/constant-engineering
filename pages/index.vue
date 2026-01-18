@@ -133,7 +133,7 @@
             </p>
             <!-- Detailed Text (Smaller, Lighter) -->
             <p class="text-sm text-gray-500 leading-relaxed">
-              We set the standard for industrial engineering excellence, ensuring every solution meets the highest quality benchmarks.
+              We set the standard for industrial ENGINEERING excellence, ensuring every solution meets the highest quality benchmarks.
             </p>
           </div>
         </div>
@@ -158,10 +158,9 @@
             Our Clients
           </p>
           <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4 leading-tight tracking-tight">
-            Trusted by leading
+            Trusted by 
             <span class="relative inline-block text-primary">
-              industry partners
-              <!-- Technical-style underline -->
+              top-tier clients
               <svg
                 class="absolute -bottom-2 left-0 w-full h-2 text-primary/50"
                 viewBox="0 0 200 8"
@@ -180,12 +179,10 @@
             </span>
           </h2>
           <p class="mt-4 text-sm sm:text-base lg:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
-            CONSTANT Engineering is proud to collaborate with globally respected brands and local leaders
-            who trust us to power and protect their operations.
+            CONSTANT ENGINEERING proudly serves globally respected brands and local leaders who trust us to power and protect their operations.
           </p>
         </div>
 
-        <!-- Simple Elegant Logo Grid -->
         <div
           v-motion
           :initial="{ opacity: 0, y: 20 }"
@@ -249,7 +246,7 @@
           </span>
         </h2>
         <p class="text-lg sm:text-xl lg:text-2xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed">
-          Let's discuss how CONSTANT Engineering plc can transform your operations with precision-engineered solutions.
+          Let's discuss how CONSTANT ENGINEERING plc can transform your operations with precision-engineered solutions.
         </p>
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
           <NuxtLink

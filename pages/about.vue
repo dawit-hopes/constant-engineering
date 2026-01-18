@@ -1,12 +1,12 @@
 <template>
   <div class="min-h-screen">
     <!-- Hero Section - Full Background Office Image with Centered Text -->
-    <section class="relative h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[90vh] min-h-[300px] sm:min-h-[420px] overflow-hidden">
+    <section class="relative h-[40vh] sm:h-[50vh] md:h-[60vh] lg:h-[70vh] min-h-[300px] sm:min-h-[420px] overflow-hidden">
       <!-- Background image -->
       <div class="absolute inset-0">
         <img
           src="/office.jpg"
-          alt="CONSTANT Engineering office"
+          alt="CONSTANT ENGINEERING office"
           class="w-full h-full object-cover"
           loading="lazy"
         />
@@ -16,16 +16,16 @@
 
       <!-- Centered text -->
       <div class="relative z-10 flex items-center justify-center h-full px-4 sm:px-6 lg:px-8">
-        <div
-          v-motion
-          :initial="{ opacity: 0, y: 10 }"
-          :visible="{ opacity: 1, y: 0 }"
+      <div
+        v-motion
+        :initial="{ opacity: 0, y: 10 }"
+        :visible="{ opacity: 1, y: 0 }"
           :delay="80"
           class="text-center"
-        >
+      >
           <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight">
-            We are CONSTANT Engineering
-          </h1>
+            We are CONSTANT ENGINEERING
+        </h1>
         </div>
       </div>
     </section>
@@ -76,17 +76,17 @@
             class="space-y-6 lg:space-y-8"
           >
             <p class="text-lg sm:text-xl lg:text-2xl text-slate-600 leading-relaxed font-medium">
-              CONSTANT Engineering plc has been at the forefront of electromechanical solutions in Ethiopia and beyond. 
+              CONSTANT ENGINEERING plc has been at the forefront of electromechanical solutions in Ethiopia and beyond. 
               Our journey began with a simple yet powerful mission: to deliver excellence in every project we undertake.
             </p>
             
             <p class="text-base sm:text-lg text-slate-600 leading-relaxed">
-              Established with a clear vision to deliver world-class engineering solutions that power industries and transform communities. 
+              Established with a clear vision to deliver world-class ENGINEERING solutions that power industries and transform communities. 
               What started as a small team of passionate engineers has grown into a trusted partner for businesses across Ethiopia and the region.
             </p>
             
             <p class="text-base sm:text-lg text-slate-600 leading-relaxed">
-              Today, we continue to push boundaries, innovate, and set new standards in the electromechanical engineering industry. 
+              Today, we continue to push boundaries, innovate, and set new standards in the electromechanical ENGINEERING industry. 
               Our commitment to quality, integrity, and customer satisfaction remains unwavering.
             </p>
           </div>
@@ -322,7 +322,7 @@
               
               <!-- Description -->
               <p class="text-lg sm:text-xl text-gray-600 leading-relaxed mb-8">
-                We deliver exceptional engineering solutions with a commitment to quality, expertise, and customer satisfaction.
+                We deliver exceptional ENGINEERING solutions with a commitment to quality, expertise, and customer satisfaction.
               </p>
             </div>
 
@@ -347,10 +347,10 @@
                 </div>
                 
                 <!-- Title -->
-                <h3 class="text-base font-bold text-gray-900 mb-1.5">{{ item.title }}</h3>
+                <h3 class="text-lg font-bold text-gray-900 mb-1.5">{{ item.title }}</h3>
                 
                 <!-- Description -->
-                <p class="text-xs text-gray-600 leading-relaxed">
+                <p class="text-base text-gray-600 leading-relaxed">
                   {{ item.description }}
                 </p>
               </div>
@@ -399,7 +399,7 @@
             
             <!-- Description -->
             <p class="text-lg sm:text-xl text-gray-600 leading-relaxed mb-8">
-              We deliver exceptional engineering solutions with a commitment to quality, expertise, and customer satisfaction.
+              We deliver exceptional ENGINEERING solutions with a commitment to quality, expertise, and customer satisfaction.
             </p>
           </div>
 
@@ -415,7 +415,7 @@
             <div class="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/3] w-full">
               <img
                 src="https://constanteng.com/assets/img/choose%20us.png"
-                alt="Why Choose Us - CONSTANT Engineering"
+                alt="Why Choose Us - CONSTANT ENGINEERING"
                 class="w-full h-full object-cover"
                 loading="lazy"
               />
@@ -487,7 +487,7 @@
           </span>
         </h2>
         <p class="text-lg sm:text-xl lg:text-2xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed">
-          Whether you're planning a new installation, upgrading existing systems, or seeking reliable engineering support, our team is ready to help.
+          Whether you're planning a new installation, upgrading existing systems, or seeking reliable ENGINEERING support, our team is ready to help.
         </p>
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
           <NuxtLink
@@ -527,7 +527,7 @@ const coreValues = [
   {
     title: 'Technical Excellence',
     icon: 'heroicons:academic-cap',
-    description: 'We apply cutting-edge engineering standards, continuously upgrading our skills and embracing innovation to achieve outstanding results.'
+    description: 'We apply cutting-edge ENGINEERING standards, continuously upgrading our skills and embracing innovation to achieve outstanding results.'
   }
 ]
 
@@ -540,7 +540,7 @@ const whyChooseUs = [
   {
     title: 'Expertise',
     icon: 'heroicons:user-group',
-    description: 'Our team includes professional engineers specializing in mechanical and electrical engineering.'
+    description: 'Our team includes professional engineers specializing in mechanical and electrical ENGINEERING.'
   },
   {
     title: 'Customization',

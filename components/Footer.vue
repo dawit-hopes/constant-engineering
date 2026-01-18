@@ -78,7 +78,7 @@
               Contact
             </NuxtLink>
             <a
-              href="https://t.me/constantengineering"
+              href="https://t.me/constantENGINEERING"
               target="_blank"
               rel="noopener noreferrer"
               class="inline-flex items-center gap-2 text-sm sm:text-base text-slate-300 hover:text-white transition-colors"
@@ -103,7 +103,7 @@
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
             class="w-full sm:h-[300px]"
-            title="CONSTANT Engineering plc Office Location - KKare Building"
+            title="CONSTANT ENGINEERING plc Office Location - KKare Building"
           ></iframe>
         </div>
       </div>
@@ -111,8 +111,8 @@
       <!-- Copyright -->
       <div class="border-t border-slate-800 pt-6 sm:pt-8">
         <div class="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4 text-xs sm:text-sm text-slate-400 text-center sm:text-left">
-          <p>© Constant Engineering PLC. All Rights Reserved</p>
-          <p>Designed by BootstrapMade</p>
+          <p>© CONSTANT ENGINEERING PLC. All Rights Reserved</p>
+          <p>Designed by Simplicity inc.</p>
         </div>
       </div>
     </div>

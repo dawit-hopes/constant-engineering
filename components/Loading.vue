@@ -26,7 +26,7 @@
           <div class="relative">
             <img
               src="/Constant-logo.png"
-              alt="CONSTANT Engineering"
+              alt="CONSTANT ENGINEERING"
               class="h-16 w-16 drop-shadow-lg"
             />
           </div>

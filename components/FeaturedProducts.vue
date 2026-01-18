@@ -155,16 +155,16 @@ import { ref } from 'vue'
 const products = [
   {
     id: 'diesel-generator-systems',
-    name: 'Diesel Generator Systems',
+    name: 'Diesel Generators',
     description: 'Capacity: 10 KVA – 2000 KVA. Open & Silent Type (Canopy). Prime & Standby Power for Industrial, Commercial & Utility Applications.',
-    image: '/products/diesel-generator.png',
+    image: '/products/diesel-generator.jpg',
     specs: '10 KVA – 2000 KVA | GUCBIR, TMG, GRUPEL | Perkins & Cummins Engines'
   },
   {
     id: 'solar-hybrid-energy',
     name: 'Solar & Hybrid Energy Solutions',
       description: 'On-grid & Off-grid Solar Systems, Hybrid Systems (Solar + Generator), Inverters & Charge Controllers, Battery Banks (Lead Acid & Lithium-Ion).',
-        image: '/products/solar.png',
+        image: '/products/solar.jpg',
       specs: 'On-grid & Off-grid | SUNGROW, ANERN | Energy Analysis & System Design'
   },
   {
@@ -178,7 +178,7 @@ const products = [
     id: 'industrial-automation',
     name: 'Industrial Automation & Control',
     description: 'PLC & Automation Systems, Control Panel Design & Manufacturing, Motor Control Centers (MCC), Instrumentation & Measurement, Sensors.',
-    image: '/products/automation.png',
+    image: '/products/automation.jpg',
     specs: 'Schneider, Mitsubishi, ABB, Siemens | PLC & MCC | Sensors & Instrumentation'
   }
 ]

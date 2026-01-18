@@ -128,6 +128,95 @@
         </div>
       </section>
 
+      <!-- Additional Components & Parts Section (Diesel Generators only) -->
+      <section v-if="productId === 'diesel-generator-systems'" class="px-4 sm:px-6 lg:px-8 py-16 lg:py-24 border-t border-gray-200" style="background: #ffffff !important;">
+        <div class="mx-auto max-w-7xl">
+          <div
+            v-motion
+            :initial="{ opacity: 0, y: 20 }"
+            :visible="{ opacity: 1, y: 0 }"
+            :delay="250"
+          >
+            <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-20 text-center">Additional Components & Parts</h2>
+            
+            <!-- Load Transfer Systems -->
+            <div class="mb-24">
+              <div class="flex items-baseline gap-4 mb-12">
+                <div class="h-1 w-16 bg-primary"></div>
+                <div>
+                  <h3 class="text-2xl sm:text-3xl font-bold text-slate-900">Load Transfer Systems</h3>
+                  <p class="text-slate-600 mt-2">Brand: <span class="font-semibold text-slate-900">ASCO</span></p>
+                </div>
+              </div>
+              
+              <div class="grid md:grid-cols-2 gap-8 md:gap-12">
+                <div class="relative pl-8 border-l-2 border-primary/20">
+                  <div class="absolute left-0 top-0 w-2 h-2 bg-primary rounded-full -translate-x-[5px]"></div>
+                  <h4 class="text-xl font-bold text-slate-900 mb-3">Automatic Transfer Switch (ATS)</h4>
+                  <p class="text-slate-600 leading-relaxed">Seamless automatic switching between main power and generator backup for uninterrupted power supply.</p>
+                </div>
+                <div class="relative pl-8 border-l-2 border-primary/20">
+                  <div class="absolute left-0 top-0 w-2 h-2 bg-primary rounded-full -translate-x-[5px]"></div>
+                  <h4 class="text-xl font-bold text-slate-900 mb-3">Manual Load Transfer Switch (LTS)</h4>
+                  <p class="text-slate-600 leading-relaxed">Manual switching solution for controlled power transfer between sources.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Generator Spare Parts -->
+            <div>
+              <div class="flex items-baseline gap-4 mb-12">
+                <div class="h-1 w-16 bg-primary"></div>
+                <h3 class="text-2xl sm:text-3xl font-bold text-slate-900">Generator Spare Parts</h3>
+              </div>
+              
+              <div class="grid lg:grid-cols-3 gap-8 lg:gap-12">
+                <!-- Image - Takes 2 columns on large screens -->
+                <div class="lg:col-span-2">
+                  <img
+                    src="/products/diesel-spare-parts.jpg"
+                    alt="Generator Spare Parts"
+                    class="w-full h-auto object-contain"
+                    loading="lazy"
+                  />
+                </div>
+                
+                <!-- Spare Parts List -->
+                <div class="space-y-6">
+                  <div class="flex items-start gap-4">
+                    <div class="flex-shrink-0 mt-1">
+                      <div class="w-2 h-2 bg-primary rounded-full"></div>
+                    </div>
+                    <div>
+                      <h4 class="text-lg font-bold text-slate-900 mb-1.5">Oil, Fuel & Air Filters</h4>
+                      <p class="text-sm text-slate-600 leading-relaxed">Essential filtration components to maintain optimal engine performance and longevity.</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-4">
+                    <div class="flex-shrink-0 mt-1">
+                      <div class="w-2 h-2 bg-primary rounded-full"></div>
+                    </div>
+                    <div>
+                      <h4 class="text-lg font-bold text-slate-900 mb-1.5">Control Modules & Sensors</h4>
+                      <p class="text-sm text-slate-600 leading-relaxed">Advanced control systems and monitoring sensors for precise generator operation and diagnostics.</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-4">
+                    <div class="flex-shrink-0 mt-1">
+                      <div class="w-2 h-2 bg-primary rounded-full"></div>
+                    </div>
+                    <div>
+                      <h4 class="text-lg font-bold text-slate-900 mb-1.5">Batteries, Starters & Alternators</h4>
+                      <p class="text-sm text-slate-600 leading-relaxed">Critical electrical components for reliable generator starting and power generation.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- CTA Section - Small Gradient -->
       <section class="px-4 sm:px-6 lg:px-8 py-16 lg:py-24" style="background: linear-gradient(to bottom, #ffffff 0%, #fef2f2 20%, #fee2e2 40%, #fef2f2 60%, #ffffff 100%);">
         <div
@@ -187,7 +276,7 @@ const productId = route.params.id
 // Product database with images
 const products = {
   'diesel-generator-systems': {
-    name: 'Diesel Generator Systems',
+    name: 'Diesel Generators',
     icon: 'heroicons:bolt',
     image: '/products/diesel-generator-systems.jpg',
     description: 'Reliable power generation solutions with capacity range from 10 KVA to 2000 KVA. Available in Open & Silent Type (Canopy) for Prime & Standby Power applications.',
@@ -414,7 +503,7 @@ const products = {
       },
       {
         title: 'Control Panel Design & Manufacturing',
-        description: 'Custom-designed control panels built to your specifications with professional engineering and manufacturing.'
+        description: 'Custom-designed control panels built to your specifications with professional ENGINEERING and manufacturing.'
       },
       {
         title: 'Motor Control Centers (MCC)',
@@ -442,11 +531,11 @@ const products = {
     ],
     brands: ['Schneider', 'Mitsubishi Electric', 'ABB', 'Siemens', 'Mean Well']
   },
-  'metal-engineering': {
-    name: 'Metal Engineering & Fabrication',
+  'metal-ENGINEERING': {
+    name: 'Metal ENGINEERING & Fabrication',
     icon: 'heroicons:wrench-screwdriver',
     image: '/products/metal-engineering.png',
-    description: 'Precision metal engineering and fabrication services including steel structures, storage tanks, lighting poles, and stainless steel fabrication.',
+    description: 'Precision metal ENGINEERING and fabrication services including steel structures, storage tanks, lighting poles, and stainless steel fabrication.',
     quickSpecs: ['Steel Structures', 'Storage Tanks', 'Stainless Steel'],
     features: [
       {
@@ -482,7 +571,7 @@ const products = {
 const product = products[productId] || null
 
 useHead({
-  title: product ? `${product.name} - CONSTANT Engineering plc` : 'Product Not Found - CONSTANT Engineering plc',
+  title: product ? `${product.name} - CONSTANT ENGINEERING plc` : 'Product Not Found - CONSTANT ENGINEERING plc',
   meta: [
     {
       name: 'description',

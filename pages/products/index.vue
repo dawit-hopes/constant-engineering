@@ -1,12 +1,12 @@
 <template>
   <div class="min-h-screen">
     <!-- Hero Section - Full Background Image with Centered Text -->
-    <section class="relative h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[90vh] min-h-[300px] sm:min-h-[420px] overflow-hidden">
+    <section class="relative h-[40vh] sm:h-[50vh] md:h-[60vh] lg:h-[70vh] min-h-[300px] sm:min-h-[420px] overflow-hidden">
       <!-- Background image -->
       <div class="absolute inset-0">
         <img
           src="/products.jpg"
-          alt="CONSTANT Engineering products"
+          alt="CONSTANT ENGINEERING products"
           class="w-full h-full object-cover"
           loading="lazy"
         />
@@ -16,16 +16,16 @@
 
       <!-- Centered text -->
       <div class="relative z-10 flex items-center justify-center h-full px-4 sm:px-6 lg:px-8">
-        <div
-          v-motion
-          :initial="{ opacity: 0, y: 10 }"
-          :visible="{ opacity: 1, y: 0 }"
+      <div
+        v-motion
+        :initial="{ opacity: 0, y: 10 }"
+        :visible="{ opacity: 1, y: 0 }"
           :delay="80"
           class="text-center"
-        >
+      >
           <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight">
             Our Products
-          </h1>
+        </h1>
         </div>
       </div>
     </section>
@@ -101,7 +101,7 @@
           Need a Custom Solution?
         </h2>
         <p class="text-lg sm:text-xl text-slate-600 mb-8 max-w-2xl mx-auto">
-          Our engineering team can design and implement solutions tailored to your specific requirements
+          Our ENGINEERING team can design and implement solutions tailored to your specific requirements
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center">
           <NuxtLink
@@ -129,7 +129,7 @@
 const products = [
   {
     id: 'diesel-generator-systems',
-    name: 'Diesel Generator Systems',
+    name: 'Diesel Generators',
     icon: 'heroicons:bolt',
     image: '/products/diesel-generator-systems.jpg',
     description: 'Capacity: 10 KVA – 2000 KVA. Open & Silent Type (Canopy). Prime & Standby Power for Industrial, Commercial & Utility Applications.',
@@ -184,8 +184,8 @@ const products = [
     tags: ['PLC', 'Schneider', 'Mitsubishi', 'ABB']
   },
   {
-    id: 'metal-engineering',
-    name: 'Metal Engineering & Fabrication',
+    id: 'metal-ENGINEERING',
+    name: 'Metal ENGINEERING & Fabrication',
     icon: 'heroicons:wrench-screwdriver',
     image: '/products/metal-engineering.png',
     description: 'Steel Structures (Warehouses, Trusses), Fuel & Industrial Storage Tanks, Lighting Poles & Supports, Stainless Steel Fabrication.',

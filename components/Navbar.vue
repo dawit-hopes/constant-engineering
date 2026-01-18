@@ -15,17 +15,17 @@
         <NuxtLink to="/" class="flex items-center space-x-2 sm:space-x-2 flex-shrink-0 min-w-0">
           <img 
             src="/Constant-logo.png" 
-            alt="CONSTANT Engineering" 
+            alt="CONSTANT ENGINEERING" 
             :class="[
-              'h-7 w-7 sm:h-10 sm:w-10 flex-shrink-0 transition-all ',
+              'h-9 w-9 sm:h-10 sm:w-10 flex-shrink-0 transition-all ',
               (isOnTransparentPage && !isScrolled && !showMegaMenu) ? '' : ''
             ]"
           />
           <span 
-            class="hidden lg:inline text-base sm:text-base font-bold text-primary truncate tracking-tighter"
+            class="inline text-xs sm:text-sm md:text-base font-bold text-primary truncate tracking-tighter"
             style="font-family: 'Inter', 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; letter-spacing: -0.025em; font-weight: 700; line-height: 1.1;"
           >
-            CONSTANT<br style="line-height:1.1;"/><span style="line-height:1.1;">Engineering</span>
+            CONSTANT<br style="line-height:1.1;"/><span style="line-height:1.1;">ENGINEERING</span>
           </span>
         </NuxtLink>
 
@@ -198,11 +198,16 @@
               <div class="flex items-center justify-between px-6 pt-6 pb-4 border-b border-slate-200/50">
                 <NuxtLink
                   to="/"
-                  class="flex items-center space-x-3"
+                  class="flex items-center space-x-2"
                   @click="mobileMenuOpen = false"
                 >
-                  <img src="/Constant-logo.png" alt="CONSTANT Engineering" class="h-10 w-10" />
-                  <span class="text-base font-bold text-primary">CONSTANT Engineering</span>
+                  <img src="/Constant-logo.png" alt="CONSTANT ENGINEERING" class="h-9 w-9 flex-shrink-0" />
+                  <span 
+                    class="text-xs font-bold text-primary truncate tracking-tighter"
+                    style="font-family: 'Inter', 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; letter-spacing: -0.025em; font-weight: 700; line-height: 1.1;"
+                  >
+                    CONSTANT<br style="line-height:1.1;"/><span style="line-height:1.1;">ENGINEERING</span>
+                  </span>
                 </NuxtLink>
                 <button
                   @click="mobileMenuOpen = false"
@@ -420,7 +425,7 @@ const closeMegaMenu = () => {
 const products = [
   {
     id: 'diesel-generator-systems',
-    name: 'Diesel Generator Systems',
+    name: 'Diesel Generators',
     image: '/products/diesel-generator-systems.jpg',
     description: 'Capacity: 10 KVA – 2000 KVA. Open & Silent Type (Canopy). Prime & Standby Power for Industrial, Commercial & Utility Applications.'
   },
@@ -461,8 +466,8 @@ const products = [
     description: 'PLC & Automation Systems, Control Panel Design, Motor Control Centers, Instrumentation & Measurement.'
   },
   {
-    id: 'metal-engineering',
-    name: 'Metal Engineering & Fabrication',
+    id: 'metal-ENGINEERING',
+    name: 'Metal ENGINEERING & Fabrication',
     image: '/products/metal-engineering.png',
     description: 'Steel Structures, Fuel & Industrial Storage Tanks, Lighting Poles, Stainless Steel Fabrication, Welding.'
   }
