@@ -192,14 +192,13 @@ import { ref, onMounted, onUnmounted, computed } from 'vue'
 
 const carouselSlides = [
   {
-    image: '/hero-bg.avif',
+    image: '/hero-new.jpg',
     alt: 'Diesel Generators powering an industrial facility',
     label: 'Reliable backup power',
-    headingPrimary: 'Power that keeps',
-    headingHighlight: 'your operations running',
+    headingPrimary: 'Engineered for',
+    headingHighlight: 'Industry',
     headingSuffix: '',
-    description:
-      'From hospitals to factories, our Diesel Generators provide dependable backup and prime power so your critical operations never stop.'
+    description: 'Power | Industrial Automation | HVAC | Metal Engineering'
   },
   {
     image: '/Hero3.avif',

@@ -6,23 +6,12 @@
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
       <div class="flex h-14 sm:h-16 items-center justify-between w-full">
         <!-- Logo - Left -->
-        <NuxtLink to="/" class="flex items-center space-x-2 sm:space-x-2 flex-shrink-0 min-w-0">
+        <NuxtLink to="/" class="flex items-center flex-shrink-0 min-w-0">
           <img 
-            src="/Constant-logo.png" 
+            src="/new-logo.png" 
             alt="CONSTANT ENGINEERING" 
-            class="h-9 w-9 sm:h-10 sm:w-10 flex-shrink-0 transition-all"
+            class="h-10 sm:h-12 w-auto flex-shrink-0 transition-all"
           />
-          <span 
-            class="inline-flex flex-col text-base sm:text-base md:text-base font-bold text-primary leading-[1.0]"
-            style="font-family: 'Inter', 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; letter-spacing: -0.01em; font-weight: 700;"
-          >
-            <span class="block text-center w-[120px] sm:w-[132px] tracking-[0.18em]">
-              CONSTANT
-            </span>
-            <span class="block text-center w-[120px] sm:w-[132px] tracking-[0.02em] -mt-1">
-              ENGINEERING
-            </span>
-          </span>
         </NuxtLink>
 
         <!-- Menu - Right -->
@@ -179,16 +168,10 @@
               <div class="flex items-center justify-between px-6 pt-6 pb-4 border-b border-slate-200/50">
                 <NuxtLink
                   to="/"
-                  class="flex items-center space-x-2"
+                  class="flex items-center"
                   @click="mobileMenuOpen = false"
                 >
-                  <img src="/Constant-logo.png" alt="CONSTANT ENGINEERING" class="h-9 w-9 flex-shrink-0" />
-                  <span 
-                    class="text-xs font-bold text-primary truncate tracking-tighter"
-                    style="font-family: 'Inter', 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; letter-spacing: -0.025em; font-weight: 700; line-height: 1.1;"
-                  >
-                    CONSTANT<br style="line-height:1.1;"/><span style="line-height:1.1;">ENGINEERING</span>
-                  </span>
+                  <img src="/new-logo.png" alt="CONSTANT ENGINEERING" class="h-10 w-auto flex-shrink-0" />
                 </NuxtLink>
                 <button
                   @click="mobileMenuOpen = false"
