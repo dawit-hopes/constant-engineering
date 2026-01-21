@@ -3,11 +3,8 @@
     <Loading />
     <Navbar />
     <main 
-      class="flex-1 transition-all duration-300 w-full overflow-x-hidden"
-      :class="[
-        { 'blur-md': megaMenuOpen },
-        isOnTransparentPage ? '' : 'pt-14 sm:pt-16'
-      ]"
+      class="flex-1 transition-all duration-300 w-full overflow-x-hidden pt-14 sm:pt-16"
+      :class="[{ 'blur-md': megaMenuOpen }]"
       :style="{ filter: megaMenuOpen ? 'blur(8px)' : 'none', transition: 'filter 0.3s ease' }"
     >
       <NuxtPage :key="$route.fullPath" />
@@ -21,14 +18,7 @@
 </template>
 
 <script setup>
-import { inject, ref, computed } from 'vue'
-import { useRoute } from 'vue-router'
+import { inject, ref } from 'vue'
 
-const route = useRoute()
 const megaMenuOpen = inject('megaMenuOpen', ref(false))
-
-const isOnTransparentPage = computed(() => {
-  const path = route.path
-  return path === '/' || path === '/about' || path === '/contact' || path === '/products' || path.startsWith('/products/')
-})
 </script>

@@ -1,13 +1,7 @@
 <template>
   <nav 
-    class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 w-full overflow-x-hidden"
-    :class="[
-      (isOnTransparentPage && !isScrolled && !showMegaMenu)
-        ? '' 
-        : 'bg-white/80 backdrop-blur-md',
-      { 'border-b border-slate-200': isScrolled || showMegaMenu }
-    ]"
-    :style="(isOnTransparentPage && !isScrolled && !showMegaMenu) ? { background: 'transparent', backdropFilter: 'none' } : {}"
+    class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 w-full overflow-x-hidden bg-white"
+    :class="[{ 'border-b border-slate-200': isScrolled || showMegaMenu }]"
   >
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
       <div class="flex h-14 sm:h-16 items-center justify-between w-full">
@@ -16,10 +10,7 @@
           <img 
             src="/Constant-logo.png" 
             alt="CONSTANT ENGINEERING" 
-            :class="[
-              'h-9 w-9 sm:h-10 sm:w-10 flex-shrink-0 transition-all ',
-              (isOnTransparentPage && !isScrolled && !showMegaMenu) ? '' : ''
-            ]"
+            class="h-9 w-9 sm:h-10 sm:w-10 flex-shrink-0 transition-all"
           />
           <span 
             class="inline-flex flex-col text-base sm:text-base md:text-base font-bold text-primary leading-[1.0]"
@@ -38,10 +29,7 @@
         <div class="hidden lg:flex lg:items-center lg:space-x-8">
           <NuxtLink
             to="/"
-            :class="[
-              'text-sm font-medium transition-colors',
-              (isOnTransparentPage && !isScrolled && !showMegaMenu) ? 'text-white hover:text-white/80' : 'text-slate-900 hover:text-primary'
-            ]"
+            class="text-sm font-medium transition-colors text-slate-900 hover:text-primary"
           >
             Home
           </NuxtLink>
@@ -54,10 +42,7 @@
           >
             <NuxtLink
               to="/products"
-              :class="[
-                'text-sm font-medium transition-colors flex items-center space-x-1',
-                (isOnTransparentPage && !isScrolled && !showMegaMenu) ? 'text-white hover:text-white/80' : 'text-slate-900 hover:text-primary'
-              ]"
+              class="text-sm font-medium transition-colors flex items-center space-x-1 text-slate-900 hover:text-primary"
               @mouseenter="clearMegaMenuTimeout"
               @click="closeMegaMenu"
             >
@@ -127,19 +112,13 @@
 
           <NuxtLink
             to="/about"
-            :class="[
-              'text-sm font-medium transition-colors',
-              (isOnTransparentPage && !isScrolled && !showMegaMenu) ? 'text-white hover:text-white/80' : 'text-slate-900 hover:text-primary'
-            ]"
+            class="text-sm font-medium transition-colors text-slate-900 hover:text-primary"
           >
             About
           </NuxtLink>
           <NuxtLink
             to="/contact"
-            :class="[
-              'text-sm font-medium transition-colors',
-              (isOnTransparentPage && !isScrolled && !showMegaMenu) ? 'text-white hover:text-white/80' : 'text-slate-900 hover:text-primary'
-            ]"
+            class="text-sm font-medium transition-colors text-slate-900 hover:text-primary"
           >
             Contact
           </NuxtLink>
@@ -153,10 +132,7 @@
 
         <!-- Mobile Menu Button -->
         <button
-          :class="[
-            'lg:hidden p-2 relative z-50 transition-colors',
-            (isOnTransparentPage && !isScrolled && !showMegaMenu) ? 'text-white' : 'text-slate-900'
-          ]"
+          class="lg:hidden p-2 relative z-50 transition-colors text-slate-900"
           @click="mobileMenuOpen = !mobileMenuOpen"
         >
           <Icon :name="mobileMenuOpen ? 'heroicons:x-mark' : 'heroicons:bars-3'" class="h-6 w-6 transition-transform" />
@@ -352,21 +328,12 @@
 </template>
 
 <script setup>
-import { ref, provide, onMounted, onUnmounted, watch, computed } from 'vue'
-import { useRoute } from 'vue-router'
-
-const route = useRoute()
+import { ref, provide, onMounted, onUnmounted, watch } from 'vue'
 const showMegaMenu = ref(false)
 const mobileMenuOpen = ref(false)
 const mobileProductsOpen = ref(false)
 const isScrolled = ref(false)
 const navbarHeight = ref(64) // Default desktop height
-
-// Pages where navbar should start transparent over hero imagery
-const isOnTransparentPage = computed(() => {
-  const path = route.path
-  return path === '/' || path === '/about' || path === '/contact' || path === '/products' || path.startsWith('/products/')
-})
 
 // Provide mega menu state for app-level blur effect
 provide('megaMenuOpen', showMegaMenu)
