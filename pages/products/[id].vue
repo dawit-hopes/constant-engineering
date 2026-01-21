@@ -163,11 +163,11 @@
               </div>
             </div>
 
-            <!-- Generator Spare Parts -->
+            <!-- Generator Parts -->
             <div>
               <div class="flex items-baseline gap-4 mb-12">
                 <div class="h-1 w-16 bg-primary"></div>
-                <h3 class="text-2xl sm:text-3xl font-bold text-slate-900">Generator Spare Parts</h3>
+                <h3 class="text-2xl sm:text-3xl font-bold text-slate-900">Generator Parts</h3>
               </div>
               
               <div class="grid lg:grid-cols-3 gap-8 lg:gap-12">
@@ -175,7 +175,7 @@
                 <div class="lg:col-span-2">
                   <img
                     src="/products/diesel-spare-parts.jpg"
-                    alt="Generator Spare Parts"
+                    alt="Generator Parts"
                     class="w-full h-auto object-contain"
                     loading="lazy"
                   />
