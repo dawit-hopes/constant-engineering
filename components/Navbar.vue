@@ -22,10 +22,15 @@
             ]"
           />
           <span 
-            class="inline text-xs sm:text-sm md:text-base font-bold text-primary truncate tracking-tighter"
-            style="font-family: 'Inter', 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; letter-spacing: -0.025em; font-weight: 700; line-height: 1.1;"
+            class="inline-flex flex-col text-base sm:text-base md:text-base font-bold text-primary leading-[1.0]"
+            style="font-family: 'Inter', 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; letter-spacing: -0.01em; font-weight: 700;"
           >
-            CONSTANT<br style="line-height:1.1;"/><span style="line-height:1.1;">ENGINEERING</span>
+            <span class="block text-center w-[120px] sm:w-[132px] tracking-[0.18em]">
+              CONSTANT
+            </span>
+            <span class="block text-center w-[120px] sm:w-[132px] tracking-[0.02em] -mt-1">
+              ENGINEERING
+            </span>
           </span>
         </NuxtLink>
 
