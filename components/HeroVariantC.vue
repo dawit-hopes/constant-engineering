@@ -192,7 +192,7 @@ import { ref, onMounted, onUnmounted, computed } from 'vue'
 
 const carouselSlides = [
   {
-    image: '/hero-new.jpg',
+    image: '/Hero3.avif',
     alt: 'Diesel Generators powering an industrial facility',
     label: 'Reliable backup power',
     headingPrimary: 'Engineered for',
@@ -201,7 +201,7 @@ const carouselSlides = [
     description: 'Power | Industrial Automation | HVAC | Metal Engineering'
   },
   {
-    image: '/Hero3.avif',
+    image: '/hero-new.jpg',
     alt: 'Modern solar and HVAC installation on a commercial building',
     label: 'Integrated energy solutions',
     headingPrimary: 'Smarter energy',
