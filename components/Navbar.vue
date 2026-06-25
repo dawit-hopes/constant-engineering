@@ -111,12 +111,15 @@
           >
             Contact
           </NuxtLink>
-          <NuxtLink
-            to="/contact"
-            class="rounded-full px-6 py-2.5 text-sm font-semibold text-white bg-primary hover:bg-primary/90 transition-colors"
+          <a
+            href="https://wa.me/251924909098?text=Hello%2C%20I%27d%20like%20to%20talk%20to%20sales%20about%20a%20project"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold text-white bg-primary hover:bg-primary/90 transition-colors"
           >
-            Get Started
-          </NuxtLink>
+            <Icon name="heroicons:chat-bubble-left-right" class="h-4 w-4" />
+            Talk to Sales
+          </a>
         </div>
 
         <!-- Mobile Menu Button -->
@@ -293,14 +296,16 @@
 
               <!-- Footer CTA -->
               <div class="px-6 pb-8 pt-4 border-t border-slate-200/50">
-                <NuxtLink
-                  to="/contact"
-                  class="block w-full rounded-2xl bg-primary px-8 py-4 text-center text-lg font-semibold text-white hover:bg-primary/90 transition-all shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30"
+                <a
+                  href="https://wa.me/251924909098?text=Hello%2C%20I%27d%20like%20to%20talk%20to%20sales%20about%20a%20project"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex w-full items-center justify-center rounded-2xl bg-primary px-8 py-4 text-center text-lg font-semibold text-white hover:bg-primary/90 transition-all shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30"
                   @click="mobileMenuOpen = false"
                 >
-                  Get Started
-                  <Icon name="heroicons:arrow-right" class="inline-block ml-2 h-5 w-5" />
-                </NuxtLink>
+                  <Icon name="heroicons:chat-bubble-left-right" class="mr-2 h-5 w-5" />
+                  Talk to Sales
+                </a>
               </div>
             </div>
           </Transition>

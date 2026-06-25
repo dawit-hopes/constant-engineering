@@ -126,70 +126,7 @@
 </template>
 
 <script setup>
-const products = [
-  {
-    id: 'diesel-generator-systems',
-    name: 'Diesel Generators',
-    icon: 'heroicons:bolt',
-    image: '/products/diesel-generator-systems.jpg',
-    description: 'Capacity: 10 KVA – 2000 KVA. Open & Silent Type (Canopy). Prime & Standby Power for Industrial, Commercial & Utility Applications.',
-    tags: ['10-2000 KVA', 'Perkins & Cummins', 'Industrial']
-  },
-  {
-    id: 'solar-hybrid-energy',
-    name: 'Solar & Hybrid Energy Solutions',
-    icon: 'heroicons:sun',
-    image: '/products/solar-hybrid-energy.png',
-    description: 'On-grid & Off-grid Solar Systems, Hybrid Systems (Solar + Generator), Inverters & Charge Controllers, Battery Banks.',
-    tags: ['On-grid & Off-grid', 'SUNGROW', 'ANERN']
-  },
-  {
-    id: 'power-quality-protection',
-    name: 'Power Quality & Protection Systems',
-    icon: 'heroicons:shield-check',
-    image: '/products/power-quality-protection.png',
-    description: 'UPS Systems, Voltage Stabilizers, Active Harmonic Filters, Capacitor Banks, Surge Protection Devices.',
-    tags: ['UPS Systems', 'APC', 'Schneider']
-  },
-  {
-    id: 'electrical-distribution',
-    name: 'Electrical Distribution & Switchgear',
-    icon: 'heroicons:light-bulb',
-    image: '/products/electrical-distribution.jpg',
-    description: 'LV Power Cables (1×1.5 mm² – 3×300+150 mm²), Circuit Breakers, Contactors, Panels, Enclosures & Accessories.',
-    tags: ['LV Cables', 'El Sewedy', 'Schneider']
-  },
-  {
-    id: 'hvac-cooling-systems',
-    name: 'HVAC & Cooling Systems',
-    icon: 'heroicons:adjustments-horizontal',
-    image: '/products/hvac-cooling-systems.png',
-    description: 'Split, Cassette, Ducted & Central AC, VRF/VRV Systems, Data Center & Commercial AC, Chillers & Cooling Towers.',
-    tags: ['GREE', 'MIDEA', 'TCL']
-  },
-  {
-    id: 'pumping-solutions',
-    name: 'Pumping Solutions',
-    icon: 'heroicons:arrow-path',
-    image: '/products/pumping-solutions.png',
-    description: 'Submersible Pumps, Surface & Booster Pumps, Solar Powered Pumps, Pump Control Panels, Motor Winding & Maintenance.',
-    tags: ['Submersible', 'Pedrollo', 'Caprari']
-  },
-  {
-    id: 'industrial-automation',
-    name: 'Industrial Automation & Control',
-    icon: 'heroicons:cpu-chip',
-    image: '/products/electrical-distribution.jpg',
-    description: 'PLC & Automation Systems, Control Panel Design & Manufacturing, Motor Control Centers (MCC), Instrumentation & Measurement.',
-    tags: ['PLC', 'Schneider', 'Mitsubishi', 'ABB']
-  },
-  {
-    id: 'metal-ENGINEERING',
-    name: 'Metal ENGINEERING & Fabrication',
-    icon: 'heroicons:wrench-screwdriver',
-    image: '/products/metal-engineering.png',
-    description: 'Steel Structures (Warehouses, Trusses), Fuel & Industrial Storage Tanks, Lighting Poles & Supports, Stainless Steel Fabrication.',
-    tags: ['Steel Structures', 'Storage Tanks', 'Welding']
-  }
-]
+import { getProductListings } from '~/data/products'
+
+const products = getProductListings()
 </script>

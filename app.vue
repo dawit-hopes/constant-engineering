@@ -13,7 +13,7 @@
       :class="{ 'blur-md': megaMenuOpen }"
       :style="{ filter: megaMenuOpen ? 'blur(8px)' : 'none', transition: 'filter 0.3s ease' }"
     />
-    <WhatsAppFloat />
+    <EngineeringAssistant />
   </div>
 </template>
 

@@ -6,6 +6,17 @@ export default defineNuxtConfig({
     'nuxt-icon',
     '@vueuse/motion/nuxt'
   ],
+  runtimeConfig: {
+    postmarkToken: process.env.POSTMARK_TOKEN || '',
+    postmarkFromEmail: process.env.POSTMARK_FROM_EMAIL || '',
+    contactEmail: process.env.CONTACT_EMAIL || '',
+    geminiApiKey: process.env.GEMINI_API_KEY || '',
+    geminiModel: process.env.GEMINI_MODEL || 'gemini-2.0-flash',
+    public: {
+      whatsappNumber: process.env.WHATSAPP_NUMBER || '251924909098',
+      supportPhone: process.env.SUPPORT_PHONE || '+251 924 909 098'
+    }
+  },
   css: ['~/assets/css/main.css'],
   router: {
     options: {
