@@ -1,7 +1,7 @@
 import { useRuntimeConfig } from 'nuxt/app'
 import { ref, reactive, computed } from 'vue'
 import { buildCaptureHandoffMessage, buildLeadSuccessMessage } from '~/utils/salesContact'
-import { isReadyForCapture } from '~/utils/captureReadiness'
+import { isStructurallyReadyForCapture } from '~/utils/captureReadiness'
 
 export interface ChatMessage {
   id: string
@@ -327,10 +327,8 @@ export function useEngineeringChat() {
           if (event.qualification) {
             Object.assign(qualification, event.qualification)
           }
-          if (event.action === 'capture') {
+          if (event.action === 'capture' || event.action === 'convert') {
             currentStep.value = 'capture'
-          } else if (event.action === 'convert') {
-            currentStep.value = 'conversion'
           } else if (currentStep.value === 'conversion') {
             currentStep.value = 'entry'
           }
@@ -365,7 +363,7 @@ export function useEngineeringChat() {
       const fallback = `Sorry, I couldn't reach our assistant. Please call ${config.public.supportPhone} or use the options below.`
       const detail = err instanceof Error && err.message ? err.message : fallback
       if (botIndex === -1) {
-        if (isReadyForCapture(toApiMessages(), trimmed)) {
+        if (isStructurallyReadyForCapture(toApiMessages(), trimmed)) {
           qualification.requestType = qualification.requestType || 'Quotation'
           qualification.intent = qualification.intent || 'New Engineering Project'
           currentStep.value = 'capture'

@@ -7,12 +7,9 @@ import {
 } from 'h3'
 import { useRuntimeConfig } from 'nitropack/runtime'
 import { GoogleGenerativeAI } from '@google/generative-ai'
-import { AGENT_BEHAVIOR } from '../utils/agentKnowledge'
 import {
   buildSystemPrompt,
   buildQualificationUpdate,
-  isConversionIntent,
-  resolveChatAction,
   sanitizeChatReply
 } from '../utils/agentPrompt'
 import {
@@ -23,8 +20,9 @@ import {
 import {
   buildCaptureQualification,
   getCaptureHandoffText,
-  isReadyForCapture
+  shouldCaptureLead
 } from '../utils/qualificationFlow'
+import { isStructurallyReadyForCapture } from '../../utils/captureReadiness'
 import {
   validateChatBody,
   ChatValidationError,
@@ -103,24 +101,19 @@ export default defineEventHandler(async (event) => {
       }
 
       const qualUpdate = buildQualificationUpdate(lastUserMessage, qualification)
-      const mergedQualification = { ...qualification, ...qualUpdate }
+      let mergedQualification = { ...qualification, ...qualUpdate }
 
       try {
-        if (isReadyForCapture(messages, lastUserMessage)) {
-          sendCaptureHandoff(send, messages, lastUserMessage, mergedQualification)
-          return
-        }
+        const captureDecision = await shouldCaptureLead(
+          apiKey,
+          modelName,
+          messages,
+          lastUserMessage
+        )
+        mergedQualification = { ...mergedQualification, ...captureDecision.hints }
 
-        if (isConversionIntent(lastUserMessage)) {
-          send({ type: 'delta', content: AGENT_BEHAVIOR.conversionMessage })
-          send({
-            type: 'done',
-            action: 'convert',
-            qualification: {
-              ...mergedQualification,
-              intent: mergedQualification.intent || 'Direct enquiry'
-            }
-          })
+        if (captureDecision.capture) {
+          sendCaptureHandoff(send, messages, lastUserMessage, mergedQualification)
           return
         }
 
@@ -160,15 +153,14 @@ export default defineEventHandler(async (event) => {
           })
         }
 
-        const action = resolveChatAction(lastUserMessage)
         send({
           type: 'done',
-          action,
+          action: 'continue',
           qualification: mergedQualification
         })
       } catch (err) {
         console.error('[chat.post] Gemini error:', err)
-        if (isReadyForCapture(messages, lastUserMessage)) {
+        if (isStructurallyReadyForCapture(messages, lastUserMessage)) {
           sendCaptureHandoff(send, messages, lastUserMessage, mergedQualification)
           return
         }

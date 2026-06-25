@@ -1,11 +1,31 @@
 import type { ChatTurn, ChatQualification } from './chatValidation'
 import { buildCaptureHandoffMessage } from '../../utils/salesContact'
-import {
-  detectProductCategory,
-  isReadyForCapture
-} from '../../utils/captureReadiness'
+import { detectProductCategory, isStructurallyReadyForCapture } from '../../utils/captureReadiness'
+import { classifyCaptureIntent } from './captureClassifier'
 
-export { isReadyForCapture }
+export { isStructurallyReadyForCapture as isReadyForCapture }
+
+export async function shouldCaptureLead(
+  apiKey: string,
+  modelName: string,
+  messages: ChatTurn[],
+  lastUserMessage: string
+): Promise<{ capture: boolean; hints: Partial<ChatQualification> }> {
+  if (isStructurallyReadyForCapture(messages, lastUserMessage)) {
+    return { capture: true, hints: {} }
+  }
+
+  try {
+    const result = await classifyCaptureIntent(apiKey, modelName, messages, lastUserMessage)
+    const hints: Partial<ChatQualification> = {}
+    if (result.requestType) hints.requestType = result.requestType
+    if (result.intent) hints.intent = result.intent
+    return { capture: result.capture, hints }
+  } catch (err) {
+    console.error('[shouldCaptureLead] classifier error:', err)
+    return { capture: false, hints: {} }
+  }
+}
 
 export function buildCaptureQualification(
   messages: ChatTurn[],
