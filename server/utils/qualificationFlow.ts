@@ -1,6 +1,6 @@
 import type { ChatTurn, ChatQualification } from './chatValidation'
 import { buildCaptureHandoffMessage } from '../../utils/salesContact'
-import { detectProductCategory, isStructurallyReadyForCapture } from '../../utils/captureReadiness'
+import { detectProductCategory, hasEngagementIntent, isStructurallyReadyForCapture, extractCapacity } from '../../utils/captureReadiness'
 import { classifyCaptureIntent } from './captureClassifier'
 
 export { isStructurallyReadyForCapture as isReadyForCapture }
@@ -20,11 +20,27 @@ export async function shouldCaptureLead(
     const hints: Partial<ChatQualification> = {}
     if (result.requestType) hints.requestType = result.requestType
     if (result.intent) hints.intent = result.intent
-    return { capture: result.capture, hints }
+    if (result.capture) return { capture: true, hints }
   } catch (err) {
     console.error('[shouldCaptureLead] classifier error:', err)
-    return { capture: false, hints: {} }
   }
+
+  const conversation = messages.map((m) => m.content).join(' ')
+  const userTurns = messages.filter((m) => m.role === 'user').length
+  const productInThread = detectProductCategory(conversation)
+
+  if (
+    hasEngagementIntent(lastUserMessage) &&
+    (productInThread || userTurns >= 2)
+  ) {
+    return { capture: true, hints: {} }
+  }
+
+  if (productInThread && userTurns >= 2) {
+    return { capture: true, hints: {} }
+  }
+
+  return { capture: false, hints: {} }
 }
 
 export function buildCaptureQualification(
@@ -46,6 +62,9 @@ export function buildCaptureQualification(
 
   const kw = conversation.match(/\b(\d+)\s*kw\b/i)
   if (kw && !out.capacity) out.capacity = `${kw[1]} KW`
+
+  const parsedCapacity = extractCapacity(lastUserMessage, conversation)
+  if (parsedCapacity && !out.capacity) out.capacity = parsedCapacity
 
   const product = detectProductCategory(conversation)
   if (product) out.productInterest = product

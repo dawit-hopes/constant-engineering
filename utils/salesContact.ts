@@ -51,7 +51,7 @@ export function getSalesContactTimingPhrase(date = new Date()): string {
 }
 
 export function buildCaptureHandoffMessage(date = new Date()): string {
-  return `Perfect — we have what we need to get started. Leave your name and phone below and our sales team will contact you ${getSalesContactTimingPhrase(date)}.`
+  return `Please fill out the form below so our sales team can contact you ${getSalesContactTimingPhrase(date)}.`
 }
 
 export function buildLeadSuccessMessage(date = new Date()): string {

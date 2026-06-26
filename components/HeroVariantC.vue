@@ -99,62 +99,7 @@
             </a>
           </div>
 
-              <!-- Trusted Partners -->
-              <div class="pt-3 sm:pt-4 border-t border-white/10">
-                <p class="text-[10px] sm:text-xs md:text-sm font-medium text-white/60 mb-3 sm:mb-4 md:mb-5 uppercase tracking-wider">
-              Our Partners
-            </p>
-                <div class="grid grid-cols-3 lg:flex lg:flex-nowrap items-center justify-start gap-2 sm:gap-4 md:gap-6">
-                  <div class="h-8 sm:h-10 flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity duration-300">
-                <img
-                  src="/partners/perkins.png"
-                  alt="Perkins"
-                  class="h-full w-auto object-contain brightness-0 invert"
-                  loading="lazy"
-                />
-              </div>
-                  <div class="h-6 sm:h-8 lg:h-10 flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity duration-300">
-                <img
-                  src="/partners/cummins.png"
-                  alt="Cummins"
-                  class="h-full w-auto object-contain brightness-0 invert"
-                  loading="lazy"
-                />
-              </div>
-                  <div class="h-6 sm:h-8 lg:h-10 flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity duration-300">
-                <img
-                  src="/partners/schneider-electric.png"
-                  alt="Schneider Electric"
-                  class="h-full w-auto object-contain brightness-0 invert"
-                  loading="lazy"
-                />
-              </div>
-                  <div class="h-6 sm:h-8 lg:h-10 flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity duration-300">
-                <img
-                  src="/partners/mitsubishi.png"
-                  alt="Mitsubishi"
-                  class="h-full w-auto object-contain brightness-0 invert"
-                  loading="lazy"
-                />
-              </div>
-                  <div class="h-6 sm:h-8 lg:h-10 flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity duration-300">
-                <img
-                  src="/partners/gree.png"
-                  alt="GREE"
-                  class="h-full w-auto object-contain brightness-0 invert"
-                  loading="lazy"
-                />
-              </div>
-                  <div class="h-6 sm:h-8 lg:h-10 flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity duration-300">
-                <img
-                  src="/partners/meanwell.png"
-                  alt="Meanwell"
-                  class="h-full w-auto object-contain brightness-0 invert"
-                  loading="lazy"
-                />
-              </div>
-            </div>
-          </div>
+              <PartnerLogos />
         </div>
           </Transition>
         </div>

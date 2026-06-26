@@ -9,15 +9,17 @@ export interface CaptureClassification {
 
 const CLASSIFIER_INSTRUCTION = `You decide whether a B2B engineering sales chat should show a contact-details form next.
 
-Return capture=true when the visitor (especially in their latest message) wants to:
-- speak with sales/engineering, get a quote, buy, order, install, reach out, connect, callback, or hand off to a human
-- stop chatting and have the company contact them
-- proceed after already sharing enough project context (product + intent) for human follow-up
+Return capture=true when ANY of these apply:
+- Visitor gave a capacity or sizing (e.g. "1500", "500 KVA") and discussed a product
+- Visitor stated what they want to buy ("I want a diesel generator") with clear interest
+- Product type is identified and they have sent 2+ messages about it — stop qualifying, show the form
+- They want sales/engineering contact, quote, or callback
 
-Return capture=false when:
-- they only ask general product information (brands, specs, "do you supply X")
-- early exploration with no contact or buying intent yet
-- one more clarifying question would genuinely help
+Return capture=false ONLY when:
+- First message is a vague greeting with no product interest
+- Pure info question with no buying signal ("do you supply Perkins?")
+
+Default: when product interest exists, prefer capture=true. Sales qualifies on callback — do not keep chatting.
 
 Optional fields when capture=true:
 - requestType: one of "Quotation", "Engineer Callback", "WhatsApp", "Consultation"

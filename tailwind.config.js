@@ -27,6 +27,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Inter', 'Roboto', 'sans-serif'],
+        serif: ['"Playfair Display"', 'Georgia', 'serif'],
       },
     },
   },

@@ -1,6 +1,5 @@
 <template>
   <div class="min-h-screen bg-white flex flex-col overflow-x-hidden">
-    <Loading />
     <Navbar />
     <main 
       class="flex-1 transition-all duration-300 w-full overflow-x-hidden pt-14 sm:pt-16"

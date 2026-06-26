@@ -142,16 +142,27 @@ export default defineEventHandler(async (event) => {
           const clean = sanitizeChatReply(text)
           if (!clean) continue
           fullReply += clean
-          send({ type: 'delta', content: clean })
         }
 
         if (!fullReply.trim()) {
-          send({
-            type: 'delta',
-            content:
-              'I can connect you with our engineering team for accurate guidance. What system or project are you working on?'
-          })
+          fullReply =
+            'I can connect you with our engineering team for accurate guidance. What system or project are you working on?'
         }
+
+        const postCapture = await shouldCaptureLead(
+          apiKey,
+          modelName,
+          [...messages, { role: 'assistant' as const, content: fullReply }],
+          lastUserMessage
+        )
+        mergedQualification = { ...mergedQualification, ...postCapture.hints }
+
+        if (postCapture.capture) {
+          sendCaptureHandoff(send, messages, lastUserMessage, mergedQualification)
+          return
+        }
+
+        send({ type: 'delta', content: fullReply })
 
         send({
           type: 'done',
@@ -160,7 +171,14 @@ export default defineEventHandler(async (event) => {
         })
       } catch (err) {
         console.error('[chat.post] Gemini error:', err)
-        if (isStructurallyReadyForCapture(messages, lastUserMessage)) {
+        const fallbackCapture = await shouldCaptureLead(
+          apiKey,
+          modelName,
+          messages,
+          lastUserMessage
+        ).catch(() => ({ capture: false, hints: {} }))
+        if (fallbackCapture.capture || isStructurallyReadyForCapture(messages, lastUserMessage)) {
+          mergedQualification = { ...mergedQualification, ...fallbackCapture.hints }
           sendCaptureHandoff(send, messages, lastUserMessage, mergedQualification)
           return
         }
