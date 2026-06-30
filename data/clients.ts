@@ -8,10 +8,16 @@ export interface ClientProject {
 export const clientProjects: ClientProject[] = [
   {
     name: 'BGI Ethiopia',
-    logo: '/clients/client-b.jpg',
-    category: 'Manufacturing',
+    logo: '/clients/client-b.png',
+    category: 'Beverages',
     services:
       'Supply and installation of air conditioning, industrial automation & control products, and generator parts.',
+  },
+  {
+    name: 'Coca-Cola Beverages',
+    logo: '/clients/client-f.webp',
+    category: 'Beverages',
+    services: 'Supply of industrial automation & control products.',
   },
   {
     name: 'Awash Bank',
@@ -27,22 +33,9 @@ export const clientProjects: ClientProject[] = [
   },
   {
     name: 'Salesian Sisters',
-    logo: '/clients/client-d.jpg',
+    logo: '/clients/client-d.png',
     category: 'Education',
     services:
       'Supply & installation of generator, solar lights, and submersible pump.',
-  },
-  {
-    name: 'Megech Irrigation Project',
-    logo: '/clients/client-c.jpg',
-    category: 'Infrastructure',
-    services:
-      'Installation and commissioning of 1,200 KVA generator with 30,000 litre fuel tank.',
-  },
-  {
-    name: 'Coca-Cola Beverages',
-    logo: '/clients/client-f.webp',
-    category: 'Beverages',
-    services: 'Supply of industrial automation & control products.',
   },
 ]

@@ -58,9 +58,5 @@ const titleClass = computed(() =>
 const gridClass =
   'grid grid-cols-3 lg:flex lg:flex-nowrap items-center justify-start gap-2 sm:gap-4 md:gap-6'
 
-const imgClass = computed(() =>
-  props.variant === 'dark'
-    ? 'h-full w-auto object-contain brightness-0 invert'
-    : 'h-full w-auto object-contain',
-)
+const imgClass = 'h-full w-auto object-contain'
 </script>

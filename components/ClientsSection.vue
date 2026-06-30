@@ -10,11 +10,11 @@
         </p>
       </div>
 
-      <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3 sm:gap-4">
+      <div class="flex flex-wrap justify-center gap-3 sm:gap-4">
         <article
           v-for="client in clients"
           :key="client.name"
-          class="group relative aspect-[4/5] sm:aspect-[3/4] border border-slate-200 bg-white overflow-hidden cursor-pointer"
+          class="group relative aspect-[4/5] sm:aspect-[3/4] w-[calc(50%-0.375rem)] sm:w-36 md:w-40 lg:w-44 xl:w-48 border border-slate-200 bg-white overflow-hidden cursor-pointer"
           :class="{ 'is-active': activeClient === client.name }"
           @click="toggleClient(client.name)"
         >
