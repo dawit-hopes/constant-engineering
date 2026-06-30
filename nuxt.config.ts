@@ -14,6 +14,7 @@ export default defineNuxtConfig({
     geminiApiKey: process.env.GEMINI_API_KEY || '',
     geminiModel: process.env.GEMINI_MODEL || 'gemini-2.0-flash',
     public: {
+      googleAnalyticsId: process.env.GOOGLE_ANALYTICS_ID || 'G-CY5PZQV6E6',
       whatsappNumber: process.env.WHATSAPP_NUMBER || '251924909098',
       supportPhone: process.env.SUPPORT_PHONE || '+251 924 909 098'
     }
