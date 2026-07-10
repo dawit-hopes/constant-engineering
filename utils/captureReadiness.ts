@@ -1,4 +1,4 @@
-/** Capture signals — fast path to the lead form; sales qualifies on callback. */
+/** Capture signals — show the lead form only on clear buying / contact intent. */
 
 export interface CaptureMessage {
   role: string
@@ -8,12 +8,14 @@ export interface CaptureMessage {
 const SPEC_SIGNALS = /\b\d+\s*(kva|kw|kwh|hp)\b/i
 
 const ENGAGEMENT_SIGNALS =
-  /\b(reach out|get in touch|talk to|speak to|talk with|speak with|connect|contact|callback|call me|sales|engineer|human|quote|quotation|whatsapp|order|buy|purchase|install)\b/i
+  /\b(reach out|get in touch|talk to|speak to|talk with|speak with|connect me|contact me|callback|call me|call us|sales team|quote|quotation|whatsapp|order|buy|purchase)\b/i
 
-const BUYING_SIGNALS = /\b(i want|i need|we want|we need|looking for|interested in|get a|need a)\b/i
+const BUYING_SIGNALS =
+  /\b(i want|i need|we want|we need|looking for|interested in|get a quote|need a quote|need a|want a)\b/i
 
-/** Max user messages with product context before we stop qualifying and show the form. */
-const MAX_PRODUCT_TURNS = 2
+/** Pure info / browsing questions — never force the lead form. */
+const INFO_QUESTION_SIGNALS =
+  /\b(tell me about|what (do you|are your|is your)|do you (sell|supply|offer|have)|how (does|do|much)|can you (explain|describe)|info(rmation)? on)\b/i
 
 const PRODUCT_PATTERNS: { category: string; pattern: RegExp }[] = [
   { category: 'Diesel Generators', pattern: /\b(diesel|generat\w*|perkins|cummins)\b/i },
@@ -36,6 +38,10 @@ export function hasEngagementIntent(text: string): boolean {
 
 export function hasBuyingIntent(text: string): boolean {
   return BUYING_SIGNALS.test(text.trim())
+}
+
+export function isInfoQuestion(text: string): boolean {
+  return INFO_QUESTION_SIGNALS.test(text.trim())
 }
 
 export function isBareCapacityReply(text: string): boolean {
@@ -67,21 +73,21 @@ export function extractCapacity(lastUserMessage: string, conversation: string): 
   return null
 }
 
-function countUserMessages(messages: CaptureMessage[]): number {
-  return messages.filter((m) => m.role === 'user').length
-}
-
 /**
- * Deterministic capture — prefer showing the form early; sales team qualifies on callback.
+ * Deterministic capture — only when the visitor is ready for sales follow-up.
+ * Info questions ("tell me about your generators") must get an answer first.
  */
 export function isStructurallyReadyForCapture(
   messages: CaptureMessage[],
   lastUserMessage: string
 ): boolean {
+  if (isInfoQuestion(lastUserMessage) && !hasBuyingIntent(lastUserMessage) && !hasEngagementIntent(lastUserMessage)) {
+    return false
+  }
+
   const conversation = messages.map((m) => m.content).join(' ')
   const productInThread = detectProductCategory(conversation)
   const productOnLast = detectProductCategory(lastUserMessage)
-  const userTurns = countUserMessages(messages)
   const engaged = hasEngagementIntent(lastUserMessage)
   const buying = hasBuyingIntent(lastUserMessage)
   const capacity = extractCapacity(lastUserMessage, conversation)
@@ -94,11 +100,8 @@ export function isStructurallyReadyForCapture(
   // "I want a diesel generator" — product + buying intent
   if (buying && productOnLast) return true
 
-  // Enough product chat — stop qualifying
-  if (productInThread && userTurns >= MAX_PRODUCT_TURNS) return true
-
+  // Explicit contact / quote request with product context
   if (productInThread && engaged) return true
-  if (engaged && userTurns >= 2) return true
 
   return false
 }

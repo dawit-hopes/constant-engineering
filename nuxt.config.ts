@@ -12,7 +12,7 @@ export default defineNuxtConfig({
     postmarkFromEmail: process.env.POSTMARK_FROM_EMAIL || '',
     contactEmail: process.env.CONTACT_EMAIL || '',
     geminiApiKey: process.env.GEMINI_API_KEY || '',
-    geminiModel: process.env.GEMINI_MODEL || 'gemini-2.0-flash',
+    geminiModel: process.env.GEMINI_MODEL || 'gemini-flash-lite-latest',
     public: {
       googleAnalyticsId: process.env.GOOGLE_ANALYTICS_ID || 'G-CY5PZQV6E6',
       whatsappNumber: process.env.WHATSAPP_NUMBER || '251924909098',

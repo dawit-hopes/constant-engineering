@@ -1,13 +1,22 @@
 import type { ChatTurn, ChatQualification } from './chatValidation'
-import { buildCaptureHandoffMessage } from '../../utils/salesContact'
-import { detectProductCategory, hasEngagementIntent, isStructurallyReadyForCapture, extractCapacity } from '../../utils/captureReadiness'
-import { classifyCaptureIntent } from './captureClassifier'
+import { buildCaptureHandoffMessage, buildUnavailableHandoffMessage } from '../../utils/salesContact'
+import {
+  detectProductCategory,
+  hasBuyingIntent,
+  hasEngagementIntent,
+  isStructurallyReadyForCapture,
+  extractCapacity
+} from '../../utils/captureReadiness'
 
 export { isStructurallyReadyForCapture as isReadyForCapture }
 
+/**
+ * Decide whether to show the lead form.
+ * Deterministic signals only — info questions are answered by the model first.
+ */
 export async function shouldCaptureLead(
-  apiKey: string,
-  modelName: string,
+  _apiKey: string,
+  _modelName: string,
   messages: ChatTurn[],
   lastUserMessage: string
 ): Promise<{ capture: boolean; hints: Partial<ChatQualification> }> {
@@ -15,28 +24,12 @@ export async function shouldCaptureLead(
     return { capture: true, hints: {} }
   }
 
-  try {
-    const result = await classifyCaptureIntent(apiKey, modelName, messages, lastUserMessage)
-    const hints: Partial<ChatQualification> = {}
-    if (result.requestType) hints.requestType = result.requestType
-    if (result.intent) hints.intent = result.intent
-    if (result.capture) return { capture: true, hints }
-  } catch (err) {
-    console.error('[shouldCaptureLead] classifier error:', err)
-  }
-
   const conversation = messages.map((m) => m.content).join(' ')
-  const userTurns = messages.filter((m) => m.role === 'user').length
   const productInThread = detectProductCategory(conversation)
+  const buying = hasBuyingIntent(lastUserMessage)
+  const engaged = hasEngagementIntent(lastUserMessage)
 
-  if (
-    hasEngagementIntent(lastUserMessage) &&
-    (productInThread || userTurns >= 2)
-  ) {
-    return { capture: true, hints: {} }
-  }
-
-  if (productInThread && userTurns >= 2) {
+  if ((buying || engaged) && productInThread) {
     return { capture: true, hints: {} }
   }
 
@@ -86,4 +79,8 @@ export function buildCaptureQualification(
 
 export function getCaptureHandoffText(): string {
   return buildCaptureHandoffMessage()
+}
+
+export function getUnavailableHandoffText(): string {
+  return buildUnavailableHandoffMessage()
 }

@@ -13,16 +13,18 @@ import {
   sanitizeChatReply
 } from '../utils/agentPrompt'
 import {
-  geminiAuthErrorMessage,
   getGeminiKeySetupError,
-  normalizeGeminiApiKey
+  geminiModelCandidates,
+  isRetryableGeminiModelError,
+  normalizeGeminiApiKey,
+  resolveGeminiModel
 } from '../utils/geminiConfig'
 import {
   buildCaptureQualification,
   getCaptureHandoffText,
+  getUnavailableHandoffText,
   shouldCaptureLead
 } from '../utils/qualificationFlow'
-import { isStructurallyReadyForCapture } from '../../utils/captureReadiness'
 import {
   validateChatBody,
   ChatValidationError,
@@ -44,10 +46,11 @@ function sendCaptureHandoff(
   send: (payload: StreamEvent) => void,
   messages: ReturnType<typeof validateChatBody>['messages'],
   lastUserMessage: string,
-  qualification: Record<string, string>
+  qualification: Record<string, string>,
+  handoffText = getCaptureHandoffText()
 ) {
   const captureQual = buildCaptureQualification(messages, lastUserMessage, qualification)
-  send({ type: 'delta', content: getCaptureHandoffText() })
+  send({ type: 'delta', content: handoffText })
   send({
     type: 'done',
     action: 'capture',
@@ -55,18 +58,72 @@ function sendCaptureHandoff(
   })
 }
 
+async function generateAssistantReply(
+  apiKey: string,
+  configuredModel: string,
+  lastUserMessage: string,
+  pageUrl: string | null,
+  messages: ReturnType<typeof validateChatBody>['messages']
+): Promise<string> {
+  const genAI = new GoogleGenerativeAI(apiKey)
+  const contents = messages.map((message) => ({
+    role: message.role === 'assistant' ? 'model' : 'user',
+    parts: [{ text: message.content }]
+  }))
+  const systemInstruction = buildSystemPrompt(lastUserMessage, pageUrl)
+  const candidates = geminiModelCandidates(configuredModel)
+
+  let lastError: unknown
+  for (const candidate of candidates) {
+    try {
+      const model = genAI.getGenerativeModel({
+        model: candidate,
+        systemInstruction
+      })
+      const result = await model.generateContentStream({ contents })
+      let fullReply = ''
+
+      for await (const chunk of result.stream) {
+        let text = ''
+        try {
+          text = chunk.text()
+        } catch {
+          text = ''
+        }
+        if (!text) continue
+        const clean = sanitizeChatReply(text)
+        if (!clean) continue
+        fullReply += clean
+      }
+
+      if (!fullReply.trim()) {
+        fullReply =
+          'I can connect you with our engineering team for accurate guidance. What system or project are you working on?'
+      }
+
+      if (candidate !== resolveGeminiModel(configuredModel)) {
+        console.info(`[chat.post] using fallback model: ${candidate}`)
+      }
+      return fullReply
+    } catch (err) {
+      lastError = err
+      if (!isRetryableGeminiModelError(err)) throw err
+      console.warn(
+        `[chat.post] model ${candidate} unavailable, trying next fallback…`,
+        err instanceof Error ? err.message.slice(0, 160) : err
+      )
+    }
+  }
+
+  throw lastError
+}
+
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig()
-  const apiKey = normalizeGeminiApiKey(config.geminiApiKey as string)
-  const modelName = (config.geminiModel as string) || 'gemini-2.0-flash'
-
-  const keyError = getGeminiKeySetupError(apiKey)
-  if (keyError) {
-    throw createError({
-      statusCode: 503,
-      statusMessage: keyError
-    })
-  }
+  const apiKey = normalizeGeminiApiKey(
+    (process.env.GEMINI_API_KEY || process.env.NUXT_GEMINI_API_KEY || config.geminiApiKey) as string
+  )
+  const modelName = resolveGeminiModel(config.geminiModel as string)
 
   let body: RawChatBody
   try {
@@ -86,6 +143,7 @@ export default defineEventHandler(async (event) => {
   }
 
   const { messages, qualification, pageUrl, lastUserMessage } = chatRequest
+  const keyError = getGeminiKeySetupError(apiKey)
 
   setResponseHeaders(event, {
     'Content-Type': 'text/event-stream; charset=utf-8',
@@ -103,6 +161,20 @@ export default defineEventHandler(async (event) => {
       const qualUpdate = buildQualificationUpdate(lastUserMessage, qualification)
       let mergedQualification = { ...qualification, ...qualUpdate }
 
+      // Missing/invalid key — still collect the lead instead of failing hard.
+      if (keyError) {
+        console.error('[chat.post] Gemini key setup:', keyError)
+        sendCaptureHandoff(
+          send,
+          messages,
+          lastUserMessage,
+          mergedQualification,
+          getUnavailableHandoffText()
+        )
+        controller.close()
+        return
+      }
+
       try {
         const captureDecision = await shouldCaptureLead(
           apiKey,
@@ -117,53 +189,15 @@ export default defineEventHandler(async (event) => {
           return
         }
 
-        const genAI = new GoogleGenerativeAI(apiKey)
-        const model = genAI.getGenerativeModel({
-          model: modelName,
-          systemInstruction: buildSystemPrompt(lastUserMessage, pageUrl)
-        })
-
-        const contents = messages.map((message) => ({
-          role: message.role === 'assistant' ? 'model' : 'user',
-          parts: [{ text: message.content }]
-        }))
-
-        const result = await model.generateContentStream({ contents })
-        let fullReply = ''
-
-        for await (const chunk of result.stream) {
-          let text = ''
-          try {
-            text = chunk.text()
-          } catch {
-            text = ''
-          }
-          if (!text) continue
-          const clean = sanitizeChatReply(text)
-          if (!clean) continue
-          fullReply += clean
-        }
-
-        if (!fullReply.trim()) {
-          fullReply =
-            'I can connect you with our engineering team for accurate guidance. What system or project are you working on?'
-        }
-
-        const postCapture = await shouldCaptureLead(
+        const fullReply = await generateAssistantReply(
           apiKey,
           modelName,
-          [...messages, { role: 'assistant' as const, content: fullReply }],
-          lastUserMessage
+          lastUserMessage,
+          pageUrl,
+          messages
         )
-        mergedQualification = { ...mergedQualification, ...postCapture.hints }
-
-        if (postCapture.capture) {
-          sendCaptureHandoff(send, messages, lastUserMessage, mergedQualification)
-          return
-        }
 
         send({ type: 'delta', content: fullReply })
-
         send({
           type: 'done',
           action: 'continue',
@@ -171,21 +205,13 @@ export default defineEventHandler(async (event) => {
         })
       } catch (err) {
         console.error('[chat.post] Gemini error:', err)
-        const fallbackCapture = await shouldCaptureLead(
-          apiKey,
-          modelName,
+        sendCaptureHandoff(
+          send,
           messages,
-          lastUserMessage
-        ).catch(() => ({ capture: false, hints: {} }))
-        if (fallbackCapture.capture || isStructurallyReadyForCapture(messages, lastUserMessage)) {
-          mergedQualification = { ...mergedQualification, ...fallbackCapture.hints }
-          sendCaptureHandoff(send, messages, lastUserMessage, mergedQualification)
-          return
-        }
-        send({
-          type: 'error',
-          message: geminiAuthErrorMessage(err)
-        })
+          lastUserMessage,
+          mergedQualification,
+          getUnavailableHandoffText()
+        )
       } finally {
         controller.close()
       }

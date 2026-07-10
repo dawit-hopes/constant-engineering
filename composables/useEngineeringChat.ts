@@ -1,7 +1,6 @@
 import { useRuntimeConfig } from 'nuxt/app'
 import { ref, reactive, computed } from 'vue'
-import { buildCaptureHandoffMessage, buildLeadSuccessMessage } from '~/utils/salesContact'
-import { isReadyForCapture } from '~/utils/captureReadiness'
+import { buildCaptureHandoffMessage, buildLeadSuccessMessage, buildUnavailableHandoffMessage } from '~/utils/salesContact'
 
 export interface ChatMessage {
   id: string
@@ -280,6 +279,23 @@ export function useEngineeringChat() {
     const botId = uid()
     let botIndex = -1
 
+    const openLeadCapture = (handoff: string) => {
+      qualification.requestType = qualification.requestType || 'Quotation'
+      qualification.intent = qualification.intent || 'New Engineering Project'
+      currentStep.value = 'capture'
+      if (botIndex === -1) {
+        messages.value.push({
+          id: botId,
+          role: 'bot',
+          content: handoff,
+          time: nowTime()
+        })
+        botIndex = messages.value.length - 1
+      } else {
+        messages.value[botIndex].content = handoff
+      }
+    }
+
     const appendBotDelta = (delta: string) => {
       isTyping.value = false
       if (botIndex === -1) {
@@ -309,8 +325,7 @@ export function useEngineeringChat() {
       })
 
       if (!response.ok) {
-        const errText = await response.text().catch(() => '')
-        throw new Error(errText || `Chat request failed (${response.status})`)
+        throw new Error(`Chat request failed (${response.status})`)
       }
 
       if (!response.body) {
@@ -320,23 +335,22 @@ export function useEngineeringChat() {
       const reader = response.body.getReader()
       const decoder = new TextDecoder()
       let buffer = ''
+      let sawDone = false
 
       const streamHandlers = {
         onDelta: appendBotDelta,
         onDone: (event: Extract<StreamEvent, { type: 'done' }>) => {
+          sawDone = true
           if (event.qualification) {
             Object.assign(qualification, event.qualification)
           }
-          const shouldCapture =
-            event.action === 'capture' ||
-            event.action === 'convert' ||
-            isReadyForCapture(toApiMessages(), trimmed)
-
-          if (shouldCapture) {
+          if (event.action === 'capture' || event.action === 'convert') {
             currentStep.value = 'capture'
             const last = messages.value[messages.value.length - 1]
-            if (last?.role === 'bot') {
+            if (last?.role === 'bot' && !last.content.trim()) {
               last.content = buildCaptureHandoffMessage()
+            } else if (last?.role !== 'bot') {
+              pushBot(buildCaptureHandoffMessage())
             }
           } else if (currentStep.value === 'conversion') {
             currentStep.value = 'entry'
@@ -361,26 +375,16 @@ export function useEngineeringChat() {
         if (err) throw err
       }
 
-      if (botIndex === -1) {
-        throw new Error('No response from assistant')
+      // No usable assistant reply — never drop the lead.
+      if (!sawDone || botIndex === -1) {
+        openLeadCapture(buildUnavailableHandoffMessage())
       }
     } catch (err) {
       if (err instanceof DOMException && err.name === 'AbortError') {
         return
       }
-      isTyping.value = false
-      const fallback = `Sorry, I couldn't reach our assistant. Please call ${config.public.supportPhone} or use the options below.`
-      const detail = err instanceof Error && err.message ? err.message : fallback
-      if (botIndex === -1) {
-        if (isReadyForCapture(toApiMessages(), trimmed)) {
-          qualification.requestType = qualification.requestType || 'Quotation'
-          qualification.intent = qualification.intent || 'New Engineering Project'
-          currentStep.value = 'capture'
-          pushBot(buildCaptureHandoffMessage())
-        } else {
-          pushBot(detail.length > 280 ? fallback : detail)
-        }
-      }
+      // Chat failed for any reason — always collect contact details.
+      openLeadCapture(buildUnavailableHandoffMessage())
     } finally {
       isTyping.value = false
       isStreaming.value = false

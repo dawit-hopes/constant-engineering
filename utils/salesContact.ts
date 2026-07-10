@@ -54,6 +54,11 @@ export function buildCaptureHandoffMessage(date = new Date()): string {
   return `Please fill out the form below so our sales team can contact you ${getSalesContactTimingPhrase(date)}.`
 }
 
+/** Shown when the AI assistant is unavailable — still collect the lead. */
+export function buildUnavailableHandoffMessage(date = new Date()): string {
+  return `Our assistant is busy right now. In the meantime, fill out the form below so our sales team can contact you ${getSalesContactTimingPhrase(date)}.`
+}
+
 export function buildLeadSuccessMessage(date = new Date()): string {
   return `Request received. Our sales team will contact you ${getSalesContactTimingPhrase(date)}.`
 }

@@ -1,10 +1,5 @@
 <template>
-  <div
-    v-motion
-    :initial="{ opacity: 0, y: 12 }"
-    :enter="{ opacity: 1, y: 0 }"
-    class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm"
-  >
+  <div class="relative z-10 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
     <div v-if="status === 'success'" class="flex flex-col items-center gap-2 py-3 text-center">
       <div class="flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
         <Icon name="heroicons:check-circle" class="h-7 w-7 text-green-600" />
@@ -15,9 +10,32 @@
     <form v-else class="space-y-3" @submit.prevent="onSubmit">
       <p class="text-sm font-bold text-slate-900">Your contact details</p>
       <p class="text-xs leading-relaxed text-slate-500">Our sales team will follow up shortly after you submit.</p>
-      <input v-model.trim="form.name" type="text" required placeholder="Full Name *" class="eng-input" />
-      <input v-model.trim="form.phone" type="tel" required placeholder="Phone Number *" class="eng-input" />
-      <input v-model.trim="form.company" type="text" placeholder="Company (optional)" class="eng-input" />
+      <input
+        v-model.trim="form.name"
+        type="text"
+        name="name"
+        autocomplete="name"
+        required
+        placeholder="Full Name *"
+        class="eng-input"
+      />
+      <input
+        v-model.trim="form.phone"
+        type="tel"
+        name="phone"
+        autocomplete="tel"
+        required
+        placeholder="Phone Number *"
+        class="eng-input"
+      />
+      <input
+        v-model.trim="form.company"
+        type="text"
+        name="company"
+        autocomplete="organization"
+        placeholder="Company (optional)"
+        class="eng-input"
+      />
 
       <p v-if="status === 'error'" class="text-xs font-medium text-red-600">{{ message }}</p>
 
@@ -53,6 +71,7 @@ function onSubmit() {
 
 <style scoped>
 .eng-input {
+  display: block;
   width: 100%;
   border-radius: 0.65rem;
   border: 1px solid rgb(203 213 225);
@@ -60,7 +79,8 @@ function onSubmit() {
   padding: 0.6rem 0.8rem;
   font-size: 0.875rem;
   color: rgb(15 23 42);
-  transition: all 0.15s ease;
+  pointer-events: auto;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 .eng-input::placeholder {
   color: rgb(148 163 184);
