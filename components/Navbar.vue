@@ -16,12 +16,12 @@
 
         <!-- Menu - Right -->
         <div class="hidden lg:flex lg:items-center lg:space-x-8">
-          <NuxtLink
+          <!-- <NuxtLink
             to="/"
             class="text-sm font-medium transition-colors text-slate-900 hover:text-primary"
           >
             Home
-          </NuxtLink>
+          </NuxtLink> -->
           
           <!-- Products with Mega Menu -->
           <div

@@ -3,14 +3,10 @@
     <!-- Hero Section - Variant C -->
     <HeroVariantC />
 
-    <!-- Our Foundation Section - Subtle transition from hero -->
-    <section class="relative py-24 lg:py-32 overflow-hidden bg-white">
-      <!-- Very soft halo blending up into the hero -->
-      <div
-        class="pointer-events-none absolute inset-x-0 -top-40 h-64"
-        style="background: radial-gradient(ellipse at top, rgba(220, 38, 38, 0.25), transparent 65%);"
-      ></div>
+    <PartnerLogos />
 
+    <!-- Our Foundation Section -->
+    <section class="relative py-24 lg:py-32 overflow-hidden bg-white">
       <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <!-- Header - TaxPal Style -->
         <div
