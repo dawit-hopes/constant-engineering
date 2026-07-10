@@ -414,7 +414,7 @@
           >
             <div class="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/3] w-full">
               <img
-                src="https://constanteng.com/assets/img/choose%20us.png"
+                src="/Why_choose_us.png"
                 alt="Why Choose Us - CONSTANT ENGINEERING"
                 class="w-full h-full object-cover"
                 loading="lazy"
