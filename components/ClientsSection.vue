@@ -37,7 +37,7 @@
 
           <!-- Hover / active -->
           <div
-            class="absolute inset-0 flex flex-col bg-blue-600 p-4 sm:p-5 text-white opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100 group-[.is-active]:opacity-100"
+            class="absolute inset-0 flex flex-col bg-primary p-4 sm:p-5 text-white opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100 group-[.is-active]:opacity-100"
           >
             <div class="flex justify-center mb-3 sm:mb-4">
               <img
