@@ -63,7 +63,7 @@
               <Icon name="simple-icons:telegram" class="h-5 w-5" />
             </a>
             <a
-              href="https://www.facebook.com/"
+              href="https://www.facebook.com/profile.php?id=61580414953060"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Facebook"
@@ -72,7 +72,7 @@
               <Icon name="simple-icons:facebook" class="h-5 w-5" />
             </a>
             <a
-              href="https://www.linkedin.com/company/constant-engineering"
+              href="https://www.linkedin.com/company/constant-engineering/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
