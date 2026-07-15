@@ -13,7 +13,7 @@
           Products
         </p>
         <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-6 leading-tight tracking-tight">
-          Precision
+          Advanced
           <span class="relative inline-block text-primary">
             Engineered Solutions
             <!-- Technical-style underline (blueprint line) -->
@@ -33,7 +33,6 @@
               />
             </svg>
           </span>
-          .
         </h2>
         <p class="text-lg sm:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
           Discover our industry-leading electromechanical products, from high-capacity power generators to advanced solar and HVAC systems.
@@ -165,7 +164,7 @@ const products = [
     name: 'Solar & Hybrid Energy Solutions',
       description: 'On-grid & Off-grid Solar Systems, Hybrid Systems (Solar + Generator), Inverters & Charge Controllers, Battery Banks (Lead Acid & Lithium-Ion).',
         image: '/products/solar.jpg',
-      specs: 'On-grid & Off-grid | SUNGROW, ANERN | Energy Analysis & System Design'
+      specs: 'On-grid & Off-grid | ANERN | Energy Analysis & System Design'
   },
   {
     id: 'hvac-cooling-systems',

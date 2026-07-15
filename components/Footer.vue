@@ -49,42 +49,36 @@
           </div>
         </div>
 
-        <!-- Quick Links -->
+        <!-- Social -->
         <div>
-          <h3 class="text-base sm:text-lg font-semibold mb-4 sm:mb-6">Quick Links</h3>
-          <div class="space-y-2 sm:space-y-3">
-            <NuxtLink
-              to="/"
-              class="block text-sm sm:text-base text-slate-300 hover:text-white transition-colors"
-            >
-              Home
-            </NuxtLink>
-            <NuxtLink
-              to="/about"
-              class="block text-sm sm:text-base text-slate-300 hover:text-white transition-colors"
-            >
-              About Us
-            </NuxtLink>
-            <NuxtLink
-              to="/products"
-              class="block text-sm sm:text-base text-slate-300 hover:text-white transition-colors"
-            >
-              Products
-            </NuxtLink>
-            <NuxtLink
-              to="/contact"
-              class="block text-sm sm:text-base text-slate-300 hover:text-white transition-colors"
-            >
-              Contact
-            </NuxtLink>
+          <h3 class="text-base sm:text-lg font-semibold mb-4 sm:mb-6">Follow Us</h3>
+          <div class="flex items-center gap-3 sm:gap-4">
             <a
               href="https://t.me/constantENGINEERING"
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center gap-2 text-sm sm:text-base text-slate-300 hover:text-white transition-colors"
+              aria-label="Telegram"
+              class="inline-flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full bg-slate-800 text-slate-300 hover:bg-primary hover:text-white transition-colors"
             >
-              <Icon name="heroicons:chat-bubble-left-right" class="h-4 w-4 sm:h-5 sm:w-5" />
-              <span>Telegram</span>
+              <Icon name="simple-icons:telegram" class="h-5 w-5" />
+            </a>
+            <a
+              href="https://www.facebook.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              class="inline-flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full bg-slate-800 text-slate-300 hover:bg-primary hover:text-white transition-colors"
+            >
+              <Icon name="simple-icons:facebook" class="h-5 w-5" />
+            </a>
+            <a
+              href="https://www.linkedin.com/company/constant-engineering"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              class="inline-flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full bg-slate-800 text-slate-300 hover:bg-primary hover:text-white transition-colors"
+            >
+              <Icon name="simple-icons:linkedin" class="h-5 w-5" />
             </a>
           </div>
         </div>

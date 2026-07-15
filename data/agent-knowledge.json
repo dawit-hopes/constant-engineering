@@ -122,7 +122,6 @@
         "Cost reduction and sustainability"
       ],
       "brands": [
-        "SUNGROW",
         "ANERN"
       ],
       "services": [
@@ -136,7 +135,7 @@
         "System Types": "On-grid & Off-grid",
         "Hybrid Options": "Solar + Generator",
         "Battery Types": "Lead Acid & Lithium-Ion",
-        "Brands": "SUNGROW, ANERN",
+        "Brands": "ANERN",
         "Services": "Energy Analysis & System Design"
       }
     },
@@ -342,7 +341,6 @@
     "GREE",
     "ABB",
     "Siemens",
-    "SUNGROW",
     "ANERN",
     "APC by Schneider",
     "El Sewedy",

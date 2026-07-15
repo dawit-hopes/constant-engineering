@@ -136,7 +136,7 @@ export const PRODUCT_CATALOG: ProductCatalogEntry[] = [
     description:
       'Complete solar and hybrid energy solutions including on-grid & off-grid systems, inverters, charge controllers, and battery banks for sustainable power generation.',
     quickSpecs: ['On-grid & Off-grid', 'Hybrid Systems', 'Battery Banks'],
-    tags: ['On-grid & Off-grid', 'SUNGROW', 'ANERN'],
+    tags: ['On-grid & Off-grid', 'ANERN'],
     features: [
       {
         title: 'On-grid & Off-grid Solar Systems',
@@ -168,10 +168,10 @@ export const PRODUCT_CATALOG: ProductCatalogEntry[] = [
       { label: 'System Types', value: 'On-grid & Off-grid' },
       { label: 'Hybrid Options', value: 'Solar + Generator' },
       { label: 'Battery Types', value: 'Lead Acid & Lithium-Ion' },
-      { label: 'Brands', value: 'SUNGROW, ANERN' },
+      { label: 'Brands', value: 'ANERN' },
       { label: 'Services', value: 'Energy Analysis & System Design' }
     ],
-    brands: ['SUNGROW', 'ANERN'],
+    brands: ['ANERN'],
     agent: {
       summary:
         'On-grid and off-grid solar, hybrid solar-plus-generator systems, inverters, charge controllers, and battery storage.',

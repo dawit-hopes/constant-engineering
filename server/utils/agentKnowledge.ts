@@ -91,7 +91,6 @@ export const PARTNER_BRANDS = [
   'GREE',
   'ABB',
   'Siemens',
-  'SUNGROW',
   'ANERN',
   'APC by Schneider',
   'El Sewedy',
