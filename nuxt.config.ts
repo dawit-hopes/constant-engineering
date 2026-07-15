@@ -5,8 +5,50 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/tailwindcss',
     'nuxt-icon',
-    '@vueuse/motion/nuxt'
+    '@vueuse/motion/nuxt',
+    '@nuxtjs/sitemap',
+    '@nuxtjs/robots'
   ],
+  // Canonical domain for sitemap, robots, and absolute URLs.
+  // Override per environment with NUXT_SITE_URL.
+  site: {
+    url: process.env.NUXT_SITE_URL || 'https://constanteng.com',
+    name: 'CONSTANT ENGINEERING plc',
+    description:
+      'CONSTANT ENGINEERING plc — electromechanical experts in Ethiopia for diesel generators, solar & hybrid energy, HVAC, industrial automation, pumps, and metal engineering.',
+    defaultLocale: 'en',
+    indexable: true
+  },
+  sitemap: {
+    autoLastmod: true,
+    exclude: ['/hero-test', '/api/**'],
+    sources: ['/api/__sitemap__/urls'],
+    defaults: {
+      changefreq: 'weekly',
+      priority: 0.7
+    },
+    // Richer stylesheet columns in /sitemap.xml for debugging crawl coverage
+    xslColumns: [
+      { label: 'URL', width: '50%' },
+      { label: 'Images', width: '15%', select: 'count(image:image)' },
+      { label: 'Last Modified', select: 'sitemap:lastmod', width: '20%' },
+      { label: 'Priority', select: 'sitemap:priority', width: '15%' }
+    ]
+  },
+  robots: {
+    // Allow all crawlers; block non-content surfaces
+    disallow: ['/api/', '/hero-test'],
+    // Explicit sitemap hint (also auto-injected when site.url is set)
+    sitemap: ['/sitemap.xml']
+  },
+  routeRules: {
+    '/': { sitemap: { priority: 1, changefreq: 'weekly' } },
+    '/about': { sitemap: { priority: 0.9, changefreq: 'monthly' } },
+    '/products': { sitemap: { priority: 0.9, changefreq: 'weekly' } },
+    '/products/**': { sitemap: { priority: 0.8, changefreq: 'weekly' } },
+    '/contact': { sitemap: { priority: 0.8, changefreq: 'monthly' } },
+    '/hero-test': { robots: false, sitemap: false }
+  },
   runtimeConfig: {
     postmarkToken: process.env.POSTMARK_TOKEN || '',
     postmarkFromEmail: process.env.POSTMARK_FROM_EMAIL || '',
@@ -31,7 +73,11 @@ export default defineNuxtConfig({
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'description', content: 'Electromechanical Experts - Power, Automation, HVAC Solutions' }
+        {
+          name: 'description',
+          content:
+            'CONSTANT ENGINEERING plc — electromechanical experts in Ethiopia for diesel generators, solar & hybrid energy, HVAC, industrial automation, pumps, and metal engineering.'
+        }
       ],
       link: [
         { rel: 'icon', type: 'image/png', href: '/Constant-logo.png' },

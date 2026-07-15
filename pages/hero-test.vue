@@ -20,5 +20,10 @@
 
 <script setup>
 import HeroVariantC from '~/components/HeroVariantC.vue'
+
+definePageMeta({
+  robots: false,
+  sitemap: false
+})
 </script>
 
