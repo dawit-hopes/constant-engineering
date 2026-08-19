@@ -24,6 +24,11 @@ module.exports = {
           800: '#530900',
           900: '#290500',
         },
+        whatsapp: {
+          DEFAULT: '#25D366',
+          600: '#20BD5A',
+          700: '#128C7E',
+        },
       },
       fontFamily: {
         sans: ['Inter', 'Roboto', 'sans-serif'],

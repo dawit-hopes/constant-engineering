@@ -115,10 +115,10 @@
             href="https://wa.me/251924909098?text=Hello%2C%20I%27d%20like%20to%20talk%20to%20sales%20about%20a%20project"
             target="_blank"
             rel="noopener noreferrer"
-            class="flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold text-white bg-primary hover:bg-primary/90 transition-colors"
+            class="flex shrink-0 items-center gap-2 rounded-full bg-[#25D366] px-6 py-2.5 text-sm font-semibold text-white shadow-md shadow-[#25D366]/25 transition-colors hover:bg-[#20BD5A]"
           >
-            <Icon name="heroicons:chat-bubble-left-right" class="h-4 w-4" />
-            Talk to Sales
+            <Icon name="simple-icons:whatsapp" class="h-4 w-4 shrink-0" />
+            Chat on WhatsApp
           </a>
         </div>
 
@@ -300,11 +300,11 @@
                   href="https://wa.me/251924909098?text=Hello%2C%20I%27d%20like%20to%20talk%20to%20sales%20about%20a%20project"
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="flex w-full items-center justify-center rounded-2xl bg-primary px-8 py-4 text-center text-lg font-semibold text-white hover:bg-primary/90 transition-all shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30"
+                  class="flex w-full items-center justify-center rounded-2xl bg-[#25D366] px-8 py-4 text-center text-lg font-semibold text-white shadow-lg shadow-[#25D366]/25 transition-all hover:bg-[#20BD5A] hover:shadow-xl hover:shadow-[#25D366]/30"
                   @click="mobileMenuOpen = false"
                 >
-                  <Icon name="heroicons:chat-bubble-left-right" class="mr-2 h-5 w-5" />
-                  Talk to Sales
+                  <Icon name="simple-icons:whatsapp" class="mr-2 h-5 w-5 shrink-0" />
+                  Chat on WhatsApp
                 </a>
               </div>
             </div>

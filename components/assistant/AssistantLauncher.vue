@@ -11,7 +11,13 @@
     >
       <div
         v-if="showTeaser && !isOpen"
-        class="relative hidden max-w-[280px] rounded-2xl rounded-br-sm bg-white px-4 py-3.5 shadow-xl ring-1 ring-slate-200/70 sm:block"
+        role="button"
+        tabindex="0"
+        class="relative hidden max-w-[280px] cursor-pointer rounded-2xl rounded-br-sm bg-white px-4 py-3.5 shadow-xl ring-1 ring-slate-200/70 transition hover:shadow-2xl hover:ring-primary/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary sm:block"
+        aria-label="Open chat assistant"
+        @click="openFromTeaser"
+        @keydown.enter="openFromTeaser"
+        @keydown.space.prevent="openFromTeaser"
       >
         <button
           class="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-slate-200 text-slate-500 transition hover:bg-slate-300"
@@ -74,6 +80,11 @@ onUnmounted(() => {
 
 function dismissTeaser() {
   showTeaser.value = false
+}
+
+function openFromTeaser() {
+  showTeaser.value = false
+  open()
 }
 </script>
 
