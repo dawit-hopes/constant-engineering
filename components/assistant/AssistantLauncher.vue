@@ -27,17 +27,17 @@
           <Icon name="heroicons:x-mark" class="h-3 w-3" />
         </button>
         <div class="flex items-start gap-2.5">
-          <div class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-primary text-white shadow-sm">
-            <Icon name="heroicons:bolt" class="h-4 w-4" />
+          <div class="relative h-11 w-11 flex-shrink-0 overflow-hidden rounded-full shadow-md ring-2 ring-primary/20">
+            <img :src="assistantImage" alt="Assistant" class="h-full w-full object-cover" loading="lazy" />
           </div>
           <div>
-            <p class="text-xs font-bold text-slate-800">Constant Engineering</p>
+            <p class="text-xs font-bold text-slate-800">Constant Project Advisor</p>
             <p class="mt-1 text-sm leading-snug text-slate-600">
               Ask about your project — electrical, mechanical, or industrial.
             </p>
           </div>
         </div>
-        <p class="mt-2 pl-[42px] text-xs text-slate-400">Tap to start</p>
+        <p class="mt-2 pl-[54px] text-xs font-semibold text-primary">Talk to an expert →</p>
       </div>
     </Transition>
 
@@ -45,15 +45,19 @@
     <button
       v-show="!isOpen"
       type="button"
-      class="group relative flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-primary to-primary-700 text-white shadow-2xl shadow-primary/30 transition-transform duration-300 hover:scale-105 active:scale-95"
-      aria-label="Open chat assistant"
+      class="group relative flex h-[88px] w-[88px] items-center justify-center rounded-full bg-gradient-to-br from-primary via-primary to-primary-700 text-white shadow-2xl shadow-primary/50 transition-transform duration-300 hover:scale-105 active:scale-95 animate-eng-float"
+      aria-label="Open Constant Project Advisor"
       @click="open"
     >
       <span class="pointer-events-none absolute inset-0 rounded-full bg-primary opacity-60 animate-eng-ping" aria-hidden="true"></span>
-      <Icon name="heroicons:chat-bubble-left-right" class="relative z-10 h-8 w-8" />
-      <span class="absolute right-1 top-1 z-20 flex h-3.5 w-3.5">
+      <span class="pointer-events-none absolute -inset-2 rounded-full border-2 border-primary/40 animate-eng-ping-delayed" aria-hidden="true"></span>
+      <span class="pointer-events-none absolute inset-1 rounded-full border border-white/35" aria-hidden="true"></span>
+      <span class="relative z-10 h-[72px] w-[72px] overflow-hidden rounded-full ring-[3px] ring-white shadow-xl">
+        <img :src="assistantImage" alt="Open assistant" class="h-full w-full object-cover" loading="lazy" />
+      </span>
+      <span class="absolute right-1 top-1 z-20 flex h-4 w-4">
         <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
-        <span class="relative inline-flex h-3.5 w-3.5 rounded-full bg-green-500 ring-2 ring-white"></span>
+        <span class="relative inline-flex h-4 w-4 rounded-full bg-green-500 ring-2 ring-white"></span>
       </span>
     </button>
   </div>
@@ -64,6 +68,7 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import { useEngineeringChat } from '~/composables/useEngineeringChat'
 
 const { isOpen, open } = useEngineeringChat()
+const assistantImage = `${useRuntimeConfig().app.baseURL}assets/assistant/sales-representative.png`
 
 const showTeaser = ref(false)
 let showTimer = null
@@ -98,5 +103,31 @@ function openFromTeaser() {
 }
 .animate-eng-ping {
   animation: eng-ping 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.animate-eng-ping-delayed {
+  animation: eng-ping 2.4s cubic-bezier(0, 0, 0.2, 1) infinite 0.8s;
+}
+
+@keyframes eng-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.animate-eng-float {
+  animation: eng-float 3s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-eng-ping,
+  .animate-eng-ping-delayed,
+  .animate-eng-float {
+    animation: none;
+  }
 }
 </style>

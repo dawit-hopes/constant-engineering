@@ -22,12 +22,12 @@
           >
             <Icon name="heroicons:chevron-left" class="h-5 w-5" />
           </button>
-          <div class="relative flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-primary text-white shadow-sm">
-            <Icon name="heroicons:bolt" class="h-5 w-5" />
+          <div class="relative h-9 w-9 flex-shrink-0 overflow-hidden rounded-lg shadow-sm ring-1 ring-slate-200">
+            <img :src="assistantImage" alt="Assistant" class="h-full w-full object-cover" loading="lazy" />
           </div>
           <div class="min-w-0 flex-1 leading-tight">
-            <h3 class="truncate text-[15px] font-bold text-slate-900">Constant Engineering</h3>
-            <p class="truncate text-xs text-slate-500">Engineering consultation</p>
+            <h3 class="truncate text-[15px] font-bold text-slate-900">Constant Project Advisor</h3>
+            <p class="truncate text-xs text-slate-500">Live assistant · usually replies in under a minute</p>
           </div>
           <button
             class="flex h-8 w-8 items-center justify-center rounded-lg text-slate-400 transition hover:bg-slate-100 hover:text-slate-600"
@@ -45,14 +45,15 @@
           <template v-for="(msg, i) in messages" :key="msg.id">
             <!-- Bot -->
             <div v-if="msg.role === 'bot'" class="flex items-start gap-2">
-              <div class="mt-1 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg bg-primary text-white">
-                <Icon name="heroicons:bolt" class="h-3.5 w-3.5" />
+              <div class="mt-1 h-7 w-7 flex-shrink-0 overflow-hidden rounded-lg ring-1 ring-slate-200">
+                <img :src="assistantImage" alt="Assistant" class="h-full w-full object-cover" loading="lazy" />
               </div>
               <div class="min-w-0 max-w-[85%]">
+                <p v-if="isLastBotInGroup(i)" class="mb-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-slate-400">Constant Project Advisor</p>
                 <div class="rounded-2xl rounded-tl-sm border border-slate-200/80 bg-white px-3.5 py-2.5 text-sm leading-relaxed text-slate-800 shadow-sm">
                   <span class="whitespace-pre-wrap">{{ msg.content }}</span>
                 </div>
-                <p v-if="isLastBotInGroup(i)" class="mt-1 text-[10px] text-slate-400">{{ msg.time }}</p>
+                <p class="mt-1 text-[10px] text-slate-400">{{ msg.time }}</p>
               </div>
             </div>
 
@@ -69,13 +70,16 @@
 
           <!-- Typing -->
           <div v-if="isTyping" class="flex items-start gap-2">
-            <div class="mt-1 flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg bg-primary text-white">
-              <Icon name="heroicons:bolt" class="h-3.5 w-3.5" />
+            <div class="mt-1 h-7 w-7 flex-shrink-0 overflow-hidden rounded-lg ring-1 ring-slate-200">
+              <img :src="assistantImage" alt="Assistant" class="h-full w-full object-cover" loading="lazy" />
             </div>
-            <div class="flex items-center gap-1 rounded-2xl rounded-tl-sm border border-slate-200/80 bg-white px-3.5 py-3 shadow-sm">
-              <span class="h-1.5 w-1.5 animate-eng-bounce rounded-full bg-slate-400" style="animation-delay: 0ms"></span>
-              <span class="h-1.5 w-1.5 animate-eng-bounce rounded-full bg-slate-400" style="animation-delay: 150ms"></span>
-              <span class="h-1.5 w-1.5 animate-eng-bounce rounded-full bg-slate-400" style="animation-delay: 300ms"></span>
+            <div class="rounded-2xl rounded-tl-sm border border-slate-200/80 bg-white px-3.5 py-2.5 shadow-sm">
+              <p class="mb-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-slate-400">Constant Project Advisor is typing</p>
+              <div class="flex items-center gap-1">
+                <span class="h-1.5 w-1.5 animate-eng-bounce rounded-full bg-slate-400" style="animation-delay: 0ms"></span>
+                <span class="h-1.5 w-1.5 animate-eng-bounce rounded-full bg-slate-400" style="animation-delay: 150ms"></span>
+                <span class="h-1.5 w-1.5 animate-eng-bounce rounded-full bg-slate-400" style="animation-delay: 300ms"></span>
+              </div>
             </div>
           </div>
 
@@ -115,7 +119,7 @@
               v-model="draft"
               type="text"
               :disabled="isDone"
-              placeholder="Describe your project or ask a question..."
+              placeholder="Ask about your project..."
               class="min-w-0 flex-1 bg-transparent text-sm text-slate-800 placeholder-slate-400 focus:outline-none disabled:opacity-50"
               @focus="inputFocused = true"
               @blur="inputFocused = false"
@@ -130,7 +134,7 @@
             </button>
           </form>
           <p class="py-1.5 text-center text-[10px] text-slate-400">
-            AI-assisted · Answers engineering questions &amp; captures leads
+            Chat with your Constant Project Advisor
           </p>
         </div>
       </div>
@@ -166,6 +170,7 @@ const {
 const draft = ref('')
 const inputFocused = ref(false)
 const scrollEl = ref(null)
+const assistantImage = `${useRuntimeConfig().app.baseURL}assets/assistant/sales-representative.png`
 
 function isLastBotInGroup(i) {
   const next = messages.value[i + 1]

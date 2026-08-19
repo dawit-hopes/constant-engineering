@@ -26,7 +26,7 @@
               <img
                 :src="client.logo"
                 :alt="client.name"
-                class="max-h-12 sm:max-h-16 w-full object-contain"
+                class="max-h-20 sm:max-h-24 w-full object-contain"
                 loading="lazy"
               />
             </div>
@@ -43,7 +43,7 @@
               <img
                 :src="client.logo"
                 :alt="client.name"
-                class="max-h-7 sm:max-h-8 w-auto object-contain brightness-0 invert"
+                class="max-h-12 sm:max-h-14 w-auto object-contain brightness-0 invert"
                 loading="lazy"
               />
             </div>
