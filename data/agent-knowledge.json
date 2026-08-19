@@ -295,9 +295,9 @@
       }
     },
     {
-      "id": "metal-ENGINEERING",
-      "path": "/products/metal-ENGINEERING",
-      "name": "Metal ENGINEERING & Fabrication",
+      "id": "metal-engineering",
+      "path": "/products/metal-engineering",
+      "name": "Metal Engineering & Fabrication",
       "summary": "Steel structures, fuel and industrial storage tanks, lighting poles, and stainless steel fabrication.",
       "capacityOrScope": "Warehouses, trusses, tanks, poles, custom metalwork",
       "applications": [

@@ -426,7 +426,7 @@ const products = [
     description: 'PLC & Automation Systems, Control Panel Design, Motor Control Centers, Instrumentation & Measurement.'
   },
   {
-    id: 'metal-ENGINEERING',
+    id: 'metal-engineering',
     name: 'Metal ENGINEERING & Fabrication',
     image: '/products/metal-engineering.png',
     description: 'Steel Structures, Fuel & Industrial Storage Tanks, Lighting Poles, Stainless Steel Fabrication, Welding.'
