@@ -8,7 +8,10 @@ export interface CaptureMessage {
 const SPEC_SIGNALS = /\b\d+\s*(kva|kw|kwh|hp)\b/i
 
 const ENGAGEMENT_SIGNALS =
-  /\b(reach out|get in touch|talk to|speak to|talk with|speak with|connect me|contact me|callback|call me|call us|sales team|quote|quotation|whatsapp|order|buy|purchase)\b/i
+  /\b(reach out|get in touch|talk to|speak to|talk with|speak with|connect me|contact me|callback|call me|call us|sales team|sales persons?|salespeople|salesperson|sales representatives?|representative|quote|quotation|whatsapp|order|buy|purchase)\b/i
+
+const FORM_REQUEST_SIGNALS =
+  /\b(where(?:'s| is) (?:the )?form|show (?:me )?(?:the )?form|contact form)\b/i
 
 const BUYING_SIGNALS =
   /\b(i want|i need|we want|we need|looking for|interested in|get a quote|need a quote|need a|want a)\b/i
@@ -33,7 +36,8 @@ export function hasSpecDetail(text: string): boolean {
 }
 
 export function hasEngagementIntent(text: string): boolean {
-  return ENGAGEMENT_SIGNALS.test(text.trim())
+  const trimmed = text.trim()
+  return ENGAGEMENT_SIGNALS.test(trimmed) || FORM_REQUEST_SIGNALS.test(trimmed)
 }
 
 export function hasBuyingIntent(text: string): boolean {
@@ -92,6 +96,11 @@ export function isStructurallyReadyForCapture(
   const buying = hasBuyingIntent(lastUserMessage)
   const capacity = extractCapacity(lastUserMessage, conversation)
 
+  // A direct request to speak with sales is sufficient. Product details can be
+  // collected by the sales team after the visitor has provided their contact
+  // information; requiring product context here leaves the form hidden.
+  if (engaged) return true
+
   // Capacity given (incl. bare "1500") with product context
   if (capacity && productInThread) return true
 
@@ -99,9 +108,6 @@ export function isStructurallyReadyForCapture(
 
   // "I want a diesel generator" — product + buying intent
   if (buying && productOnLast) return true
-
-  // Explicit contact / quote request with product context
-  if (productInThread && engaged) return true
 
   return false
 }

@@ -29,6 +29,7 @@ export interface Qualification {
 
 export interface LeadPayload {
   name: string
+  email: string
   phone: string
   company: string
 }
@@ -408,6 +409,7 @@ export function useEngineeringChat() {
         method: 'POST',
         body: {
           name: payload.name,
+          email: payload.email,
           phone: payload.phone,
           company: payload.company,
           requestType: qualification.requestType || 'Consultation',

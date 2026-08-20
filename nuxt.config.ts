@@ -50,9 +50,7 @@ export default defineNuxtConfig({
     '/hero-test': { robots: false, sitemap: false }
   },
   runtimeConfig: {
-    postmarkToken: process.env.POSTMARK_TOKEN || '',
-    postmarkFromEmail: process.env.POSTMARK_FROM_EMAIL || '',
-    contactEmail: process.env.CONTACT_EMAIL || '',
+    formspreeEndpoint: process.env.FORMSPREE_ENDPOINT || '',
     geminiApiKey: process.env.GEMINI_API_KEY || '',
     geminiModel: process.env.GEMINI_MODEL || 'gemini-flash-lite-latest',
     public: {

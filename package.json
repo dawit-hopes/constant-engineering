@@ -20,7 +20,6 @@
     "@google/generative-ai": "^0.24.1",
     "@nuxtjs/robots": "^6.1.2",
     "@nuxtjs/sitemap": "^8.2.2",
-    "@vueuse/motion": "^2.0.0",
-    "postmark": "^4.0.5"
+    "@vueuse/motion": "^2.0.0"
   }
 }

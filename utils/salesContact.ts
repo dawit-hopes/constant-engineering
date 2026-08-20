@@ -60,5 +60,5 @@ export function buildUnavailableHandoffMessage(date = new Date()): string {
 }
 
 export function buildLeadSuccessMessage(date = new Date()): string {
-  return `Request received. Our sales team will contact you ${getSalesContactTimingPhrase(date)}.`
+  return `Thank you — your request has been received. Our sales team will contact you ${getSalesContactTimingPhrase(date)}.`
 }

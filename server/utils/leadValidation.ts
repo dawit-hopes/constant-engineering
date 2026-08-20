@@ -2,6 +2,7 @@
 
 export const LIMITS = {
   name: 100,
+  email: 254,
   phone: 30,
   company: 150,
   requestType: 80,
@@ -49,6 +50,7 @@ export interface LeadQualification {
 
 export interface RawLeadBody {
   name?: unknown
+  email?: unknown
   phone?: unknown
   company?: unknown
   requestType?: unknown
@@ -62,6 +64,7 @@ export interface RawLeadBody {
 
 export interface ValidatedLead {
   name: string
+  email: string
   phone: string
   company: string | null
   requestType: string
@@ -119,6 +122,14 @@ function validatePhone(value: unknown): string {
   }
   if (!/^[\d\s+().-]+$/.test(text)) {
     throw new LeadValidationError('Phone number contains invalid characters.')
+  }
+  return text
+}
+
+function validateEmail(value: unknown): string {
+  const text = assertSafeText(value, 'Email', LIMITS.email, 5).toLowerCase()
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(text)) {
+    throw new LeadValidationError('Email is invalid.')
   }
   return text
 }
@@ -208,6 +219,7 @@ export function validateLeadBody(body: RawLeadBody): ValidatedLead {
 
   return {
     name: validateName(body.name),
+    email: validateEmail(body.email),
     phone: validatePhone(body.phone),
     company: validateOptionalCompany(body.company),
     requestType: validateRequestType(body.requestType, qualification),

@@ -29,6 +29,15 @@
         class="eng-input"
       />
       <input
+        v-model.trim="form.email"
+        type="email"
+        name="email"
+        autocomplete="email"
+        required
+        placeholder="Email Address *"
+        class="eng-input"
+      />
+      <input
         v-model.trim="form.company"
         type="text"
         name="company"
@@ -62,7 +71,7 @@ defineProps({
 
 const emit = defineEmits(['submit'])
 
-const form = reactive({ name: '', phone: '', company: '' })
+const form = reactive({ name: '', phone: '', email: '', company: '' })
 
 function onSubmit() {
   emit('submit', { ...form })
