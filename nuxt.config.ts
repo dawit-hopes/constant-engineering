@@ -1,4 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+const googleAnalyticsId = process.env.GOOGLE_ANALYTICS_ID || 'G-YMH5SK77PW'
+
 export default defineNuxtConfig({
   compatibilityDate: '2026-06-26',
   devtools: { enabled: true },
@@ -54,7 +56,7 @@ export default defineNuxtConfig({
     geminiApiKey: process.env.GEMINI_API_KEY || '',
     geminiModel: process.env.GEMINI_MODEL || 'gemini-flash-lite-latest',
     public: {
-      googleAnalyticsId: process.env.GOOGLE_ANALYTICS_ID || 'G-CY5PZQV6E6',
+      googleAnalyticsId,
       whatsappNumber: process.env.WHATSAPP_NUMBER || '251924909098',
       supportPhone: process.env.SUPPORT_PHONE || '+251 924 909 098'
     }
@@ -82,7 +84,19 @@ export default defineNuxtConfig({
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
         { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap' }
-      ]
+      ],
+      script:
+        process.env.NODE_ENV === 'production'
+          ? [
+              {
+                src: `https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`,
+                async: true
+              },
+              {
+                innerHTML: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${googleAnalyticsId}');`
+              }
+            ]
+          : []
     }
   }
 })
